@@ -34,6 +34,26 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'favicon.svg', 'apple-touch-icon-180x180.png'],
+      workbox: {
+        cleanupOutdatedCaches: true,
+        clientsClaim: true,
+        skipWaiting: true,
+        // No precachear los HTML: así una versión nueva siempre llega fresca
+        // de la red y no se queda una pantalla vieja pegada tras un deploy.
+        globPatterns: ['**/*.{js,css,woff2,woff,ttf,png,svg,ico,webmanifest}'],
+        navigateFallback: null,
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.mode === 'navigate',
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'paginas',
+              networkTimeoutSeconds: 4,
+              expiration: { maxEntries: 40, maxAgeSeconds: 60 * 60 * 24 * 7 },
+            },
+          },
+        ],
+      },
       manifest: {
         name: 'Glup! — Juegos para beber, parejas y grupos',
         short_name: 'Glup!',

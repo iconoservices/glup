@@ -27,15 +27,15 @@ export default function Hub() {
   return (
     <div className="hub">
       <Seo
-        title="Boga Hub — mini apps de juegos para fiestas y parejas"
-        description="Colección de mini apps para jugar en fiestas, en pareja y en grupo. Verdad o reto, botella borracha, yo nunca nunca y más. Gratis y sin descargar."
+        title="Glup Juegos — juegos para fiestas, parejas y grupos (+18)"
+        description="Juegos para fiestas, para parejas y para grupos: verdad o reto +18, botella borracha, yo nunca nunca, dados eróticos y más. Gratis, online y sin descargar."
         path="/"
       />
 
       <header className="hub__head">
         <Logo size={40} />
-        <h1 className="hub__title">Boga Hub</h1>
-        <p className="hub__sub">Mini apps para jugar. Elige una:</p>
+        <h1 className="hub__title">Glup Juegos</h1>
+        <p className="hub__sub">Juegos para jugar hoy. Elige uno:</p>
       </header>
 
       <div className="hub__list">

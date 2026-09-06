@@ -6,7 +6,7 @@ import { LayoutGrid } from 'lucide-react';
 export default function HubLink() {
   return (
     <Link to="/" className="hub-link">
-      <LayoutGrid size={13} /> Boga Hub
+      <LayoutGrid size={13} /> Glup Juegos
     </Link>
   );
 }

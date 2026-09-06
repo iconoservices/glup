@@ -20,6 +20,19 @@ const retosBottella = {
     ]
 };
 
+const SPIN_MS = 2600;
+
+function BottleSVG() {
+    return (
+        <svg className="bottle-svg" viewBox="0 0 200 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="6" y="12" width="118" height="40" rx="20" fill="var(--accent)" />
+            <rect x="120" y="22" width="44" height="20" rx="8" fill="var(--accent)" />
+            <rect x="162" y="17" width="16" height="30" rx="5" fill="var(--yellow)" />
+            <ellipse cx="42" cy="24" rx="16" ry="7" fill="#fff" fillOpacity="0.28" />
+        </svg>
+    );
+}
+
 export default function Botella({ onBack, isDrinkingMode, intensity = 'intermedio', jugadores = [] }) {
     const [girando, setGirando] = useState(false);
     const [elegido, setElegido] = useState(null);
@@ -29,10 +42,11 @@ export default function Botella({ onBack, isDrinkingMode, intensity = 'intermedi
     const girar = () => {
         if (girando || jugadores.length < 2) return;
         setGirando(true);
+        setElegido(null);
         setReto(null);
 
-        const vueltasExtra = Math.floor(Math.random() * 5 + 3) * 360;
-        const anguloFinal = angulo + vueltasExtra + Math.floor(Math.random() * 360);
+        const vueltas = (Math.floor(Math.random() * 4) + 6) * 360;
+        const anguloFinal = angulo + vueltas + Math.floor(Math.random() * 360);
         setAngulo(anguloFinal);
 
         setTimeout(() => {
@@ -43,7 +57,7 @@ export default function Botella({ onBack, isDrinkingMode, intensity = 'intermedi
             setElegido(jugadores[elegidoIdx]);
             setReto(textoReto);
             setGirando(false);
-        }, 1800);
+        }, SPIN_MS);
     };
 
     return (
@@ -73,14 +87,21 @@ export default function Botella({ onBack, isDrinkingMode, intensity = 'intermedi
                     </div>
 
                     <button
+                        className={`bottle-stage${girando ? ' is-spinning' : ''}`}
                         onClick={girar}
                         disabled={girando}
-                        style={{ background: 'transparent', border: 'none', cursor: girando ? 'default' : 'pointer', padding: 0 }}
+                        aria-label="Girar la botella"
                     >
-                        <div
-                            className={`bottle${girando ? ' is-spinning' : ''}`}
-                            style={{ transform: `rotate(${angulo}deg)` }}
-                        >🍾</div>
+                        <span className="bottle-ring" />
+                        <span
+                            className="bottle-spin"
+                            style={{
+                                transform: `rotate(${angulo}deg)`,
+                                transition: girando ? `transform ${SPIN_MS}ms cubic-bezier(0.12, 0.8, 0.16, 1)` : 'none',
+                            }}
+                        >
+                            <BottleSVG />
+                        </span>
                     </button>
 
                     <p className="stage__hint">{girando ? 'Girando...' : 'Toca la botella para girarla'}</p>

@@ -1029,14 +1029,47 @@ img { max-width: 100%; }
   transform: scale(1.08);
 }
 
-.bottle {
-  font-size: 100px;
-  line-height: 1;
-  display: block;
-  filter: drop-shadow(0 0 18px color-mix(in srgb, var(--_a) 55%, transparent));
+/* Botella giratoria */
+.bottle-stage {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
-.bottle.is-spinning { transition: transform 1.8s cubic-bezier(0.17, 0.67, 0.3, 0.97); }
+.bottle-stage:disabled { cursor: default; }
+.bottle-stage:not(:disabled):active { transform: scale(0.97); }
+
+.bottle-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px dashed color-mix(in srgb, var(--_a) 40%, transparent);
+  background: radial-gradient(circle, color-mix(in srgb, var(--_a) 12%, transparent), transparent 65%);
+}
+
+.bottle-stage.is-spinning .bottle-ring {
+  animation: pulse 0.9s ease-in-out infinite;
+}
+
+.bottle-spin {
+  position: relative;
+  width: 62%;
+  display: flex;
+  will-change: transform;
+}
+
+.bottle-svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 6px 16px color-mix(in srgb, var(--_a) 55%, transparent));
+}
 
 .empty {
   flex: 1;

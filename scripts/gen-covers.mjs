@@ -6,6 +6,7 @@ const COLORS = {
   Fiesta: '#ffce3a',
   Grupos: '#b06bff',
   'Verdad o Reto': '#ff2e88',
+  'Tríos': '#a15cff',
   Guía: '#1fa8ff',
 };
 

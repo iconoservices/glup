@@ -11,6 +11,11 @@ import VorShell from './apps-hub/vor18/VorShell';
 import VorHome from './apps-hub/vor18/VorHome';
 import VorPlay from './apps-hub/vor18/VorPlay';
 import VorContenido from './apps-hub/vor18/VorContenido';
+import TriosShell from './apps-hub/trios/TriosShell';
+import TriosHome from './apps-hub/trios/TriosHome';
+import TriosPlay from './apps-hub/trios/TriosPlay';
+import TriosBotella from './apps-hub/trios/TriosBotella';
+import TriosContenido from './apps-hub/trios/TriosContenido';
 import Blog from './pages/Blog';
 import Article from './pages/Article';
 import RouteError from './pages/RouteError';
@@ -49,6 +54,18 @@ export const routes = [
           { index: true, element: <VorHome /> },
           { path: 'jugar', element: <VorPlay /> },
           { path: 'contenido', element: <VorContenido /> },
+        ],
+      },
+
+      // ── Juegos para Tríos +18 ──
+      {
+        path: 'juegos-para-trios',
+        element: <TriosShell />,
+        children: [
+          { index: true, element: <TriosHome /> },
+          { path: 'jugar', element: <TriosPlay /> },
+          { path: 'botella', element: <TriosBotella /> },
+          { path: 'contenido', element: <TriosContenido /> },
         ],
       },
 

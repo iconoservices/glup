@@ -235,8 +235,9 @@
 .hub-sec__lead { color: var(--h-dim); margin-top: 0.5rem; max-width: 52ch; line-height: 1.6; }
 
 /* ---------- Apps ---------- */
-.hub-apps { display: grid; gap: 1.2rem; }
-@media (min-width: 760px) { .hub-apps { grid-template-columns: 1fr 1fr; } }
+.hub-apps { display: grid; gap: 1.2rem; grid-template-columns: 1fr; }
+@media (min-width: 560px) { .hub-apps { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .hub-apps { grid-template-columns: repeat(3, 1fr); } }
 
 .hub-app {
   --_a: var(--h-blue);
@@ -252,6 +253,7 @@
   transition: box-shadow 0.2s, transform 0.16s var(--ease-bounce);
 }
 .hub-app--pink { --_a: var(--h-pink); }
+.hub-app--violet { --_a: #8b3dff; }
 .hub-app:hover { box-shadow: 0 22px 44px -24px rgba(20, 30, 60, 0.32); }
 .hub-app:active { transform: scale(0.99); }
 
@@ -754,3 +756,76 @@
   color: var(--text-dim);
   line-height: 1.45;
 }
+
+/* ==========================================================================
+   Juegos para Tríos +18 — tema violeta (scope [data-app="trios"])
+   ========================================================================== */
+
+[data-app="trios"] {
+  --accent: #a15cff;
+  --accent-ink: #1a0733;
+  --_a: #a15cff;
+  --bg: #0e0820;
+  --surface: #191033;
+  --surface-2: #241847;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-2: rgba(255, 255, 255, 0.17);
+  --text: #f1ecfb;
+  --text-dim: #b7a8d6;
+  --text-faint: #7a6b9c;
+  --verdad: #7c8cff;
+  --reto: #ff5cc8;
+}
+
+.trios {
+  background-image: radial-gradient(80% 40% at 50% -5%, rgba(161, 92, 255, 0.18), transparent 60%);
+}
+
+.trios-warn {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--reto);
+  margin-top: -0.4rem;
+}
+
+.trios-nivel {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.trios-nivel__btn {
+  flex: 1;
+  max-width: 9rem;
+  padding: 0.6rem 0.5rem;
+  border-radius: var(--radius);
+  border: 2px solid var(--line);
+  background: var(--surface);
+  color: var(--text-dim);
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.12s var(--ease-bounce);
+}
+
+.trios-nivel__btn:active { transform: scale(0.96); }
+.trios-nivel__btn.is-sel {
+  border-color: var(--accent);
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent) 14%, var(--surface));
+}
+
+.trios-chev { color: var(--accent); grid-row: 1 / 3; grid-column: 3; align-self: center; }
+
+.vor-actions--one { grid-template-columns: 1fr; }
+
+.trios-botella {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0 1.15rem;
+}
+
+.trios-botella .vor-card { width: 100%; }

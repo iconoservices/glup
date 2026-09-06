@@ -31,6 +31,17 @@ const APPS = [
     bullets: ['6 niveles: de suave a 4play', '144 verdades y retos', 'Retos personalizados con nombres', 'Marcador "Lo hice" / "Fallé"'],
     cta: 'Abrir Verdad o Reto',
   },
+  {
+    to: '/juegos-para-trios',
+    kind: 'violet',
+    glyph: '😈',
+    name: 'Juegos para Tríos +18',
+    badge: 'Nuevo',
+    rating: '4.5',
+    desc: 'Para tres: verdad o reto entre los tres, solo retos picantes y la botella.',
+    bullets: ['Verdad o reto para tríos', 'Modo "solo retos" (quítate una prenda…)', 'La botella que apunta exacto', 'Niveles Picante y Extremo'],
+    cta: 'Abrir Tríos',
+  },
 ];
 
 const POPULAR = [
@@ -132,8 +143,8 @@ export default function Hub() {
 
       <section className="hub-sec" id="apps">
         <div className="hub-sec__head">
-          <p className="hub-sec__kicker">Dos apps</p>
-          <h2 className="hub-sec__title">Un montón de juegos, en dos apps</h2>
+          <p className="hub-sec__kicker">Tres apps</p>
+          <h2 className="hub-sec__title">Un montón de juegos, en tres apps</h2>
           <p className="hub-sec__lead">Cada una se abre y se instala por separado. Sin cuenta, sin anuncios entre partidas.</p>
         </div>
 

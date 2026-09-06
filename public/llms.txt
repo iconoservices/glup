@@ -8,6 +8,7 @@ Glup Juegos (glup.bogahub.app) reúne dos apps de juegos web y una revista con g
 
 - [Glup! — juegos para beber y para parejas](https://glup.bogahub.app/glup): 9 juegos (botella borracha, yo nunca nunca, dados eróticos, ruleta de castigos, verdad o reto, 5 segundos, pre-party, modo caos, reglas propias). Niveles: suave, medio, picante. Modo con y sin alcohol.
 - [Verdad o Reto +18](https://glup.bogahub.app/verdad-o-reto-18): verdad o reto para adultos con 6 niveles (suave, atrevido, loco, pareja, hardcore, 4play) y 144 verdades y retos que salen con el nombre de cada jugador.
+- [Juegos para Tríos +18](https://glup.bogahub.app/juegos-para-trios): juego para tres personas con tres modos (verdad o reto en trío, solo retos picantes, y la botella que apunta exacto) y dos niveles (picante, extremo). Con los nombres de quienes juegan.
 
 ## Juegos individuales
 
@@ -32,6 +33,7 @@ Glup Juegos (glup.bogahub.app) reúne dos apps de juegos web y una revista con g
 - [8 juegos para beber en pareja (para dos personas)](https://glup.bogahub.app/blog/juegos-de-beber-para-dos)
 - [50 preguntas incómodas para amigos](https://glup.bogahub.app/blog/preguntas-incomodas-para-amigos)
 - [40 castigos para juegos de beber](https://glup.bogahub.app/blog/castigos-para-juegos-de-beber)
+- [Juegos para tríos: cómo jugar en tres](https://glup.bogahub.app/blog/juegos-para-trios)
 
 ## Datos
 

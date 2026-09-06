@@ -23,7 +23,7 @@ export default function Home() {
       <main className="store">
         {searching ? (
           <>
-            <p className="section-label" style={accentStyle('pink')}>
+            <p className="section-label" style={accentStyle('blue')}>
               {results.length > 0 ? `Resultados para "${query.trim()}"` : `Nada para "${query.trim()}"`}
             </p>
             <div className="grid-2">
@@ -34,7 +34,7 @@ export default function Home() {
           <>
             <CatFilter />
             <section className="store-section">
-              <h1 className="section-label" style={accentStyle('pink')}>🎲 Todos los juegos</h1>
+              <h1 className="section-label" style={accentStyle('blue')}>🎲 Todos los juegos</h1>
               <div className="grid-2">
                 {GAMES.map((g) => <GameCard key={g.slug} game={g} />)}
               </div>

@@ -28,7 +28,7 @@ export const GAMES = [
     slug: 'botella-borracha-online',
     title: 'Botella Borracha',
     categories: ['fiesta', 'grupos'],
-    accent: 'pink',
+    accent: 'blue',
     rating: '4.9',
     chip: '3+ jug.',
     seo: 'Gira la botella y deja que decida quién cumple el castigo o toma el shot.',

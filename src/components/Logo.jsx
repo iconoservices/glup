@@ -4,8 +4,8 @@ import React from 'react';
 export default function Logo({ size = 30 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M256 92C256 92 150 214 150 312a106 106 0 1 0 212 0C362 214 256 92 256 92Z" fill="#ff2e88" />
-      <ellipse cx="212" cy="292" rx="26" ry="34" fill="#ffffff" fillOpacity="0.22" />
+      <path d="M256 92C256 92 150 214 150 312a106 106 0 1 0 212 0C362 214 256 92 256 92Z" fill="#1fa8ff" />
+      <ellipse cx="212" cy="292" rx="26" ry="34" fill="#ffffff" fillOpacity="0.28" />
       <circle cx="330" cy="150" r="30" fill="#ffce3a" />
     </svg>
   );

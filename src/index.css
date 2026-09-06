@@ -2,31 +2,32 @@
 
 /* ==========================================================================
    Glup! — Sistema de diseño (sólido / plano / bold)
-   Paleta: rosa protagonista + amarillo + violeta, sobre casi-negro ciruela
+   Paleta: azul protagonista + amarillo + rosa + violeta, sobre casi-negro azulado
    ========================================================================== */
 
 :root {
   color-scheme: dark;
 
   /* Acentos */
-  --pink: #ff2e88;
+  --blue: #1fa8ff;
   --yellow: #ffce3a;
+  --pink: #ff2e88;
   --violet: #b06bff;
-  --accent: var(--pink);      /* temable por pantalla */
-  --accent-ink: #120a0f;      /* texto sobre un acento */
+  --accent: var(--blue);      /* temable por pantalla */
+  --accent-ink: #061524;      /* texto sobre un acento */
 
   /* Superficies */
-  --bg: #150a10;
-  --surface: #1f141b;
-  --surface-2: #2a1b24;
-  --cover: #190f16;
+  --bg: #0b0f18;
+  --surface: #141b28;
+  --surface-2: #1f2a3b;
+  --cover: #101725;
   --line: rgba(255, 255, 255, 0.09);
   --line-2: rgba(255, 255, 255, 0.16);
 
   /* Texto */
-  --text: #f4ece9;
-  --text-dim: #b6a7ae;
-  --text-faint: #766a72;
+  --text: #eef2f8;
+  --text-dim: #a6b1c2;
+  --text-faint: #6b7688;
 
   /* Semántica */
   --danger: #ff5a5f;
@@ -59,7 +60,7 @@ body {
   min-height: 100dvh;
   display: flex;
   justify-content: center;
-  background-image: radial-gradient(120% 55% at 50% -8%, rgba(255, 46, 136, 0.18), transparent 70%);
+  background-image: radial-gradient(120% 55% at 50% -8%, rgba(31, 168, 255, 0.16), transparent 70%);
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
@@ -78,7 +79,7 @@ img { max-width: 100%; }
 }
 
 ::selection {
-  background: var(--pink);
+  background: var(--blue);
   color: var(--accent-ink);
 }
 
@@ -162,7 +163,7 @@ img { max-width: 100%; }
 .btn--rainbow {
   color: #fff;
   border: none;
-  background: linear-gradient(115deg, var(--pink), var(--violet), var(--yellow), var(--pink));
+  background: linear-gradient(115deg, var(--blue), var(--violet), var(--pink), var(--blue));
   background-size: 280% 280%;
   animation: gradient-shift 7s ease infinite;
 }
@@ -222,8 +223,8 @@ img { max-width: 100%; }
   font-size: 2.5rem;
   font-weight: 700;
   line-height: 0.9;
-  color: var(--pink);
-  text-shadow: 0 0 30px rgba(255, 46, 136, 0.32);
+  color: var(--blue);
+  text-shadow: 0 0 30px rgba(31, 168, 255, 0.34);
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -231,7 +232,7 @@ img { max-width: 100%; }
 }
 
 .brand-name svg {
-  filter: drop-shadow(0 0 12px rgba(255, 46, 136, 0.4));
+  filter: drop-shadow(0 0 12px rgba(31, 168, 255, 0.45));
   flex-shrink: 0;
 }
 
@@ -247,8 +248,8 @@ img { max-width: 100%; }
   transition: border-color 0.2s;
 }
 
-.searchbar:focus-within { border-color: var(--pink); }
-.searchbar svg { flex-shrink: 0; color: var(--pink); }
+.searchbar:focus-within { border-color: var(--blue); }
+.searchbar svg { flex-shrink: 0; color: var(--blue); }
 
 .searchbar__input {
   flex: 1;
@@ -320,7 +321,7 @@ img { max-width: 100%; }
 }
 
 .heat-bar__seg.is-on {
-  background: var(--pink);
+  background: var(--blue);
   color: var(--accent-ink);
 }
 
@@ -565,7 +566,7 @@ img { max-width: 100%; }
 
 .tab:active { transform: scale(0.9); }
 .tab.is-on,
-.tab.active { color: var(--pink); }
+.tab.active { color: var(--blue); }
 
 /* ============================== Ajustes ================================= */
 
@@ -618,8 +619,8 @@ img { max-width: 100%; }
 }
 
 .set-row--premium {
-  background: linear-gradient(120deg, color-mix(in srgb, var(--pink) 16%, var(--surface)), color-mix(in srgb, var(--violet) 16%, var(--surface)));
-  border-color: color-mix(in srgb, var(--pink) 32%, transparent);
+  background: linear-gradient(120deg, color-mix(in srgb, var(--blue) 16%, var(--surface)), color-mix(in srgb, var(--violet) 16%, var(--surface)));
+  border-color: color-mix(in srgb, var(--blue) 32%, transparent);
 }
 
 .set-row--danger { border-color: color-mix(in srgb, var(--danger) 42%, transparent); }
@@ -693,7 +694,7 @@ img { max-width: 100%; }
   font-family: 'Fredoka', sans-serif;
   font-weight: 600;
   font-size: 1.15rem;
-  color: var(--pink);
+  color: var(--blue);
   display: flex;
   align-items: center;
   gap: 0.5rem;

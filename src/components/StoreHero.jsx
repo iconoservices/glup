@@ -5,6 +5,7 @@ import { accentStyle } from '../theme';
 import { HEAT_META } from '../lib/ui';
 import { useSettings } from '../context/useSettings';
 import Logo from './Logo';
+import HubLink from './HubLink';
 
 export default function StoreHero({ query, onQuery }) {
   const { drinkingMode, intensity, jugadores, updateDrinking, updateIntensity, openJugadores } = useSettings();
@@ -12,9 +13,10 @@ export default function StoreHero({ query, onQuery }) {
 
   return (
     <header className="store-hero">
+      <HubLink />
       <span className="brand-eyebrow">Verdad · Reto · Sin Excusas</span>
       <div className="store-hero__top">
-        <Link to="/" className="brand-name"><Logo size={30} /> Glup!</Link>
+        <Link to="/glup" className="brand-name"><Logo size={30} /> Glup!</Link>
         <div className="chip-row chip-row--stack">
           <button className={`chip${drinkingMode ? ' is-on' : ''}`} style={accentStyle('yellow')} onClick={() => updateDrinking(!drinkingMode)}>
             <Beer size={14} />

@@ -25,7 +25,7 @@ export default function Ajustes() {
 
   return (
     <main className="settings">
-      <Seo title="Ajustes | Glup!" description="Configura tu sesión de juego en Glup!: modo tragos, nivel de intensidad y jugadores." path="/ajustes" />
+      <Seo title="Ajustes | Glup!" description="Configura tu sesión de juego en Glup!: modo tragos, nivel de intensidad y jugadores." path="/glup/ajustes" />
       <p className="section-label" style={accentStyle('blue')}>⚙️ Ajustes</p>
 
       <div>

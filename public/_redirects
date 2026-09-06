@@ -1,3 +1,0 @@
-# Las rutas reales se sirven como HTML pre-generado.
-# Cualquier otra ruta cae en la app (que muestra "no encontrado").
-/*  /index.html  200

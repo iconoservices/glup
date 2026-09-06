@@ -28,14 +28,14 @@ export default function CategoryPage({ catId }) {
   const results = useMemo(() => searchGames(query), [query]);
 
   const cat = categoryById(catId);
-  if (!cat) return <Navigate to="/" replace />;
+  if (!cat) return <Navigate to="/glup" replace />;
 
   const games = gamesByCategory(catId);
   const copy = COPY[catId];
 
   return (
     <div className="app">
-      <Seo title={copy.title} description={copy.desc} path={`/${catId}`} />
+      <Seo title={copy.title} description={copy.desc} path={`/glup/${catId}`} />
       <StoreHero query={query} onQuery={setQuery} />
 
       <main className="store">

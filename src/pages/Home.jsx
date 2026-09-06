@@ -17,7 +17,7 @@ export default function Home() {
       <Seo
         title="Glup! — Juegos para beber, para parejas y para grupos"
         description="Juegos para la previa, juegos eróticos para parejas y retos para grupos: botella borracha, yo nunca nunca, dados eróticos, verdad o reto y más. Gratis y sin descargar."
-        path="/"
+        path="/glup"
       />
       <StoreHero query={query} onQuery={setQuery} />
       <InstallBanner />

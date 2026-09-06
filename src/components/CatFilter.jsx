@@ -6,13 +6,13 @@ import { CATEGORIES } from '../catalog';
 export default function CatFilter() {
   return (
     <div className="cat-filter">
-      <NavLink to="/" end className={({ isActive }) => `cat-pill${isActive ? ' is-on' : ''}`}>
+      <NavLink to="/glup" end className={({ isActive }) => `cat-pill${isActive ? ' is-on' : ''}`}>
         Todos
       </NavLink>
       {CATEGORIES.map((c) => (
         <NavLink
           key={c.id}
-          to={`/${c.id}`}
+          to={`/glup/${c.id}`}
           style={accentStyle(c.accent)}
           className={({ isActive }) => `cat-pill${isActive ? ' is-on' : ''}`}
         >

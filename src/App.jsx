@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { SettingsProvider } from './context/SettingsContext';
-import TabBar from './components/TabBar';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -9,13 +8,13 @@ function ScrollToTop() {
   return null;
 }
 
-// Layout raíz: provee la configuración de sesión y la barra inferior.
+// Layout raíz del hub: provee la configuración de sesión (jugadores, etc.)
+// compartida entre todas las apps.
 export default function App() {
   return (
     <SettingsProvider>
       <ScrollToTop />
       <Outlet />
-      <TabBar />
     </SettingsProvider>
   );
 }

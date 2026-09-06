@@ -31,7 +31,7 @@ export default function GameCard({ game }) {
 
   return (
     <article className={`gcard${game.soon ? ' is-soon' : ''}`} style={accentStyle(game.accent)}>
-      <Link className="gcard__link" to={`/${game.slug}`} aria-label={game.title}>
+      <Link className="gcard__link" to={`/glup/${game.slug}`} aria-label={game.title}>
         {inner}
       </Link>
     </article>

@@ -5,7 +5,69 @@
 [build.environment]
   NODE_VERSION = "22"
 
-# Fallback SPA para rutas no pre-generadas (las reales se sirven como HTML)
+# ── Glup! se movió a /glup/* (301 permanente) ──
+[[redirects]]
+  from = "/fiesta"
+  to = "/glup/fiesta"
+  status = 301
+[[redirects]]
+  from = "/parejas"
+  to = "/glup/parejas"
+  status = 301
+[[redirects]]
+  from = "/grupos"
+  to = "/glup/grupos"
+  status = 301
+[[redirects]]
+  from = "/ajustes"
+  to = "/glup/ajustes"
+  status = 301
+[[redirects]]
+  from = "/yo-nunca-nunca-online"
+  to = "/glup/yo-nunca-nunca-online"
+  status = 301
+[[redirects]]
+  from = "/botella-borracha-online"
+  to = "/glup/botella-borracha-online"
+  status = 301
+[[redirects]]
+  from = "/juegos-para-la-previa"
+  to = "/glup/juegos-para-la-previa"
+  status = 301
+[[redirects]]
+  from = "/ruleta-de-castigos"
+  to = "/glup/ruleta-de-castigos"
+  status = 301
+[[redirects]]
+  from = "/dados-eroticos"
+  to = "/glup/dados-eroticos"
+  status = 301
+[[redirects]]
+  from = "/verdad-o-reto-para-parejas"
+  to = "/glup/verdad-o-reto-para-parejas"
+  status = 301
+[[redirects]]
+  from = "/preguntas-picantes-en-pareja"
+  to = "/glup/preguntas-picantes-en-pareja"
+  status = 301
+[[redirects]]
+  from = "/retos-personalizados"
+  to = "/glup/retos-personalizados"
+  status = 301
+[[redirects]]
+  from = "/modo-caos"
+  to = "/glup/modo-caos"
+  status = 301
+[[redirects]]
+  from = "/piramide-para-beber"
+  to = "/glup/piramide-para-beber"
+  status = 301
+[[redirects]]
+  from = "/quien-es-mas-probable-que"
+  to = "/glup/quien-es-mas-probable-que"
+  status = 301
+
+# Fallback SPA (las rutas reales se sirven como HTML pre-generado)
 [[redirects]]
   from = "/*"
   to = "/index.html"

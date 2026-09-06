@@ -16,7 +16,7 @@ function GameSeoBlock({ game }) {
       <p className="game-seo__lead">{game.seo}</p>
       <p>
         {game.title} es uno de los {game.chip === 'Parejas' ? 'juegos para parejas' : 'juegos para grupos y fiestas'} de
-        {' '}<Link to="/">Glup!</Link>. Se juega desde el navegador, gratis y sin descargar nada:
+        {' '}<Link to="/glup">Glup!</Link>. Se juega desde el navegador, gratis y sin descargar nada:
         elige el nivel (suave, medio o picante) y empieza a jugar.
       </p>
       <p className="game-seo__kw">
@@ -75,10 +75,10 @@ export default function GamePage() {
   const game = gameBySlug(slug);
   const { drinkingMode, intensity, jugadores, openJugadores } = useSettings();
 
-  if (!game) return <Navigate to="/" replace />;
+  if (!game) return <Navigate to="/glup" replace />;
 
-  const back = () => navigate('/');
-  const seo = <Seo title={`${game.title} online — jugar gratis | Glup!`} description={game.seo} path={`/${slug}`} />;
+  const back = () => navigate("/glup");
+  const seo = <Seo title={`${game.title} online — jugar gratis | Glup!`} description={game.seo} path={`/glup/${slug}`} />;
 
   if (game.soon) {
     return <>{seo}<SoonScreen game={game} onBack={back} /><GameSeoBlock game={game} /></>;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Dices, ArrowLeft, Beer } from 'lucide-react';
+import { Dices } from 'lucide-react';
+import GameShell from '../../components/GameShell';
 
 const acciones = {
     suave: [
@@ -28,6 +29,8 @@ const acciones = {
     ]
 };
 
+const diceFaces = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+
 export default function Dados({ onBack, isDrinkingMode, intensity = 'intermedio' }) {
     const [resultado, setResultado] = useState(null);
     const [rolling, setRolling] = useState(false);
@@ -43,69 +46,38 @@ export default function Dados({ onBack, isDrinkingMode, intensity = 'intermedio'
             const num = Math.floor(Math.random() * 6) + 1;
             const lista = acciones[intensity] || acciones.intermedio;
             let text = lista[Math.floor(Math.random() * lista.length)];
-
             if (isDrinkingMode && Math.random() < 0.25) {
                 text += "\n\n🍻 ¡Penitencia doble! Bebe si te niegas.";
             }
-
             setDiceNum(num);
             setResultado(text);
             setRolling(false);
         }, 1200);
     };
 
-    const diceFaces = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
-
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%', maxWidth: '480px', margin: '0 auto', padding: '2rem 1.5rem', background: '#0a0a0a', color: '#fff' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                <button onClick={onBack} style={{ background: 'transparent', border: 'none', color: '#a0a0a0', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <ArrowLeft size={24} /> Volver
-                </button>
-                <span style={{ fontWeight: '600', color: '#ffa500', letterSpacing: '2px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <Dices size={20} /> DADOS TRAVIESOS
-                </span>
-                <div style={{ width: '24px' }}></div>
-            </div>
+        <GameShell
+            accent="lime"
+            label="DADOS TRAVIESOS"
+            icon={<Dices size={18} />}
+            drinking={isDrinkingMode}
+            onBack={onBack}
+        >
+            <button
+                className={`giant${rolling ? ' is-busy' : ''}${diceNum ? ' is-done' : ''}`}
+                onClick={rollDice}
+                disabled={rolling}
+            >
+                {rolling || !diceNum ? '🎲' : diceFaces[diceNum - 1]}
+            </button>
 
-            {isDrinkingMode && (
-                <div style={{ textAlign: 'center', marginBottom: '1rem', color: '#ffa500', fontSize: '0.8rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '5px' }}>
-                    <Beer size={16} /> Modo Tragos activado
-                </div>
-            )}
+            <p className="stage__hint">{rolling ? 'Tirando...' : 'Toca el dado para lanzarlo'}</p>
 
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '2rem' }}>
-                {/* Dado visual */}
-                <button
-                    onClick={rollDice}
-                    disabled={rolling}
-                    style={{
-                        fontSize: rolling ? '5rem' : '9rem', background: 'transparent', border: 'none',
-                        cursor: 'pointer', lineHeight: 1, transition: 'all 0.3s',
-                        animation: rolling ? 'pulse 0.3s infinite alternate' : 'none',
-                        filter: diceNum ? 'drop-shadow(0 0 15px rgba(255,165,0,0.7))' : 'none'
-                    }}
-                >
-                    {rolling ? '🎲' : diceNum ? diceFaces[diceNum - 1] : '🎲'}
-                </button>
-
-                <p style={{ color: '#a0a0a0', fontSize: '0.9rem' }}>
-                    {rolling ? 'Tirando...' : 'Toca el dado para lanzarlo'}
+            <div className={`prompt${resultado ? ' is-active' : ''}`}>
+                <p className={`prompt__text${resultado ? '' : ' prompt__text--idle'}`}>
+                    {resultado || 'Tu castigo aparecerá aquí...'}
                 </p>
-
-                <div style={{
-                    width: '100%', padding: '1.5rem', background: 'rgba(30,30,30,0.6)',
-                    border: `1px solid ${resultado ? 'rgba(255,165,0,0.4)' : 'rgba(255,255,255,0.1)'}`,
-                    borderRadius: '20px', textAlign: 'center', minHeight: '120px',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    boxShadow: resultado ? '0 0 20px rgba(255,165,0,0.1) inset' : 'none',
-                    transition: 'all 0.5s ease'
-                }}>
-                    <p style={{ fontSize: '1.3rem', fontWeight: '600', lineHeight: 1.5, whiteSpace: 'pre-line', color: resultado ? '#fff' : '#555' }}>
-                        {resultado || 'Tu castigo aparecerá aquí...'}
-                    </p>
-                </div>
             </div>
-        </div>
+        </GameShell>
     );
 }

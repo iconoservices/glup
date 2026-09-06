@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Beer, ArrowLeft, RefreshCw } from 'lucide-react';
+import { Beer, RefreshCw } from 'lucide-react';
+import GameShell from '../../components/GameShell';
 
 const retosPreparty = {
     suave: [
@@ -31,46 +32,18 @@ export default function PreParty({ onBack, isDrinkingMode, intensity = 'intermed
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%', maxWidth: '480px', margin: '0 auto', padding: '2rem 1.5rem', background: '#0a0a0a', color: '#fff' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                <button onClick={onBack} style={{ background: 'transparent', border: 'none', color: '#a0a0a0', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <ArrowLeft size={24} /> Volver
-                </button>
-                <span style={{ fontWeight: '600', color: '#ff9900', letterSpacing: '2px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <Beer size={20} /> PRE-PARTY
-                </span>
-                <div style={{ width: '24px' }}></div>
-            </div>
+        <GameShell accent="amber" label="PRE-PARTY" icon={<Beer size={18} />} onBack={onBack}>
+            <p className="stage__hint">Rompiendo el hielo con tragos de calentamiento. 🍺</p>
 
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '2rem' }}>
-                <p style={{ textAlign: 'center', color: '#a0a0a0', fontSize: '0.9rem' }}>
-                    Rompiendo el hielo con tragos de calentamiento. 🍺
+            <div className={`prompt${reto ? ' is-active' : ''}`}>
+                <p className={`prompt__text${reto ? '' : ' prompt__text--idle'}`}>
+                    {reto || 'Toca para recibir tu reto de calentamiento...'}
                 </p>
-
-                <div style={{
-                    width: '100%', minHeight: '180px', padding: '2rem', background: 'rgba(30,30,30,0.6)',
-                    border: `1px solid ${reto ? 'rgba(255,153,0,0.4)' : 'rgba(255,255,255,0.1)'}`,
-                    borderRadius: '24px', textAlign: 'center', display: 'flex', alignItems: 'center',
-                    justifyContent: 'center', boxShadow: reto ? '0 0 20px rgba(255,153,0,0.1) inset' : 'none',
-                    transition: 'all 0.4s ease'
-                }}>
-                    <p style={{ fontSize: '1.5rem', fontWeight: '600', lineHeight: 1.4, color: reto ? '#fff' : '#444' }}>
-                        {reto || 'Toca para recibir tu reto de calentamiento...'}
-                    </p>
-                </div>
-
-                <button
-                    onClick={nuevoReto}
-                    style={{
-                        padding: '1rem 3rem', background: 'transparent', border: '2px solid #ff9900',
-                        color: '#ff9900', borderRadius: '30px', fontSize: '1.1rem', fontWeight: '700',
-                        cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px',
-                        boxShadow: '0 0 15px rgba(255,153,0,0.3)', transition: 'all 0.3s'
-                    }}
-                >
-                    <RefreshCw size={20} /> {reto ? 'Siguiente' : '¡Arrancar!'}
-                </button>
             </div>
-        </div>
+
+            <button className="btn btn--outline btn--lg btn--pill" onClick={nuevoReto}>
+                <RefreshCw size={20} /> {reto ? 'Siguiente' : '¡Arrancar!'}
+            </button>
+        </GameShell>
     );
 }

@@ -10,8 +10,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
       manifest: {
-        name: 'Glupi — Juegos para beber, parejas y grupos',
-        short_name: 'Glupi',
+        name: 'Glup! — Juegos para beber, parejas y grupos',
+        short_name: 'Glup!',
         description: 'Juegos para la previa, juegos eróticos para parejas y retos para grupos. Gratis y sin descargar.',
         theme_color: '#150a10',
         background_color: '#150a10',

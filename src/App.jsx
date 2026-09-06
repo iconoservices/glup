@@ -183,7 +183,7 @@ function AjustesScreen({ drinkingMode, intensity, jugadores, onUpdateDrinking, o
           <div className="set-row__main">
             <Star size={18} color="#ffd700" />
             <div>
-              <p style={{ color: '#fff', fontWeight: 700, fontFamily: 'Fredoka, sans-serif' }}>Pase Glupi</p>
+              <p style={{ color: '#fff', fontWeight: 700, fontFamily: 'Fredoka, sans-serif' }}>Pase Glup!</p>
               <p style={{ color: 'var(--text-dim)', fontSize: '0.8rem' }}>Desbloquea el nivel "Nivel Dios" en todos los juegos</p>
             </div>
           </div>
@@ -195,10 +195,10 @@ function AjustesScreen({ drinkingMode, intensity, jugadores, onUpdateDrinking, o
         <p className="set-group__label">INFORMACIÓN</p>
         {deferredPrompt && (
           <button className="btn btn--outline btn--block" style={{ marginBottom: '0.55rem' }} onClick={onInstall}>
-            <Plus size={18} /> Instalar Glupi en Pantalla de Inicio
+            <Plus size={18} /> Instalar Glup! en Pantalla de Inicio
           </button>
         )}
-        <SettingRow icon={<Info size={18} />} label="Versión de Glupi" value="v0.2.0 Beta" />
+        <SettingRow icon={<Info size={18} />} label="Versión de Glup!" value="v0.2.0 Beta" />
         <SettingRow icon={<span>🔞</span>} label="Solo para mayores de edad" value="+18" />
       </div>
 
@@ -319,7 +319,7 @@ function App() {
           <header className="store-hero">
             <span className="brand-eyebrow">Verdad · Reto · Sin Excusas</span>
             <div className="store-hero__top">
-              <h1 className="brand-name">Glupi</h1>
+              <h1 className="brand-name">Glup!</h1>
               <div className="chip-row chip-row--stack">
                 <div className={`chip${drinkingMode ? ' is-on' : ''}`} style={accentStyle('yellow')} onClick={() => updateDrinking(!drinkingMode)}>
                   <Beer size={14} />

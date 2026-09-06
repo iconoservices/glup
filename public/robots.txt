@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://glupi.netlify.app/sitemap.xml

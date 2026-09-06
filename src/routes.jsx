@@ -11,7 +11,10 @@ import VorShell from './apps-hub/vor18/VorShell';
 import VorHome from './apps-hub/vor18/VorHome';
 import VorPlay from './apps-hub/vor18/VorPlay';
 import VorContenido from './apps-hub/vor18/VorContenido';
+import Blog from './pages/Blog';
+import Article from './pages/Article';
 import { GAMES, CATEGORIES } from './catalog';
+import { POSTS } from './blog/loader';
 
 export const routes = [
   {
@@ -45,6 +48,14 @@ export const routes = [
           { path: 'jugar', element: <VorPlay /> },
           { path: 'contenido', element: <VorContenido /> },
         ],
+      },
+
+      // ── Revista / blog ──
+      { path: 'blog', element: <Blog /> },
+      {
+        path: 'blog/:slug',
+        element: <Article />,
+        getStaticPaths: () => POSTS.map((p) => `/blog/${p.slug}`),
       },
 
       { path: '*', element: <NotFound /> },

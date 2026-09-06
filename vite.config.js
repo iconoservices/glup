@@ -1,10 +1,18 @@
-import { writeFileSync } from 'node:fs'
+import { writeFileSync, readdirSync } from 'node:fs'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import { GAMES, CATEGORIES } from './src/catalog.js'
 
 const SITE = 'https://glup.bogahub.app'
+
+function blogSlugs() {
+  try {
+    return readdirSync('./src/blog/posts').filter((f) => f.endsWith('.md')).map((f) => f.replace(/\.md$/, ''))
+  } catch {
+    return []
+  }
+}
 
 function buildSitemap() {
   const paths = [
@@ -14,6 +22,8 @@ function buildSitemap() {
     ...GAMES.map((g) => `/glup/${g.slug}`),
     '/verdad-o-reto-18',
     '/verdad-o-reto-18/contenido',
+    '/blog',
+    ...blogSlugs().map((s) => `/blog/${s}`),
   ]
   const urls = paths
     .map((p) => `  <url><loc>${SITE}${p}</loc><changefreq>weekly</changefreq><priority>${p === '/' ? '1.0' : '0.8'}</priority></url>`)

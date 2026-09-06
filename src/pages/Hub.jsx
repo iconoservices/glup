@@ -66,6 +66,8 @@ export default function Hub() {
         ))}
       </div>
 
+      <Link to="/blog" className="hub__revista">📰 Revista Glup — guías y listas para jugar</Link>
+
       <p className="hub__foot">+18 · Gratis · Sin descargar · Cada juego se puede instalar por separado</p>
     </div>
   );

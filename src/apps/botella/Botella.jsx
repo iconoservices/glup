@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Users } from 'lucide-react';
 import GameShell from '../../components/GameShell';
 
@@ -37,17 +37,25 @@ export default function Botella({ onBack, isDrinkingMode, intensity = 'intermedi
     const [girando, setGirando] = useState(false);
     const [elegido, setElegido] = useState(null);
     const [reto, setReto] = useState(null);
-    const [angulo, setAngulo] = useState(0);
+    const anguloRef = useRef(0);
+    const spinRef = useRef(null);
 
     const girar = () => {
-        if (girando || jugadores.length < 2) return;
+        if (girando || jugadores.length < 2 || !spinRef.current) return;
         setGirando(true);
         setElegido(null);
         setReto(null);
 
-        const vueltas = (Math.floor(Math.random() * 4) + 6) * 360;
-        const anguloFinal = angulo + vueltas + Math.floor(Math.random() * 360);
-        setAngulo(anguloFinal);
+        const desde = anguloRef.current;
+        const hasta = desde + (Math.floor(Math.random() * 4) + 6) * 360 + Math.floor(Math.random() * 360);
+        anguloRef.current = hasta;
+
+        // Web Animations API: no depende de las transiciones CSS (que el modo
+        // "menos movimiento" desactiva), así el giro se ve siempre.
+        spinRef.current.animate(
+            [{ transform: `rotate(${desde}deg)` }, { transform: `rotate(${hasta}deg)` }],
+            { duration: SPIN_MS, easing: 'cubic-bezier(0.12, 0.8, 0.16, 1)', fill: 'forwards' }
+        );
 
         setTimeout(() => {
             const elegidoIdx = Math.floor(Math.random() * jugadores.length);
@@ -93,13 +101,7 @@ export default function Botella({ onBack, isDrinkingMode, intensity = 'intermedi
                         aria-label="Girar la botella"
                     >
                         <span className="bottle-ring" />
-                        <span
-                            className="bottle-spin"
-                            style={{
-                                transform: `rotate(${angulo}deg)`,
-                                transition: girando ? `transform ${SPIN_MS}ms cubic-bezier(0.12, 0.8, 0.16, 1)` : 'none',
-                            }}
-                        >
+                        <span className="bottle-spin" ref={spinRef}>
                             <BottleSVG />
                         </span>
                     </button>

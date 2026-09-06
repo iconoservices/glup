@@ -1,16 +1,27 @@
 /* ==========================================================================
-   Revista / blog
+   Revista Glup — estilo editorial, con layout de escritorio
    ========================================================================== */
 
-.mag {
+/* La revista usa todo el ancho (no la columna de 480px de la app) */
+.mag,
+.article {
+  width: 100%;
   min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  gap: 1.3rem;
-  padding-bottom: 3rem;
+  background: var(--bg);
 }
 
-.mag__head { display: flex; flex-direction: column; gap: 0.4rem; }
+.mag__wrap,
+.article__wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.5rem 1.15rem 4rem;
+}
+
+.mag__wrap { max-width: 940px; }
+
+/* ---------------------------- Índice / revista --------------------------- */
+
+.mag__head { display: flex; flex-direction: column; gap: 0.45rem; margin: 0.9rem 0 1.4rem; }
 
 .mag__eyebrow {
   font-family: 'Outfit', sans-serif;
@@ -24,15 +35,76 @@
 .mag__title {
   font-family: 'Fredoka', sans-serif;
   font-weight: 700;
-  font-size: 1.7rem;
+  font-size: 2rem;
   line-height: 1.1;
   color: var(--text);
   text-wrap: balance;
 }
 
-.mag__sub { color: var(--text-dim); font-size: 0.9rem; line-height: 1.5; }
+.mag__sub { color: var(--text-dim); font-size: 0.95rem; line-height: 1.55; max-width: 55ch; }
 
-.mag__grid { display: flex; flex-direction: column; gap: 0.85rem; }
+/* Artículo destacado */
+.mag-lead {
+  --_a: var(--accent);
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 1rem;
+  transition: transform 0.16s var(--ease-bounce), border-color 0.2s;
+}
+
+.mag-lead:hover { border-color: color-mix(in srgb, var(--_a) 45%, transparent); }
+.mag-lead:active { transform: scale(0.99); }
+
+.mag-lead__media {
+  aspect-ratio: 21 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.2rem;
+  background:
+    radial-gradient(90% 130% at 15% 0%, color-mix(in srgb, var(--_a) 32%, transparent), transparent 65%),
+    var(--cover);
+}
+
+.mag-lead__body { padding: 1.1rem 1.2rem 1.3rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.mag-lead__cat {
+  align-self: flex-start;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--_a);
+  background: color-mix(in srgb, var(--_a) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--_a) 35%, transparent);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--pill);
+}
+
+.mag-lead__title {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1.15;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+.mag-lead__hero { color: var(--text-dim); font-size: 0.92rem; line-height: 1.5; }
+.mag-lead__meta { color: var(--text-faint); font-size: 0.76rem; margin-top: 0.15rem; }
+
+/* Grilla del resto */
+.mag__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+}
 
 .mag-card {
   --_a: var(--accent);
@@ -41,7 +113,6 @@
   padding: 1rem 1.1rem;
   background: var(--surface);
   border: 1.5px solid var(--line);
-  border-left: 4px solid var(--_a);
   border-radius: 16px;
   text-decoration: none;
   color: inherit;
@@ -53,18 +124,26 @@
 
 .mag-card__emoji {
   flex-shrink: 0;
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   border-radius: 13px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   background: color-mix(in srgb, var(--_a) 16%, transparent);
   border: 1.5px solid color-mix(in srgb, var(--_a) 35%, transparent);
 }
 
-.mag-card__body { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+.mag-card__body { display: flex; flex-direction: column; gap: 0.22rem; min-width: 0; }
+.mag-card__cat {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--_a);
+}
 
 .mag-card__title {
   font-family: 'Fredoka', sans-serif;
@@ -76,115 +155,197 @@
 }
 
 .mag-card__hero { font-size: 0.82rem; color: var(--text-dim); line-height: 1.4; }
-.mag-card__meta { font-size: 0.72rem; color: var(--text-faint); margin-top: 0.2rem; }
+.mag-card__meta { font-size: 0.72rem; color: var(--text-faint); margin-top: 0.15rem; }
 
-.mag-card--lead { border-left-width: 6px; }
-.mag-card--lead .mag-card__emoji { width: 54px; height: 54px; font-size: 1.7rem; }
-.mag-card--lead .mag-card__title { font-size: 1.15rem; }
+/* --------------------------------- Artículo ---------------------------- */
 
-/* ── Artículo ── */
-
-.article {
-  min-height: 100dvh;
-  padding-bottom: 4rem;
+.crumbs {
+  max-width: 720px;
+  margin: 0.6rem auto 0;
+  padding: 0 1.15rem;
   display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.76rem;
+  color: var(--text-faint);
+  flex-wrap: wrap;
 }
 
-.article__back {
-  align-self: flex-start;
-  display: inline-flex;
+.crumbs a { color: var(--text-dim); text-decoration: none; }
+.crumbs a:hover { color: var(--blue); }
+.crumbs__current { color: var(--text-faint); }
+
+.article__badges {
+  display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+}
+
+.article__cat {
   font-family: 'Fredoka', sans-serif;
-  font-weight: 600;
-  font-size: 0.78rem;
-  color: var(--text-dim);
-  text-decoration: none;
-  padding: 0.35rem 0.75rem;
-  border: 1.5px solid var(--line-2);
+  font-weight: 700;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  background: var(--blue);
+  padding: 0.28rem 0.7rem;
   border-radius: var(--pill);
 }
 
-.article__head { display: flex; flex-direction: column; gap: 0.5rem; }
-.article__emoji { font-size: 2.4rem; }
+.article__reviewed {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.74rem;
+  color: var(--text-dim);
+}
+
+.article__reviewed svg { color: #2fd07a; }
 
 .article__title {
   font-family: 'Fredoka', sans-serif;
   font-weight: 700;
-  font-size: 1.7rem;
-  line-height: 1.15;
+  font-size: 2.1rem;
+  line-height: 1.12;
   color: var(--text);
   text-wrap: balance;
+  margin-bottom: 0.5rem;
 }
 
-.article__meta { font-size: 0.78rem; color: var(--text-faint); }
+.article__deck {
+  font-size: 1.12rem;
+  line-height: 1.5;
+  color: var(--text-dim);
+  font-weight: 400;
+  margin-bottom: 1.2rem;
+}
 
-/* ── Prosa (markdown) ── */
+.article__byline {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding-bottom: 1rem;
+  border-bottom: 1.5px solid var(--line);
+}
+
+.article__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  background: var(--surface-2);
+  border: 1.5px solid var(--line-2);
+  flex-shrink: 0;
+}
+
+.article__author { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 0.9rem; color: var(--text); }
+.article__dates { font-size: 0.76rem; color: var(--text-faint); margin-top: 0.1rem; }
+
+.share {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 1rem 0 1.5rem;
+}
+
+.share__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--pill);
+  border: 1.5px solid var(--line-2);
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.share__btn:active { transform: scale(0.95); }
+.share__btn--wa { background: #25d366; border-color: #25d366; color: #05230f; }
+.share__btn--x { background: #111; border-color: #333; color: #fff; }
+
+/* ------------------------------- Prosa ------------------------------- */
 
 .prose { display: flex; flex-direction: column; }
 
 .prose h2 {
   font-family: 'Fredoka', sans-serif;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   color: var(--text);
-  margin: 1.8rem 0 0.6rem;
+  margin: 2rem 0 0.7rem;
   text-wrap: balance;
 }
 
 .prose h3 {
   font-family: 'Fredoka', sans-serif;
   font-weight: 600;
-  font-size: 1.02rem;
+  font-size: 1.08rem;
   color: var(--blue);
-  margin: 1.2rem 0 0.4rem;
+  margin: 1.3rem 0 0.4rem;
 }
 
 .prose p {
-  font-size: 0.95rem;
-  line-height: 1.65;
+  font-size: 1.02rem;
+  line-height: 1.7;
   color: var(--text-dim);
-  margin: 0 0 0.85rem;
+  margin: 0 0 1rem;
 }
 
 .prose strong { color: var(--text); font-weight: 700; }
 
 .prose a {
   color: var(--blue);
+  font-weight: 600;
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
 }
 
 .prose ul, .prose ol {
-  margin: 0 0 1rem;
-  padding-left: 1.3rem;
+  margin: 0 0 1.1rem;
+  padding-left: 1.4rem;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.5rem;
 }
 
-.prose li { font-size: 0.93rem; line-height: 1.55; color: var(--text-dim); }
+.prose li { font-size: 1rem; line-height: 1.6; color: var(--text-dim); }
 .prose li::marker { color: var(--text-faint); }
 
-.prose hr {
-  border: none;
-  border-top: 1.5px solid var(--line);
-  margin: 1.6rem 0;
-}
-
+.prose hr { border: none; border-top: 1.5px solid var(--line); margin: 1.8rem 0; }
 .prose em { color: var(--text-dim); }
-
 .prose > *:first-child { margin-top: 0; }
 
-.article__more {
-  margin-top: 1.5rem;
-  padding-top: 1.3rem;
-  border-top: 1.5px solid var(--line);
+.article__cta-box {
+  margin-top: 2rem;
+  padding: 1.4rem;
+  text-align: center;
+  background: color-mix(in srgb, var(--blue) 12%, var(--surface));
+  border: 1.5px solid color-mix(in srgb, var(--blue) 32%, transparent);
+  border-radius: 18px;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.article__cta-box p { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.1rem; color: var(--text); }
+
+.article__more {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 1.6rem 1.15rem 4rem;
+  border-top: 1.5px solid var(--line);
 }
 
 .article__more-label {
@@ -194,13 +355,16 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--text-faint);
+  margin-bottom: 0.8rem;
 }
+
+.article__more-grid { display: grid; grid-template-columns: 1fr; gap: 0.6rem; }
 
 .article__more-link {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.8rem 1rem;
+  gap: 0.7rem;
+  padding: 0.85rem 1rem;
   background: var(--surface);
   border: 1.5px solid var(--line);
   border-radius: 14px;
@@ -208,12 +372,25 @@
   color: var(--text);
   font-family: 'Fredoka', sans-serif;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   line-height: 1.3;
 }
 
 .article__more-link:active { transform: scale(0.98); }
 
+.article__more-emoji {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  background: var(--surface-2);
+  flex-shrink: 0;
+}
+
+/* Link a la revista desde el home */
 .hub__revista {
   display: block;
   text-align: center;
@@ -229,3 +406,22 @@
 }
 
 .hub__revista:active { transform: scale(0.98); }
+
+/* ------------------------------ Escritorio --------------------------- */
+
+@media (min-width: 720px) {
+  .article__title { font-size: 2.7rem; }
+  .article__deck { font-size: 1.28rem; }
+  .prose p, .prose li { font-size: 1.08rem; }
+  .prose h2 { font-size: 1.7rem; }
+
+  .mag__title { font-size: 2.6rem; }
+  .mag__grid { grid-template-columns: repeat(2, 1fr); }
+  .mag-lead { flex-direction: row; }
+  .mag-lead__media { aspect-ratio: auto; width: 42%; min-height: 220px; font-size: 4rem; }
+  .mag-lead__body { flex: 1; justify-content: center; padding: 1.8rem; }
+  .mag-lead__title { font-size: 1.7rem; }
+
+  .article__more-grid { grid-template-columns: repeat(3, 1fr); }
+  .article__more-link { flex-direction: column; align-items: flex-start; text-align: left; }
+}

@@ -51,6 +51,7 @@
 html,
 body {
   overscroll-behavior: none;
+  overflow-x: hidden;
 }
 
 body {
@@ -70,12 +71,19 @@ img { max-width: 100%; }
 
 #root {
   width: 100%;
-  max-width: 480px;
   min-height: 100dvh;
   position: relative;
-  padding: 1.5rem 1.1rem 7rem;
   display: flex;
   flex-direction: column;
+}
+
+/* Pantallas "app" (móvil): columna centrada de 480px */
+.app,
+.settings {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1.5rem 1.1rem 7rem;
 }
 
 ::selection {
@@ -623,7 +631,6 @@ img { max-width: 100%; }
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding-bottom: 1rem;
 }
 
 .set-group__label {

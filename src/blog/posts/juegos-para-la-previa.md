@@ -4,6 +4,7 @@ description: Los mejores juegos para la previa con amigos: yo nunca nunca, rulet
 emoji: 🍻
 date: 2026-09-05
 read: 7
+category: Fiesta
 tags: [fiesta, previa, amigos]
 hero: La previa hace o rompe la salida. Diez juegos para que arranque bien.
 ---

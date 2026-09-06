@@ -4,6 +4,7 @@ description: Reglas de Yo Nunca Nunca y 35 frases listas para usar, de las suave
 emoji: 🥃
 date: 2026-09-03
 read: 6
+category: Fiesta
 tags: [yo nunca nunca, fiesta, listas]
 hero: Las reglas en 30 segundos y 35 frases para que la ronda no se corte.
 ---

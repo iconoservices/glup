@@ -4,6 +4,7 @@ description: Las mejores preguntas picantes y retos +18 para Verdad o Reto, orde
 emoji: 😏
 date: 2026-09-04
 read: 8
+category: Verdad o Reto
 tags: [verdad o reto, +18, listas]
 hero: Cuarenta preguntas y retos listos para copiar, del más suave al más intenso.
 ---

@@ -4,6 +4,7 @@ description: Guía de los mejores juegos eróticos para parejas para jugar onlin
 emoji: 🔥
 date: 2026-09-06
 read: 6
+category: Pareja
 tags: [parejas, erótico, ideas]
 hero: Siete juegos para encender la noche sin gastar un peso ni descargar nada.
 ---

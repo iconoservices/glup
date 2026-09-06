@@ -39,10 +39,10 @@ export default function Hub() {
         path="/"
       />
 
-      <header className="hub__head">
-        <Logo size={38} />
+      <header className="hub__hero">
+        <Logo size={46} />
         <h1 className="hub__title">Glup Juegos</h1>
-        <p className="hub__sub">Juegos para jugar hoy. Elige uno:</p>
+        <p className="hub__sub">Juegos para fiestas, para parejas y para grupos. Gratis, online, sin descargar.</p>
       </header>
 
       <div className="hub__grid">

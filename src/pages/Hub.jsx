@@ -1,38 +1,83 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Search, Check, ArrowRight } from 'lucide-react';
 import Seo from '../components/Seo';
 import JsonLd from '../components/JsonLd';
 import Logo from '../components/Logo';
-import { accentStyle } from '../theme';
-import { stars } from '../lib/ui';
-import { websiteSchema } from '../lib/schema';
+import { stars, SITE_URL } from '../lib/ui';
+import { websiteSchema, faqSchema } from '../lib/schema';
+import { GAMES, CATEGORIES } from '../catalog';
 
 const APPS = [
   {
     to: '/glup',
-    accent: 'blue',
+    kind: 'blue',
     glyph: '🍸',
     name: 'Glup!',
     badge: 'Estable',
     rating: '4.8',
-    chip: 'Fiesta',
-    version: 'v1.0',
-    desc: 'Botella borracha, yo nunca nunca, dados eróticos y más. 9 juegos para beber, en pareja y en grupo.',
+    desc: '9 juegos para beber, para parejas y para grupos. Elige uno y a jugar.',
+    bullets: ['Botella borracha y ruleta de castigos', 'Yo Nunca Nunca y Pre-Party', 'Dados eróticos y verdad o reto', 'Modo Caos y reglas propias'],
+    cta: 'Abrir Glup!',
   },
   {
     to: '/verdad-o-reto-18',
-    accent: 'pink',
+    kind: 'pink',
     glyph: '🔥',
     name: 'Verdad o Reto +18',
     badge: 'Beta',
     rating: '4.6',
-    chip: '+18',
-    version: 'v1.0',
-    desc: 'Verdad o reto para adultos con 6 niveles y los nombres de tus amigos. De suave a 4play.',
+    desc: 'Verdad o reto para adultos, con los nombres de tus amigos en cada reto.',
+    bullets: ['6 niveles: de suave a 4play', '144 verdades y retos', 'Retos personalizados con nombres', 'Marcador "Lo hice" / "Fallé"'],
+    cta: 'Abrir Verdad o Reto',
   },
 ];
 
+const POPULAR = [
+  { slug: 'botella-borracha-online', glyph: '🍾', name: 'Botella Borracha', tag: 'Grupos' },
+  { slug: 'yo-nunca-nunca-online', glyph: '🍸', name: 'Yo Nunca Nunca', tag: 'Fiesta' },
+  { slug: 'dados-eroticos', glyph: '🎲', name: 'Dados Eróticos', tag: 'Parejas' },
+  { slug: 'ruleta-de-castigos', glyph: '🎯', name: 'Ruleta de Castigos', tag: 'Fiesta' },
+  { slug: 'verdad-o-reto-para-parejas', glyph: '🔥', name: 'Verdad o Reto', tag: 'Picante' },
+  { slug: 'modo-caos', glyph: '🌀', name: 'Modo Caos', tag: 'Grupos' },
+];
+
+const CAT_GLYPH = { fiesta: '🍻', parejas: '🔥', grupos: '😈' };
+
+const FAQ = [
+  { q: '¿Los juegos son gratis?', a: 'Sí. Todos los juegos de Glup Juegos son gratis, sin cuenta y sin límites. No hay compras dentro de la app.' },
+  { q: '¿Hay que descargar algo?', a: 'No. Todo funciona en el navegador del móvil o del ordenador. Abres la web y juegas al instante.' },
+  { q: '¿Puedo instalarlo en el móvil?', a: 'Sí. Cada app (Glup! y Verdad o Reto +18) se puede instalar por separado desde el navegador y queda como un icono más, funcionando incluso sin conexión.' },
+  { q: '¿Para cuántas personas son?', a: 'Desde 2 personas (juegos de pareja) hasta grupos grandes. La botella, la ruleta y el verdad o reto funcionan mejor con 3 o más.' },
+  { q: '¿Es apto para menores?', a: 'No. Glup Juegos es contenido para mayores de 18 años: incluye juegos para beber y retos eróticos.' },
+];
+
 export default function Hub() {
+  const navigate = useNavigate();
+  const [q, setQ] = useState('');
+
+  useEffect(() => {
+    document.documentElement.dataset.route = 'hub';
+    return () => { delete document.documentElement.dataset.route; };
+  }, []);
+
+  const onSearch = (e) => {
+    e.preventDefault();
+    navigate(q.trim() ? `/glup?q=${encodeURIComponent(q.trim())}` : '/glup');
+  };
+
+  const itemList = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Apps de Glup Juegos',
+    itemListElement: APPS.map((a, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: a.name,
+      url: SITE_URL + a.to,
+    })),
+  };
+
   return (
     <div className="hub">
       <Seo
@@ -40,38 +85,144 @@ export default function Hub() {
         description="Juegos para fiestas, para parejas y para grupos: verdad o reto +18, botella borracha, yo nunca nunca, dados eróticos y más. Gratis, online y sin descargar."
         path="/"
       />
-      <JsonLd data={websiteSchema()} />
+      <JsonLd data={[websiteSchema(), itemList, faqSchema(FAQ)]} />
 
-      <header className="hub__hero">
-        <Logo size={46} />
-        <h1 className="hub__title">Glup Juegos</h1>
-        <p className="hub__sub">Juegos para fiestas, para parejas y para grupos. Gratis, online, sin descargar.</p>
+      <nav className="hub-nav">
+        <Link to="/" className="hub-nav__brand"><Logo size={26} /> Glup Juegos</Link>
+        <div className="hub-nav__links">
+          <a href="#apps">Apps</a>
+          <a href="#juegos">Juegos</a>
+          <a href="#ocasion">Por ocasión</a>
+          <Link to="/blog">Revista</Link>
+        </div>
+      </nav>
+
+      <header className="hub-hero">
+        <div className="hub-hero__col">
+          <p className="hub-hero__eyebrow">Gratis · Sin descargar · +18</p>
+          <h1 className="hub-hero__title">Todos los juegos para tu fiesta, tu pareja y tu grupo</h1>
+          <p className="hub-hero__sub">
+            Botella borracha, yo nunca nunca, verdad o reto +18, dados eróticos y más.
+            Elige uno y juega en el navegador. Nada que instalar.
+          </p>
+
+          <form className="hub-search" onSubmit={onSearch}>
+            <input
+              type="search"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="¿A qué quieres jugar hoy?"
+              aria-label="Buscar un juego"
+            />
+            <button type="submit"><Search size={16} /> Buscar</button>
+          </form>
+
+          <div className="hub-hero__tags">
+            <span>+18</span><span>Para 2 o más</span><span>Se instala como app</span><span>Funciona sin conexión</span>
+          </div>
+        </div>
+
+        <div className="hub-hero__art" aria-hidden="true">
+          <div className="hub-tile"><b>🍾</b><span>Botella Borracha</span><small>Gira y decide quién cumple</small></div>
+          <div className="hub-tile"><b>🔥</b><span>Verdad o Reto +18</span><small>6 niveles, de suave a 4play</small></div>
+          <div className="hub-tile"><b>🎲</b><span>Dados Eróticos</span><small>Acción + parte del cuerpo</small></div>
+          <div className="hub-tile"><b>🍸</b><span>Yo Nunca Nunca</span><small>Confesiones sin filtro</small></div>
+        </div>
       </header>
 
-      <div className="hub__grid">
-        {APPS.map((a) => (
-          <Link key={a.to} to={a.to} className="hub-card" style={accentStyle(a.accent)}>
-            <div className="hub-card__cover">
-              <span className="glyph">{a.glyph}</span>
-              <span className="hub-card__badge">{a.badge}</span>
-            </div>
-            <div className="hub-card__body">
-              <h2 className="hub-card__name">{a.name}</h2>
-              <div className="hub-card__rating"><span className="stars">{stars(a.rating)}</span> {a.rating}</div>
-              <p className="hub-card__desc">{a.desc}</p>
-              <div className="hub-card__meta">
-                <span className="hub-card__chip">{a.chip}</span>
-                <span>{a.version}</span>
+      <section className="hub-sec" id="apps">
+        <div className="hub-sec__head">
+          <p className="hub-sec__kicker">Dos apps</p>
+          <h2 className="hub-sec__title">Un montón de juegos, en dos apps</h2>
+          <p className="hub-sec__lead">Cada una se abre y se instala por separado. Sin cuenta, sin anuncios entre partidas.</p>
+        </div>
+
+        <div className="hub-apps">
+          {APPS.map((a) => (
+            <Link key={a.to} to={a.to} className={`hub-app hub-app--${a.kind}`}>
+              <div className="hub-app__top">
+                <span className="hub-app__glyph">{a.glyph}</span>
+                <span className="hub-app__name">{a.name}</span>
+                <span className="hub-app__badge">{a.badge}</span>
               </div>
-              <span className="hub-card__cta">Abrir</span>
-            </div>
-          </Link>
-        ))}
+              <div className="hub-app__rating"><span className="stars">{stars(a.rating)}</span> {a.rating}</div>
+              <p className="hub-app__desc">{a.desc}</p>
+              <ul className="hub-app__list">
+                {a.bullets.map((b) => (
+                  <li key={b}><Check size={15} /> {b}</li>
+                ))}
+              </ul>
+              <span className="hub-app__cta">{a.cta} <ArrowRight size={15} /></span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="hub-sec" id="juegos">
+        <div className="hub-sec__head">
+          <p className="hub-sec__kicker">Los más jugados</p>
+          <h2 className="hub-sec__title">Entra directo a un juego</h2>
+        </div>
+        <div className="hub-games">
+          {POPULAR.map((g) => (
+            <Link key={g.slug} to={`/glup/${g.slug}`} className="hub-game">
+              <b>{g.glyph}</b>
+              <span>{g.name}</span>
+              <small>{g.tag}</small>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="hub-sec" id="ocasion">
+        <div className="hub-sec__head">
+          <p className="hub-sec__kicker">Por ocasión</p>
+          <h2 className="hub-sec__title">Elige según con quién estés</h2>
+        </div>
+        <div className="hub-cats">
+          {CATEGORIES.map((c) => (
+            <Link key={c.id} to={`/glup/${c.id}`} className="hub-cat">
+              <b>{CAT_GLYPH[c.id]}</b>
+              <span>{c.label}</span>
+              <small>{c.tagline}</small>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <div className="hub-revista">
+        <div className="hub-revista__inner">
+          <h2>Revista Glup</h2>
+          <p>Guías y listas para jugar: los mejores juegos eróticos para parejas, juegos para la previa, verdad o reto y más. Cada nota lleva a un juego que abres al toque.</p>
+          <Link to="/blog" className="hub-revista__cta">Leer la Revista</Link>
+        </div>
       </div>
 
-      <Link to="/blog" className="hub__revista">📰 Revista Glup — guías y listas para jugar</Link>
+      <section className="hub-sec">
+        <div className="hub-sec__head">
+          <p className="hub-sec__kicker">Preguntas frecuentes</p>
+          <h2 className="hub-sec__title">Lo que suele preguntarse</h2>
+        </div>
+        <div className="hub-faq">
+          {FAQ.map((f) => (
+            <div key={f.q} className="hub-faq__item">
+              <p className="hub-faq__q">{f.q}</p>
+              <p className="hub-faq__a">{f.a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
-      <p className="hub__foot">+18 · Gratis · Sin descargar · Cada juego se puede instalar por separado</p>
+      <footer className="hub-foot">
+        <div className="hub-foot__inner">
+          <div className="hub-foot__links">
+            <Link to="/glup">Glup!</Link>
+            <Link to="/verdad-o-reto-18">Verdad o Reto +18</Link>
+            <Link to="/blog">Revista</Link>
+          </div>
+          <p>+18 · Gratis · Sin descargar · Cada app se puede instalar por separado.</p>
+        </div>
+      </footer>
     </div>
   );
 }

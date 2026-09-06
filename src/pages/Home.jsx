@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Seo from '../components/Seo';
 import StoreHero from '../components/StoreHero';
 import GameCard from '../components/GameCard';
@@ -8,7 +9,8 @@ import { accentStyle } from '../theme';
 import { GAMES, searchGames } from '../catalog';
 
 export default function Home() {
-  const [query, setQuery] = useState('');
+  const [params] = useSearchParams();
+  const [query, setQuery] = useState(() => params.get('q') || '');
   const searching = query.trim().length > 0;
   const results = useMemo(() => searchGames(query), [query]);
 

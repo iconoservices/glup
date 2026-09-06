@@ -74,6 +74,13 @@ body {
 img { max-width: 100%; }
 [hidden] { display: none !important; }
 
+/* El hub / landing usa fondo claro (el resto del sitio es oscuro) */
+html[data-route="hub"],
+html[data-route="hub"] body {
+  background: #fff;
+  background-image: none;
+}
+
 #root {
   width: 100%;
   min-height: 100dvh;

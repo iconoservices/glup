@@ -1,30 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Clock } from 'lucide-react';
 import GameShell from '../../components/GameShell';
-
-const preguntas = {
-    suave: [
-        "Di 3 cosas que amas de alguien en esta habitación.",
-        "Nombra 3 canciones románticas in 5 segundos.",
-        "Di el nombre de un actor o actriz con quien tendrías una cita ideal.",
-        "3 cosas que buscas en una pareja. ¡Ya!",
-        "Nombra 3 apodos cariñosos que usarías con tu pareja."
-    ],
-    intermedio: [
-        "Describe tu ex en 3 palabras. Ya. Sin pensar.",
-        "Di 3 partes del cuerpo que te resultan más atractivas.",
-        "Nombra 3 lugares inusuales donde te gustaría tener una cita.",
-        "3 confesiones sobre lo que te gusta en la intimidad.",
-        "¿Qué harías si te quedas encerrado con alguien del grupo? 5 segundos."
-    ],
-    picante: [
-        "Di 3 fantasías que nunca has confesado. Sin rodeos.",
-        "Nombra 3 partes de tu cuerpo que más te gusta que te toquen.",
-        "3 cosas que harías con alguien del grupo si tuvieras 5 minutos a solas.",
-        "¿Posición favorita y por qué? 5 segundos. Go!",
-        "¿A quién del grupo te llevarías a la cama? Sé honesto."
-    ]
-};
+import { preguntas5s as preguntas } from '../../gameContent';
 
 export default function CincoSegundos({ onBack, isDrinkingMode, intensity = 'intermedio' }) {
     const [current, setCurrent] = useState(null);

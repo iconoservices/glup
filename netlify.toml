@@ -67,6 +67,18 @@
   to = "/glup/quien-es-mas-probable-que"
   status = 301
 
+# ── El contenido de cada app se unificó en /contenido (301) ──
+[[redirects]]
+  from = "/verdad-o-reto-18/contenido"
+  to = "/contenido"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/juegos-para-trios/contenido"
+  to = "/contenido"
+  status = 301
+  force = true
+
 # Fallback SPA (las rutas reales se sirven como HTML pre-generado)
 [[redirects]]
   from = "/*"

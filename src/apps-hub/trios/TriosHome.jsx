@@ -89,7 +89,7 @@ export default function TriosHome() {
 
       <button
         className="vor-content-link"
-        onClick={() => navigate('/juegos-para-trios/contenido')}
+        onClick={() => navigate('/contenido')}
       >
         <List size={15} /> Ver todo el contenido ({totalPrompts()} retos y verdades)
       </button>

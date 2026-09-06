@@ -1274,3 +1274,85 @@ html[data-route="hub"] body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ==========================================================================
+   /contenido — banco completo de todos los juegos
+   ========================================================================== */
+
+.cbank { width: 100%; min-height: 100dvh; padding-bottom: 3rem; }
+
+.cbank__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.4rem 1.15rem 0;
+}
+
+.cbank__count { font-size: 0.8rem; color: var(--text-faint); font-variant-numeric: tabular-nums; }
+
+.cbank__wrap { max-width: 720px; margin: 0 auto; padding: 0 1.15rem; }
+
+.cbank__intro { margin: 1rem 0 1.4rem; }
+.cbank__intro h1 {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 1.9rem;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+.cbank__intro p { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; }
+.cbank__intro b { color: var(--text); }
+
+.cbank__group {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text);
+  margin: 1.8rem 0 0.7rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 3px solid var(--blue);
+}
+
+.cbank__item {
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.cbank__head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text);
+  text-align: left;
+}
+
+.cbank__emoji { font-size: 1.25rem; }
+.cbank__name { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1rem; }
+.cbank__sub { font-size: 0.74rem; color: var(--text-faint); margin-left: auto; text-align: right; }
+.cbank__chev { font-size: 1.2rem; color: var(--blue); width: 1rem; text-align: center; flex-shrink: 0; }
+
+.cbank__body { padding: 0.25rem 1rem 1rem; border-top: 1px solid var(--line); }
+.cbank__body h3 {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin: 1rem 0 0.4rem;
+}
+.cbank__body ol { padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.cbank__body li { font-size: 0.86rem; color: var(--text-dim); line-height: 1.45; }
+.cbank__play { margin-top: 0.9rem; font-size: 0.85rem; }
+.cbank__play a { color: var(--blue); font-family: 'Fredoka', sans-serif; font-weight: 600; text-decoration: none; }

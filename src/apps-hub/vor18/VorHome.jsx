@@ -71,7 +71,7 @@ export default function VorHome() {
         <Play size={20} fill="currentColor" /> ¡JUGAR!
       </button>
 
-      <Link to="/verdad-o-reto-18/contenido" className="vor-content-link">
+      <Link to="/contenido" className="vor-content-link">
         <List size={15} /> Ver todo el contenido ({total} retos y verdades)
       </Link>
 

@@ -1,6 +1,8 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 import App from './App';
 import Hub from './pages/Hub';
+import Contenido from './pages/Contenido';
 import NotFound from './pages/NotFound';
 import GlupShell from './components/GlupShell';
 import Home from './pages/Home';
@@ -10,12 +12,10 @@ import Ajustes from './pages/Ajustes';
 import VorShell from './apps-hub/vor18/VorShell';
 import VorHome from './apps-hub/vor18/VorHome';
 import VorPlay from './apps-hub/vor18/VorPlay';
-import VorContenido from './apps-hub/vor18/VorContenido';
 import TriosShell from './apps-hub/trios/TriosShell';
 import TriosHome from './apps-hub/trios/TriosHome';
 import TriosPlay from './apps-hub/trios/TriosPlay';
 import TriosBotella from './apps-hub/trios/TriosBotella';
-import TriosContenido from './apps-hub/trios/TriosContenido';
 import Blog from './pages/Blog';
 import Article from './pages/Article';
 import RouteError from './pages/RouteError';
@@ -29,6 +29,9 @@ export const routes = [
     errorElement: <RouteError />,
     children: [
       { index: true, element: <Hub /> },
+
+      // ── Banco de contenido (todo en una ruta) ──
+      { path: 'contenido', element: <Contenido /> },
 
       // ── Glup! (juegos) ──
       {
@@ -53,7 +56,7 @@ export const routes = [
         children: [
           { index: true, element: <VorHome /> },
           { path: 'jugar', element: <VorPlay /> },
-          { path: 'contenido', element: <VorContenido /> },
+          { path: 'contenido', element: <Navigate to="/contenido" replace /> },
         ],
       },
 
@@ -65,7 +68,7 @@ export const routes = [
           { index: true, element: <TriosHome /> },
           { path: 'jugar', element: <TriosPlay /> },
           { path: 'botella', element: <TriosBotella /> },
-          { path: 'contenido', element: <TriosContenido /> },
+          { path: 'contenido', element: <Navigate to="/contenido" replace /> },
         ],
       },
 

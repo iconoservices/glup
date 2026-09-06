@@ -1,24 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Users } from 'lucide-react';
 import GameShell from '../../components/GameShell';
-
-const retosBottella = {
-    suave: [
-        "Dale un cumplido sincero a la persona elegida.",
-        "Cuéntale un secreto gracioso al elegido.",
-        "Dale la mano y sostenla 10 segundos.",
-    ],
-    intermedio: [
-        "Dale un beso en la mejilla lentamente.",
-        "Susúrrale algo atrevido al oído.",
-        "Intercambia una prenda de ropa con el elegido.",
-    ],
-    picante: [
-        "Besen en los labios durante 5 segundos.",
-        "El elegido puede hacerte una pregunta íntima que debes contestar con total honestidad.",
-        "Seduce al elegido con tu mejor mirada y toque durante 15 segundos.",
-    ]
-};
+import { retosBotella as retosBottella } from '../../gameContent';
 
 const SPIN_MS = 3200;
 

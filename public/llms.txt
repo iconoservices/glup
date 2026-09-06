@@ -34,6 +34,12 @@ Glup Juegos (glup.bogahub.app) reúne dos apps de juegos web y una revista con g
 - [50 preguntas incómodas para amigos](https://glup.bogahub.app/blog/preguntas-incomodas-para-amigos)
 - [40 castigos para juegos de beber](https://glup.bogahub.app/blog/castigos-para-juegos-de-beber)
 - [Juegos para tríos: cómo jugar en tres](https://glup.bogahub.app/blog/juegos-para-trios)
+- [Cómo proponer un trío a tu pareja](https://glup.bogahub.app/blog/como-proponer-un-trio-a-tu-pareja)
+- [Reglas para un trío: 10 acuerdos antes de la primera vez](https://glup.bogahub.app/blog/reglas-para-un-trio-primera-vez)
+
+## Contenido
+
+- [Todo el contenido](https://glup.bogahub.app/contenido): banco completo con todas las frases, verdades, retos y castigos de los tres juegos, por nivel.
 
 ## Datos
 

@@ -25,7 +25,7 @@ export default function ReglasPropias({ onBack }) {
     };
 
     return (
-        <GameShell accent="magenta" label="TUS REGLAS" icon={<PenTool size={18} />} onBack={onBack} stage={false}>
+        <GameShell accent="violet" label="TUS REGLAS" icon={<PenTool size={18} />} onBack={onBack} stage={false}>
             {retoActual && (
                 <div className="prompt is-active" style={{ marginBottom: '1.25rem', minHeight: 0 }}>
                     <span className="prompt__tag">RETO ACTIVO</span>

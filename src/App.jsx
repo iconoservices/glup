@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Dices, Flame, Sparkles, Home, Settings, ChevronRight, Shuffle, PenTool, GlassWater, Clock, Beer, Users, Trash2, Plus, X, Check, RotateCcw, Info, Star, Search, Layers } from 'lucide-react';
+import { Home, Settings, Beer, Users, Trash2, Plus, X, Check, RotateCcw, Info, Star, Search } from 'lucide-react';
 import { accentStyle } from './theme';
 import { CATEGORIES, GAMES, gamesByCategory, searchGames } from './catalog';
 import TrueOrDare from './apps/verdad-reto/TrueOrDare';
@@ -28,21 +28,20 @@ const HEAT_META = {
   picante: { emoji: '🔥', label: 'Picante' },
 };
 
-// ────────── Iconos por juego ──────────
-const GAME_ICONS = {
-  yonunca: <GlassWater size={24} strokeWidth={1.75} />,
-  botella: <span style={{ fontSize: '24px' }}>🍾</span>,
-  precopeo: <Beer size={24} strokeWidth={1.75} />,
-  ruleta: <Sparkles size={24} strokeWidth={1.75} />,
-  dados: <Dices size={24} strokeWidth={1.75} />,
-  'verdad-reto': <Flame size={24} strokeWidth={1.75} />,
-  '5segundos': <Clock size={24} strokeWidth={1.75} />,
-  personalizado: <PenTool size={24} strokeWidth={1.75} />,
-  'mix-azar': <Shuffle size={24} strokeWidth={1.75} />,
-  'piramide-para-beber': <Layers size={24} strokeWidth={1.75} />,
-  'quien-es-mas-probable-que': <span style={{ fontSize: '22px' }}>🫵</span>,
+// ────────── Emoji por juego (portada de tarjeta) ──────────
+const GLYPHS = {
+  yonunca: '🍸', botella: '🍾', precopeo: '🍺', ruleta: '🎯', dados: '🎲',
+  'verdad-reto': '🔥', '5segundos': '⏰', personalizado: '✍️', 'mix-azar': '🌀',
+  'piramide-para-beber': '🎴', 'quien-es-mas-probable-que': '👉',
 };
-const iconFor = (g) => GAME_ICONS[g.gameId] || GAME_ICONS[g.slug] || <Sparkles size={24} strokeWidth={1.75} />;
+const glyphFor = (g) => GLYPHS[g.gameId] || GLYPHS[g.slug] || '🎲';
+
+// ────────── Estrellas a partir de una nota ("4.8" / "—") ──────────
+const stars = (r) => {
+  if (!r || r === '—') return '☆☆☆☆☆';
+  const n = Math.round(parseFloat(r));
+  return '★★★★★'.slice(0, n) + '☆☆☆☆☆'.slice(0, 5 - n);
+};
 
 // ────────── Modal de Jugadores ──────────
 function JugadoresModal({ jugadores, onClose, onSave, requiredByGame = false }) {
@@ -110,19 +109,27 @@ function JugadoresModal({ jugadores, onClose, onSave, requiredByGame = false }) 
   );
 }
 
-// ────────── Tarjeta de juego (estilo App Store, texto rico para SEO) ──────────
+// ────────── Tarjeta de juego (estilo tienda de apps, texto rico para SEO) ──────────
 function GameCard({ game, onClick }) {
+  const badge = game.soon ? 'Pronto' : game.beta ? 'Beta' : 'Estable';
   return (
     <article className={`gcard${game.soon ? ' is-soon' : ''}`} style={accentStyle(game.accent)} onClick={game.soon ? undefined : onClick}>
-      <div className="gcard__icon">{iconFor(game)}</div>
-      <div className="gcard__body">
-        <h3 className="gcard__title">
-          {game.title}
-          {game.soon && <span className="badge-soon">Próximamente</span>}
-        </h3>
-        <p className="gcard__desc">{game.seo}</p>
+      <div className="gcard__cover">
+        <span className="glyph">{glyphFor(game)}</span>
+        <span className={`gcard__badge${game.soon ? ' gcard__badge--soon' : ''}`}>{badge}</span>
       </div>
-      {!game.soon && <ChevronRight className="gcard__arrow" size={22} />}
+      <div className="gcard__body">
+        <h3 className="gcard__title">{game.title}</h3>
+        <div className="gcard__rating"><span className="stars">{stars(game.rating)}</span> {game.rating}</div>
+        <p className="gcard__desc">{game.seo}</p>
+        <div className="gcard__meta">
+          <span className="gcard__chip">{game.chip}</span>
+          <span>{game.soon ? 'v0.1' : 'v1.0'}</span>
+        </div>
+        {game.soon
+          ? <button className="gcard__cta gcard__cta--soon" disabled>Avísame</button>
+          : <button className="gcard__cta">Jugar</button>}
+      </div>
     </article>
   );
 }
@@ -310,9 +317,21 @@ function App() {
       {activeTab === 'inicio' && (
         <>
           <header className="store-hero">
-            <div className="brand">
+            <span className="brand-eyebrow">Verdad · Reto · Sin Excusas</span>
+            <div className="store-hero__top">
               <h1 className="brand-name">Glup!</h1>
+              <div className="chip-row chip-row--stack">
+                <div className={`chip${drinkingMode ? ' is-on' : ''}`} style={accentStyle('yellow')} onClick={() => updateDrinking(!drinkingMode)}>
+                  <Beer size={14} />
+                  <span>{drinkingMode ? 'Tragos 🍻' : 'Sin Tragos'}</span>
+                </div>
+                <div className={`chip${jugadores.length > 0 ? ' is-on' : ''}`} onClick={openJugadores}>
+                  <Users size={14} />
+                  <span>{jugadores.length > 0 ? `${jugadores.length} jug.` : 'Jugadores'}</span>
+                </div>
+              </div>
             </div>
+
             <label className="searchbar">
               <Search size={18} />
               <input
@@ -326,20 +345,9 @@ function App() {
               )}
             </label>
 
-            <div className="chip-row">
-              <div className={`chip${drinkingMode ? ' is-on' : ''}`} style={accentStyle('amber')} onClick={() => updateDrinking(!drinkingMode)}>
-                <Beer size={15} />
-                <span>{drinkingMode ? 'Tragos 🍻' : 'Sin Tragos'}</span>
-              </div>
-              <div className={`chip${jugadores.length > 0 ? ' is-on' : ''}`} onClick={openJugadores}>
-                <Users size={15} />
-                <span>{jugadores.length > 0 ? `${jugadores.length} jugadores` : 'Jugadores'}</span>
-              </div>
-            </div>
-
-            <div className="heat-row">
+            <div className="heat-bar">
               {Object.keys(HEAT_META).map((level) => (
-                <button key={level} className={`heat-btn${intensity === level ? ' is-on' : ''}`} onClick={() => updateIntensity(level)}>
+                <button key={level} className={`heat-bar__seg${intensity === level ? ' is-on' : ''}`} onClick={() => updateIntensity(level)}>
                   {HEAT_META[level].emoji} {HEAT_META[level].label}
                 </button>
               ))}
@@ -352,7 +360,7 @@ function App() {
                 <p className="section-label">
                   {searchResults.length > 0 ? `Resultados para "${query}"` : `Nada encontrado para "${query}"`}
                 </p>
-                <div className="stack">
+                <div className="grid-2">
                   {searchResults.map((g) => (
                     <GameCard key={g.slug} game={g} onClick={() => handleGameClick(g.gameId)} />
                   ))}
@@ -382,7 +390,7 @@ function App() {
                       {cat.emoji} {cat.label}
                       <span className="section-label__tag">{cat.tagline}</span>
                     </p>
-                    <div className="stack">
+                    <div className="grid-2">
                       {gamesByCategory(cat.id).map((g) => (
                         <GameCard key={`${cat.id}-${g.slug}`} game={g} onClick={() => handleGameClick(g.gameId)} />
                       ))}

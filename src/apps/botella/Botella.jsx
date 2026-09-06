@@ -48,7 +48,7 @@ export default function Botella({ onBack, isDrinkingMode, intensity = 'intermedi
 
     return (
         <GameShell
-            accent="magenta"
+            accent="pink"
             label="LA BOTELLA"
             icon={<span style={{ fontSize: '16px' }}>🍾</span>}
             drinking={isDrinkingMode}

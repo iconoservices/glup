@@ -57,7 +57,7 @@ export default function Dados({ onBack, isDrinkingMode, intensity = 'intermedio'
 
     return (
         <GameShell
-            accent="lime"
+            accent="pink"
             label="DADOS TRAVIESOS"
             icon={<Dices size={18} />}
             drinking={isDrinkingMode}

@@ -35,7 +35,7 @@ export default function YoNunca({ onBack, isDrinkingMode, intensity = 'intermedi
 
     return (
         <GameShell
-            accent="cyan"
+            accent="yellow"
             label="YO NUNCA NUNCA"
             icon={<GlassWater size={18} />}
             drinking={isDrinkingMode}

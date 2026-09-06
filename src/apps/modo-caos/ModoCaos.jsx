@@ -70,7 +70,7 @@ export default function ModoCaos({ onBack, isDrinkingMode, intensity = 'intermed
 
             <div
                 className={`prompt${resultado ? ' is-active' : ''}`}
-                style={accentStyle(tipo === 'reto' ? 'amber' : 'magenta')}
+                style={accentStyle(tipo === 'reto' ? 'yellow' : 'pink')}
             >
                 {tipo && <span className="prompt__tag">{tipo.toUpperCase()}</span>}
                 <p className={`prompt__text${resultado ? '' : ' prompt__text--idle'}`}>

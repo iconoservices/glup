@@ -57,7 +57,7 @@ export default function CincoSegundos({ onBack, isDrinkingMode, intensity = 'int
     const running = countdown !== null && !timeUp;
 
     return (
-        <GameShell accent="red" label="5 SEGUNDOS" icon={<Clock size={18} />} onBack={onBack}>
+        <GameShell accent="pink" label="5 SEGUNDOS" icon={<Clock size={18} />} onBack={onBack}>
             <div className={`timer-ring${running ? ' is-running' : ''}${timeUp ? ' is-up' : ''}`}>
                 {timeUp ? '💀' : countdown !== null ? countdown : '?'}
             </div>

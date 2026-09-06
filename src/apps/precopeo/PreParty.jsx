@@ -32,7 +32,7 @@ export default function PreParty({ onBack, isDrinkingMode, intensity = 'intermed
     };
 
     return (
-        <GameShell accent="amber" label="PRE-PARTY" icon={<Beer size={18} />} onBack={onBack}>
+        <GameShell accent="yellow" label="PRE-PARTY" icon={<Beer size={18} />} onBack={onBack}>
             <p className="stage__hint">Rompiendo el hielo con tragos de calentamiento. 🍺</p>
 
             <div className={`prompt${reto ? ' is-active' : ''}`}>

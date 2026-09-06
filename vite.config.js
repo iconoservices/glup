@@ -10,11 +10,11 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
       manifest: {
-        name: 'XXXO - Juegos para Parejas',
-        short_name: 'XXXO',
-        description: 'La App Madre de los juegos más picantes para parejas y amigos.',
-        theme_color: '#0a0a0a',
-        background_color: '#0a0a0a',
+        name: 'Glup! — Juegos para beber, parejas y grupos',
+        short_name: 'Glup!',
+        description: 'Juegos para la previa, juegos eróticos para parejas y retos para grupos. Gratis y sin descargar.',
+        theme_color: '#150a10',
+        background_color: '#150a10',
         display: 'standalone',
         orientation: 'portrait',
         icons: [

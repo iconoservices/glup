@@ -76,11 +76,11 @@ export default function TrueOrDare({ onBack, isDrinkingMode, intensity = 'interm
         setCurrentPrompt(result);
     };
 
-    const activeAccent = currentPrompt ? (isTruth ? 'magenta' : 'amber') : 'magenta';
+    const activeAccent = currentPrompt ? (isTruth ? 'pink' : 'yellow') : 'pink';
 
     return (
         <GameShell
-            accent="magenta"
+            accent="pink"
             label="VERDAD O RETO"
             icon={<Flame size={18} />}
             drinking={isDrinkingMode}
@@ -99,10 +99,10 @@ export default function TrueOrDare({ onBack, isDrinkingMode, intensity = 'interm
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem', width: '100%' }}>
-                <button className="btn btn--outline btn--lg" style={accentStyle('magenta')} onClick={() => handleAction('verdad')}>
+                <button className="btn btn--outline btn--lg" style={accentStyle('pink')} onClick={() => handleAction('verdad')}>
                     VERDAD
                 </button>
-                <button className="btn btn--outline btn--lg" style={accentStyle('amber')} onClick={() => handleAction('reto')}>
+                <button className="btn btn--outline btn--lg" style={accentStyle('yellow')} onClick={() => handleAction('reto')}>
                     RETO
                 </button>
             </div>

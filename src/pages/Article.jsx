@@ -43,7 +43,7 @@ export default function Article() {
 
   return (
     <div className="article" style={accentStyle('blue')}>
-      <Seo title={`${post.title} | Revista Glup`} description={post.description} path={path} type="article" />
+      <Seo title={`${post.title} | Revista Glup`} description={post.description} path={path} type="article" image={post.cover} />
       <JsonLd data={[
         articleSchema(post, path),
         faqSchema(post.faq),
@@ -82,6 +82,8 @@ export default function Article() {
         </div>
 
         <Share title={post.title} url={url} />
+
+        <img className="article__cover" src={post.cover} alt={post.title} width="1200" height="675" loading="eager" />
 
         {post.summary && (
           <p className="article__summary"><b>En resumen:</b> {post.summary}</p>

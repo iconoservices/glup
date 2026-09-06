@@ -58,7 +58,7 @@ export const articleSchema = (post, path) => ({
   author: { '@type': 'Organization', name: 'Equipo de Glup' },
   publisher: ORG,
   articleSection: post.category,
-  image: SITE_URL + '/og.png',
+  image: SITE_URL + (post.cover || '/og.png'),
 });
 
 export const faqSchema = (faq) =>

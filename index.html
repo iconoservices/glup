@@ -57,10 +57,18 @@
       (function () {
         var s = document.getElementById('splash');
         if (!s) return;
-        function hide() { s.classList.add('is-hidden'); setTimeout(function () { s.remove(); }, 500); }
-        if (document.readyState === 'complete') setTimeout(hide, 350);
-        else window.addEventListener('load', function () { setTimeout(hide, 350); });
-        setTimeout(hide, 4000); // tope de seguridad
+        var done = false;
+        function hide() {
+          if (done) return;
+          done = true;
+          s.style.pointerEvents = 'none';
+          s.classList.add('is-hidden');
+          setTimeout(function () { if (s.parentNode) s.parentNode.removeChild(s); }, 500);
+        }
+        // apenas el DOM está listo ya se puede leer el contenido (está pre-generado)
+        if (document.readyState !== 'loading') setTimeout(hide, 200);
+        else document.addEventListener('DOMContentLoaded', function () { setTimeout(hide, 200); });
+        setTimeout(hide, 2500); // tope de seguridad
       })();
     </script>
     <script type="module" src="/src/main.jsx"></script>

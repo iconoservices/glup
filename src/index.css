@@ -33,9 +33,10 @@
   --danger: #ff5a5f;
 
   /* Forma */
-  --radius: 18px;
-  --radius-lg: 24px;
-  --pill: 999px;
+  --radius: 9px;
+  --radius-lg: 12px;
+  --pill: 12px;       /* antes 999px; ahora "menos redondeado" en todo */
+  --capsule: 999px;   /* solo para lo que sí debe ser cápsula (nav, handle) */
 
   --shadow-pop: 0 18px 40px -16px rgba(0, 0, 0, 0.8);
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -51,7 +52,11 @@
 html,
 body {
   overscroll-behavior: none;
-  overflow-x: hidden;
+}
+
+body {
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -440,7 +445,7 @@ img { max-width: 100%; }
   background: var(--surface);
   border: 1.5px solid var(--line);
   border-top: 4px solid var(--_a);
-  border-radius: 6px 6px var(--radius-lg) var(--radius-lg);
+  border-radius: 4px 4px var(--radius-lg) var(--radius-lg);
   overflow: hidden;
   transition: transform 0.16s var(--ease-bounce), border-color 0.2s;
 }
@@ -460,7 +465,7 @@ img { max-width: 100%; }
 .gcard__link:focus-visible {
   outline: 2px solid var(--_a);
   outline-offset: -3px;
-  border-radius: 14px;
+  border-radius: 9px;
 }
 
 .gcard__cover {
@@ -594,7 +599,7 @@ img { max-width: 100%; }
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border: 1.5px solid var(--line-2);
-  border-radius: var(--pill);
+  border-radius: 16px;
   padding: 0.65rem 0.5rem;
   display: flex;
   justify-content: space-around;
@@ -690,7 +695,7 @@ img { max-width: 100%; }
 .heat-seg button {
   flex: 1;
   padding: 0.42rem 0;
-  border-radius: 12px;
+  border-radius: 8px;
   font-size: 0.9rem;
   cursor: pointer;
   background: transparent;
@@ -726,7 +731,7 @@ img { max-width: 100%; }
   background: var(--surface);
   border: 1.5px solid var(--line-2);
   border-bottom: none;
-  border-radius: 26px 26px 0 0;
+  border-radius: 9px 14px 0 0;
   padding: 1.15rem 1.3rem 2rem;
   animation: sheet-up 0.32s var(--ease-bounce);
 }
@@ -780,7 +785,7 @@ img { max-width: 100%; }
   padding: 0.85rem 1.05rem;
   background: var(--bg);
   border: 1.5px solid var(--line-2);
-  border-radius: 13px;
+  border-radius: 9px;
   color: var(--text);
   font-size: 0.95rem;
   font-family: 'Outfit', sans-serif;
@@ -814,7 +819,7 @@ img { max-width: 100%; }
   padding: 0.65rem 0.95rem;
   background: var(--bg);
   border: 1.5px solid var(--line);
-  border-radius: 12px;
+  border-radius: 8px;
   font-size: 0.95rem;
   animation: pop-in 0.25s var(--ease-bounce);
 }
@@ -976,18 +981,30 @@ img { max-width: 100%; }
 .big-tap:disabled { opacity: 0.55; cursor: default; }
 .big-tap.is-busy { animation: pulse 0.7s ease-in-out infinite; }
 
-.giant {
-  font-size: 8rem;
-  line-height: 1;
+/* Dado */
+.dice-stage {
+  width: 190px;
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
   border: none;
   cursor: pointer;
-  transition: transform 0.2s var(--ease-bounce), filter 0.3s ease;
+  padding: 0;
 }
 
-.giant:active { transform: scale(0.9); }
-.giant.is-busy { animation: wiggle 0.35s ease-in-out infinite; }
-.giant.is-done { filter: drop-shadow(0 0 18px var(--_a)); }
+.dice-stage:disabled { cursor: default; }
+.dice-stage:not(:disabled):active { transform: scale(0.96); }
+
+.dice-spin {
+  width: 62%;
+  display: flex;
+  will-change: transform;
+  filter: drop-shadow(0 8px 22px color-mix(in srgb, var(--_a) 55%, transparent));
+}
+
+.dice-svg { width: 100%; height: auto; }
 
 .timer-ring {
   width: 148px;
@@ -1110,7 +1127,7 @@ img { max-width: 100%; }
   padding: 0.85rem 1.05rem;
   background: var(--surface);
   border: 1.5px solid var(--line);
-  border-radius: 13px;
+  border-radius: 9px;
   font-size: 0.95rem;
   text-align: left;
   animation: pop-in 0.25s var(--ease-bounce);

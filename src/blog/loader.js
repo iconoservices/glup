@@ -45,6 +45,7 @@ export const POSTS = Object.entries(files)
     const { data, body } = parseFrontmatter(raw);
     return {
       slug,
+      cover: `/blog/cover-${slug}.jpg`,
       title: data.title || slug,
       description: data.description || '',
       emoji: data.emoji || '📝',

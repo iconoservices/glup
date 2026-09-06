@@ -43,119 +43,123 @@
 
 .mag__sub { color: var(--text-dim); font-size: 0.95rem; line-height: 1.55; max-width: 55ch; }
 
-/* Artículo destacado */
+/* Artículo destacado — imagen con título encima */
 .mag-lead {
-  --_a: var(--accent);
-  display: flex;
-  flex-direction: column;
-  background: var(--surface);
-  border: 1.5px solid var(--line);
-  border-radius: 20px;
+  position: relative;
+  display: block;
+  border-radius: 8px;
   overflow: hidden;
   text-decoration: none;
-  color: inherit;
+  color: #fff;
   margin-bottom: 1rem;
-  transition: transform 0.16s var(--ease-bounce), border-color 0.2s;
+  transition: transform 0.16s var(--ease-bounce);
+  background: var(--surface);
 }
 
-.mag-lead:hover { border-color: color-mix(in srgb, var(--_a) 45%, transparent); }
 .mag-lead:active { transform: scale(0.99); }
 
-.mag-lead__media {
-  aspect-ratio: 21 / 9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  background:
-    radial-gradient(90% 130% at 15% 0%, color-mix(in srgb, var(--_a) 32%, transparent), transparent 65%),
-    var(--cover);
+.mag-lead__img {
+  height: auto;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
-.mag-lead__body { padding: 1.1rem 1.2rem 1.3rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.mag-lead__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 1.2rem 1.3rem 1.4rem;
+  background: linear-gradient(to top, rgba(6, 9, 15, 0.9) 12%, rgba(6, 9, 15, 0.35) 55%, transparent);
+}
+
 .mag-lead__cat {
   align-self: flex-start;
   font-family: 'Fredoka', sans-serif;
   font-weight: 700;
   font-size: 0.62rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--_a);
-  background: color-mix(in srgb, var(--_a) 15%, transparent);
-  border: 1px solid color-mix(in srgb, var(--_a) 35%, transparent);
-  padding: 0.2rem 0.55rem;
+  color: #0b0f18;
+  background: var(--blue);
+  padding: 0.25rem 0.6rem;
   border-radius: var(--pill);
 }
 
 .mag-lead__title {
   font-family: 'Fredoka', sans-serif;
   font-weight: 700;
-  font-size: 1.4rem;
-  line-height: 1.15;
-  color: var(--text);
+  font-size: 1.5rem;
+  line-height: 1.12;
   text-wrap: balance;
 }
 
-.mag-lead__hero { color: var(--text-dim); font-size: 0.92rem; line-height: 1.5; }
-.mag-lead__meta { color: var(--text-faint); font-size: 0.76rem; margin-top: 0.15rem; }
+.mag-lead__meta { color: rgba(255, 255, 255, 0.7); font-size: 0.76rem; }
 
 /* Grilla del resto */
 .mag__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.85rem;
+  gap: 1rem;
 }
 
 .mag-card {
-  --_a: var(--accent);
   display: flex;
-  gap: 0.9rem;
-  padding: 1rem 1.1rem;
+  flex-direction: column;
   background: var(--surface);
   border: 1.5px solid var(--line);
-  border-radius: 16px;
+  border-radius: 10px;
+  overflow: hidden;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.16s var(--ease-bounce), border-color 0.2s, background 0.2s;
+  transition: transform 0.16s var(--ease-bounce), border-color 0.2s;
 }
 
-.mag-card:hover { background: var(--surface-2); border-color: var(--line-2); }
+.mag-card:hover { border-color: var(--line-2); }
 .mag-card:active { transform: scale(0.985); }
 
-.mag-card__emoji {
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  border-radius: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  background: color-mix(in srgb, var(--_a) 16%, transparent);
-  border: 1.5px solid color-mix(in srgb, var(--_a) 35%, transparent);
+.mag-card__img {
+  height: auto;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
-.mag-card__body { display: flex; flex-direction: column; gap: 0.22rem; min-width: 0; }
+.mag-card__body { padding: 0.85rem 1rem 1rem; display: flex; flex-direction: column; gap: 0.28rem; }
 .mag-card__cat {
   font-family: 'Outfit', sans-serif;
   font-weight: 800;
   font-size: 0.6rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--_a);
+  color: var(--blue);
 }
 
 .mag-card__title {
   font-family: 'Fredoka', sans-serif;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.02rem;
   line-height: 1.2;
   color: var(--text);
   text-wrap: balance;
 }
 
-.mag-card__hero { font-size: 0.82rem; color: var(--text-dim); line-height: 1.4; }
-.mag-card__meta { font-size: 0.72rem; color: var(--text-faint); margin-top: 0.15rem; }
+.mag-card__meta { font-size: 0.72rem; color: var(--text-faint); margin-top: 0.1rem; }
+
+.article__cover {
+  height: auto;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 0.5rem 0 1.5rem;
+}
 
 /* --------------------------------- Artículo ---------------------------- */
 
@@ -280,7 +284,7 @@
   color: var(--text);
   background: color-mix(in srgb, var(--blue) 10%, var(--surface));
   border-left: 4px solid var(--blue);
-  border-radius: 0 12px 12px 0;
+  border-radius: 0 8px 8px 0;
   padding: 1rem 1.1rem;
   margin-bottom: 1.5rem;
 }
@@ -345,7 +349,7 @@
   text-align: center;
   background: color-mix(in srgb, var(--blue) 12%, var(--surface));
   border: 1.5px solid color-mix(in srgb, var(--blue) 32%, transparent);
-  border-radius: 18px;
+  border-radius: 11px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -380,7 +384,7 @@
   padding: 0.85rem 1rem;
   background: var(--surface);
   border: 1.5px solid var(--line);
-  border-radius: 14px;
+  border-radius: 9px;
   text-decoration: none;
   color: var(--text);
   font-family: 'Fredoka', sans-serif;
@@ -410,7 +414,7 @@
   padding: 0.85rem;
   background: var(--surface);
   border: 1.5px solid var(--line-2);
-  border-radius: 14px;
+  border-radius: 9px;
   text-decoration: none;
   color: var(--text);
   font-family: 'Fredoka', sans-serif;
@@ -429,11 +433,14 @@
   .prose h2 { font-size: 1.7rem; }
 
   .mag__title { font-size: 2.6rem; }
-  .mag__grid { grid-template-columns: repeat(2, 1fr); }
-  .mag-lead { flex-direction: row; }
-  .mag-lead__media { aspect-ratio: auto; width: 42%; min-height: 220px; font-size: 4rem; }
-  .mag-lead__body { flex: 1; justify-content: center; padding: 1.8rem; }
-  .mag-lead__title { font-size: 1.7rem; }
+  .mag__grid { grid-template-columns: repeat(3, 1fr); }
+  .mag-lead__img {
+  height: auto; aspect-ratio: 21 / 9; }
+  .mag-lead__overlay { padding: 2rem 2.2rem 2.2rem; }
+  .mag-lead__title { font-size: 2.4rem; max-width: 60%; }
+  .mag-card__title { font-size: 1.1rem; }
+  .article__cover {
+  height: auto; border-radius: 8px; margin-bottom: 2rem; }
 
   .article__more-grid { grid-template-columns: repeat(3, 1fr); }
   .article__more-link { flex-direction: column; align-items: flex-start; text-align: left; }

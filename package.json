@@ -9,7 +9,9 @@
     "build:spa": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "gen:og": "node scripts/gen-og.mjs"
+    "gen:og": "node scripts/gen-og.mjs",
+    "gen:covers": "node scripts/gen-covers.mjs",
+    "gen:img": "npm run gen:og && npm run gen:covers"
   },
   "dependencies": {
     "lucide-react": "^0.575.0",

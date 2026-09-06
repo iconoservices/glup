@@ -365,14 +365,26 @@ img { max-width: 100%; }
 
 /* Banda de instalación (inicio) */
 .install-banner {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
   padding: 0.7rem 0.7rem 0.7rem 1rem;
   background: color-mix(in srgb, var(--blue) 14%, var(--surface));
   border: 1.5px solid color-mix(in srgb, var(--blue) 40%, transparent);
   border-radius: var(--radius);
   animation: pop-in 0.3s var(--ease-bounce);
+}
+
+.install-banner__row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.install-banner__ios {
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--line-2);
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  line-height: 1.5;
 }
 
 .install-banner__text {

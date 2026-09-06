@@ -363,6 +363,43 @@ img { max-width: 100%; }
 .store-section { margin-top: 1.4rem; }
 .store-section:first-of-type { margin-top: 0.4rem; }
 
+/* Banda de instalación (inicio) */
+.install-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 0.7rem 0.7rem 1rem;
+  background: color-mix(in srgb, var(--blue) 14%, var(--surface));
+  border: 1.5px solid color-mix(in srgb, var(--blue) 40%, transparent);
+  border-radius: var(--radius);
+  animation: pop-in 0.3s var(--ease-bounce);
+}
+
+.install-banner__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  flex: 1;
+  min-width: 0;
+}
+
+.install-banner__text strong {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.install-banner__text span {
+  font-size: 0.76rem;
+  color: var(--text-dim);
+}
+
+.install-banner .btn {
+  padding: 0.55rem 0.9rem;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
 /* ----------------------- Tarjeta estilo tienda ------------------------- */
 
 .stack {

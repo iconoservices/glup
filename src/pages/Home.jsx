@@ -3,6 +3,7 @@ import Seo from '../components/Seo';
 import StoreHero from '../components/StoreHero';
 import GameCard from '../components/GameCard';
 import CatFilter from '../components/CatFilter';
+import InstallBanner from '../components/InstallBanner';
 import { accentStyle } from '../theme';
 import { GAMES, searchGames } from '../catalog';
 
@@ -19,6 +20,7 @@ export default function Home() {
         path="/"
       />
       <StoreHero query={query} onQuery={setQuery} />
+      <InstallBanner />
 
       <main className="store">
         {searching ? (

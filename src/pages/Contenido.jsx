@@ -9,6 +9,12 @@ import {
   PROMPTS as TRIOS_PROMPTS,
   BOTELLA_RETOS as TRIOS_BOTELLA,
 } from '../apps-hub/trios/triosContent';
+import {
+  NIVELES as SW_NIVELES,
+  PROMPTS as SW_PROMPTS,
+  ROMPEHIELOS as SW_ROMPEHIELOS,
+  RULETA_RETOS as SW_RULETA,
+} from '../apps-hub/swinger/swingerContent';
 
 const NIVEL_LABEL = { suave: 'Suave', intermedio: 'Medio', picante: 'Picante' };
 
@@ -19,6 +25,8 @@ const readTrios = (t) =>
     .replaceAll('{n}', '[jugador]')
     .replaceAll('{o}', '[otro]')
     .replaceAll('{p}', '[el tercero]');
+const readSw = (t) =>
+  t.replaceAll('{no}', '[otras dos]').replaceAll('{n}', '[persona]').replaceAll('{o}', '[otra]');
 
 function Bloque({ id, titulo, emoji, sub, children, open, onToggle }) {
   return (
@@ -56,7 +64,9 @@ export default function Contenido() {
   const totalTrios = TRIOS_NIVELES.reduce(
     (s, n) => s + (TRIOS_PROMPTS[n.id]?.verdad?.length || 0) + (TRIOS_PROMPTS[n.id]?.reto?.length || 0), 0)
     + TRIOS_BOTELLA.length;
-  const total = totalGlup + totalVor + totalTrios;
+  const totalSw = SW_ROMPEHIELOS.length + SW_RULETA.length + SW_NIVELES.reduce(
+    (s, n) => s + (SW_PROMPTS[n.id]?.verdad?.length || 0) + (SW_PROMPTS[n.id]?.reto?.length || 0), 0);
+  const total = totalGlup + totalVor + totalTrios + totalSw;
 
   return (
     <div className="cbank">
@@ -148,6 +158,45 @@ export default function Contenido() {
           <ol>{TRIOS_BOTELLA.map((t, i) => <li key={i}>{t}</li>)}</ol>
         </Bloque>
         <p className="cbank__play"><Link to="/juegos-para-trios">Abrir Juegos para Tríos +18 →</Link></p>
+
+        <h2 className="cbank__group">🥂 Fiestas Swinger · {totalSw} en total</h2>
+        <Bloque
+          id="sw-hielo"
+          emoji="🥂"
+          titulo="Rompehielos"
+          sub={`${SW_ROMPEHIELOS.length} frases`}
+          open={open.has('sw-hielo')}
+          onToggle={toggle}
+        >
+          <ol>{SW_ROMPEHIELOS.map((t, i) => <li key={i}>{readSw(t)}</li>)}</ol>
+        </Bloque>
+        {SW_NIVELES.map((nv) => (
+          <Bloque
+            key={nv.id}
+            id={`sw-${nv.id}`}
+            emoji={nv.emoji}
+            titulo={nv.label}
+            sub={`${SW_PROMPTS[nv.id].verdad.length} verdades · ${SW_PROMPTS[nv.id].reto.length} retos`}
+            open={open.has(`sw-${nv.id}`)}
+            onToggle={toggle}
+          >
+            <h3>Verdades</h3>
+            <ol>{SW_PROMPTS[nv.id].verdad.map((t, i) => <li key={i}>{readSw(t)}</li>)}</ol>
+            <h3>Retos</h3>
+            <ol>{SW_PROMPTS[nv.id].reto.map((t, i) => <li key={i}>{readSw(t)}</li>)}</ol>
+          </Bloque>
+        ))}
+        <Bloque
+          id="sw-ruleta"
+          emoji="🎯"
+          titulo="La Ruleta de Parejas"
+          sub={`${SW_RULETA.length} retos`}
+          open={open.has('sw-ruleta')}
+          onToggle={toggle}
+        >
+          <ol>{SW_RULETA.map((t, i) => <li key={i}>{t}</li>)}</ol>
+        </Bloque>
+        <p className="cbank__play"><Link to="/fiestas-swinger">Abrir Fiestas Swinger →</Link></p>
       </div>
     </div>
   );

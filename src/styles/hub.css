@@ -254,6 +254,7 @@
 }
 .hub-app--pink { --_a: var(--h-pink); }
 .hub-app--violet { --_a: #8b3dff; }
+.hub-app--teal { --_a: #0d9488; }
 .hub-app:hover { box-shadow: 0 22px 44px -24px rgba(20, 30, 60, 0.32); }
 .hub-app:active { transform: scale(0.99); }
 
@@ -829,3 +830,27 @@
 }
 
 .trios-botella .vor-card { width: 100%; }
+
+/* ==========================================================================
+   Fiestas Swinger — tema turquesa (scope [data-app="swinger"])
+   ========================================================================== */
+
+[data-app="swinger"] {
+  --accent: #14b6a8;
+  --accent-ink: #04231f;
+  --_a: #14b6a8;
+  --bg: #071614;
+  --surface: #0e211e;
+  --surface-2: #143029;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-2: rgba(255, 255, 255, 0.17);
+  --text: #e9f6f3;
+  --text-dim: #a3c4bd;
+  --text-faint: #6b8a83;
+  --verdad: #3fb0ff;
+  --reto: #ffb03f;
+}
+
+.swinger {
+  background-image: radial-gradient(80% 40% at 50% -5%, rgba(20, 182, 168, 0.18), transparent 60%);
+}

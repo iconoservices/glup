@@ -16,6 +16,10 @@ import TriosShell from './apps-hub/trios/TriosShell';
 import TriosHome from './apps-hub/trios/TriosHome';
 import TriosPlay from './apps-hub/trios/TriosPlay';
 import TriosBotella from './apps-hub/trios/TriosBotella';
+import SwingerShell from './apps-hub/swinger/SwingerShell';
+import SwingerHome from './apps-hub/swinger/SwingerHome';
+import SwingerPlay from './apps-hub/swinger/SwingerPlay';
+import SwingerRuleta from './apps-hub/swinger/SwingerRuleta';
 import Blog from './pages/Blog';
 import Article from './pages/Article';
 import RouteError from './pages/RouteError';
@@ -69,6 +73,17 @@ export const routes = [
           { path: 'jugar', element: <TriosPlay /> },
           { path: 'botella', element: <TriosBotella /> },
           { path: 'contenido', element: <Navigate to="/contenido" replace /> },
+        ],
+      },
+
+      // ── Fiestas Swinger ──
+      {
+        path: 'fiestas-swinger',
+        element: <SwingerShell />,
+        children: [
+          { index: true, element: <SwingerHome /> },
+          { path: 'jugar', element: <SwingerPlay /> },
+          { path: 'ruleta', element: <SwingerRuleta /> },
         ],
       },
 

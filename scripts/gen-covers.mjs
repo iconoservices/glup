@@ -7,6 +7,7 @@ const COLORS = {
   Grupos: '#b06bff',
   'Verdad o Reto': '#ff2e88',
   'Tríos': '#a15cff',
+  Swinger: '#14b6a8',
   Guía: '#1fa8ff',
 };
 

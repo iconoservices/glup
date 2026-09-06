@@ -22,6 +22,7 @@ function buildSitemap() {
     ...GAMES.map((g) => `/glup/${g.slug}`),
     '/verdad-o-reto-18',
     '/juegos-para-trios',
+    '/fiestas-swinger',
     '/contenido',
     '/blog',
     ...blogSlugs().map((s) => `/blog/${s}`),

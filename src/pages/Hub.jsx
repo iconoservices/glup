@@ -42,6 +42,17 @@ const APPS = [
     bullets: ['Verdad o reto para tríos', 'Modo "solo retos" (quítate una prenda…)', 'La botella que apunta exacto', 'Niveles Picante y Extremo'],
     cta: 'Abrir Tríos',
   },
+  {
+    to: '/fiestas-swinger',
+    kind: 'teal',
+    glyph: '🥂',
+    name: 'Fiestas Swinger',
+    badge: 'Nuevo',
+    rating: '4.4',
+    desc: 'Para eventos de varias parejas: rompehielos, verdad o reto entre parejas y la ruleta.',
+    bullets: ['Rompehielos para parejas que se conocen', 'Verdad o reto que cruza a las parejas', 'La ruleta que empareja al azar', 'Reglas de consentimiento incluidas'],
+    cta: 'Abrir Swinger',
+  },
 ];
 
 const POPULAR = [
@@ -143,8 +154,8 @@ export default function Hub() {
 
       <section className="hub-sec" id="apps">
         <div className="hub-sec__head">
-          <p className="hub-sec__kicker">Tres apps</p>
-          <h2 className="hub-sec__title">Un montón de juegos, en tres apps</h2>
+          <p className="hub-sec__kicker">Cuatro apps</p>
+          <h2 className="hub-sec__title">Un montón de juegos, en cuatro apps</h2>
           <p className="hub-sec__lead">Cada una se abre y se instala por separado. Sin cuenta, sin anuncios entre partidas.</p>
         </div>
 

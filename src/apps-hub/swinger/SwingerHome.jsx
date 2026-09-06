@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Users, List, ChevronRight } from 'lucide-react';
+import { Users, ChevronRight } from 'lucide-react';
 import Seo from '../../components/Seo';
 import JsonLd from '../../components/JsonLd';
 import HubLink from '../../components/HubLink';
 import { useSettings } from '../../context/useSettings';
 import { SITE_URL } from '../../lib/ui';
-import { MODOS, NIVELES, totalPrompts } from './swingerContent';
+import { MODOS, NIVELES } from './swingerContent';
 
 export default function SwingerHome() {
   const navigate = useNavigate();
@@ -84,10 +84,6 @@ export default function SwingerHome() {
           </li>
         ))}
       </ul>
-
-      <button className="vor-content-link" onClick={() => navigate('/contenido')}>
-        <List size={15} /> Ver todo el contenido ({totalPrompts()} rompehielos y retos)
-      </button>
 
       <section className="vor-seo">
         <h2>Reglas de la casa (leélas antes de empezar)</h2>

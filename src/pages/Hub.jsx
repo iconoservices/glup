@@ -240,7 +240,10 @@ export default function Hub() {
           <div className="hub-foot__links">
             <Link to="/glup">Glup!</Link>
             <Link to="/verdad-o-reto-18">Verdad o Reto +18</Link>
+            <Link to="/juegos-para-trios">Tríos +18</Link>
+            <Link to="/fiestas-swinger">Fiestas Swinger</Link>
             <Link to="/blog">Revista</Link>
+            <Link to="/contenido">Todo el contenido</Link>
           </div>
           <p>+18 · Gratis · Sin descargar · Cada app se puede instalar por separado.</p>
         </div>

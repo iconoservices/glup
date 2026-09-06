@@ -385,17 +385,19 @@ function App() {
                 </div>
 
                 {catFilter === 'todos' ? (
-                  <div className="grid-2">
-                    {GAMES.map((g) => (
-                      <GameCard key={g.slug} game={g} onClick={() => handleGameClick(g.gameId)} />
-                    ))}
-                  </div>
+                  <section className="store-section">
+                    <p className="section-label" style={accentStyle('pink')}>🎲 Todos</p>
+                    <div className="grid-2">
+                      {GAMES.map((g) => (
+                        <GameCard key={g.slug} game={g} onClick={() => handleGameClick(g.gameId)} />
+                      ))}
+                    </div>
+                  </section>
                 ) : (
                   CATEGORIES.filter((c) => c.id === catFilter).map((cat) => (
                     <section key={cat.id} className="store-section">
                       <p className="section-label" style={accentStyle(cat.accent)}>
                         {cat.emoji} {cat.label}
-                        <span className="section-label__tag">{cat.tagline}</span>
                       </p>
                       <div className="grid-2">
                         {gamesByCategory(cat.id).map((g) => (

@@ -142,6 +142,10 @@ export const GAMES = [
 
 export const gamesByCategory = (catId) => GAMES.filter((g) => g.categories.includes(catId));
 
+export const gameBySlug = (slug) => GAMES.find((g) => g.slug === slug);
+
+export const categoryById = (id) => CATEGORIES.find((c) => c.id === id);
+
 export const searchGames = (q) => {
   const t = q.trim().toLowerCase();
   if (!t) return GAMES;

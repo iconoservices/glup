@@ -23,7 +23,7 @@ const retosPreparty = {
     ]
 };
 
-export default function PreParty({ onBack, isDrinkingMode, intensity = 'intermedio' }) {
+export default function PreParty({ onBack, intensity = 'intermedio' }) {
     const [reto, setReto] = useState(null);
 
     const nuevoReto = () => {

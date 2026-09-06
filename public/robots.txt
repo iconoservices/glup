@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://glupi.netlify.app/sitemap.xml
+Sitemap: https://glup.bogahub.app/sitemap.xml

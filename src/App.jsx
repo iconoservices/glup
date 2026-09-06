@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { Infinity as InfinityIcon, Dices, Flame, Sparkles, Home, Settings, ChevronRight, Shuffle, PenTool, LayoutGrid, GlassWater, Clock, Beer, Users, Trash2, Plus, X, Check, RotateCcw, Info, Star } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { Dices, Flame, Sparkles, Home, Settings, ChevronRight, Shuffle, PenTool, GlassWater, Clock, Beer, Users, Trash2, Plus, X, Check, RotateCcw, Info, Star, Search, Layers } from 'lucide-react';
 import { accentStyle } from './theme';
+import { CATEGORIES, GAMES, gamesByCategory, searchGames } from './catalog';
 import TrueOrDare from './apps/verdad-reto/TrueOrDare';
 import Ruleta from './apps/ruleta/Ruleta';
 import Dados from './apps/dados/Dados';
@@ -26,6 +27,22 @@ const HEAT_META = {
   intermedio: { emoji: '😏', label: 'Medio' },
   picante: { emoji: '🔥', label: 'Picante' },
 };
+
+// ────────── Iconos por juego ──────────
+const GAME_ICONS = {
+  yonunca: <GlassWater size={24} strokeWidth={1.75} />,
+  botella: <span style={{ fontSize: '24px' }}>🍾</span>,
+  precopeo: <Beer size={24} strokeWidth={1.75} />,
+  ruleta: <Sparkles size={24} strokeWidth={1.75} />,
+  dados: <Dices size={24} strokeWidth={1.75} />,
+  'verdad-reto': <Flame size={24} strokeWidth={1.75} />,
+  '5segundos': <Clock size={24} strokeWidth={1.75} />,
+  personalizado: <PenTool size={24} strokeWidth={1.75} />,
+  'mix-azar': <Shuffle size={24} strokeWidth={1.75} />,
+  'piramide-para-beber': <Layers size={24} strokeWidth={1.75} />,
+  'quien-es-mas-probable-que': <span style={{ fontSize: '22px' }}>🫵</span>,
+};
+const iconFor = (g) => GAME_ICONS[g.gameId] || GAME_ICONS[g.slug] || <Sparkles size={24} strokeWidth={1.75} />;
 
 // ────────── Modal de Jugadores ──────────
 function JugadoresModal({ jugadores, onClose, onSave, requiredByGame = false }) {
@@ -93,6 +110,23 @@ function JugadoresModal({ jugadores, onClose, onSave, requiredByGame = false }) 
   );
 }
 
+// ────────── Tarjeta de juego (estilo App Store, texto rico para SEO) ──────────
+function GameCard({ game, onClick }) {
+  return (
+    <article className={`gcard${game.soon ? ' is-soon' : ''}`} style={accentStyle(game.accent)} onClick={game.soon ? undefined : onClick}>
+      <div className="gcard__icon">{iconFor(game)}</div>
+      <div className="gcard__body">
+        <h3 className="gcard__title">
+          {game.title}
+          {game.soon && <span className="badge-soon">Próximamente</span>}
+        </h3>
+        <p className="gcard__desc">{game.seo}</p>
+      </div>
+      {!game.soon && <ChevronRight className="gcard__arrow" size={22} />}
+    </article>
+  );
+}
+
 // ────────── Pantalla Ajustes ──────────
 function AjustesScreen({ drinkingMode, intensity, jugadores, onUpdateDrinking, onUpdateIntensity, onShowJugadores, onReset, deferredPrompt, onInstall }) {
   const [showResetConfirm, setShowResetConfirm] = useState(false);
@@ -142,8 +176,8 @@ function AjustesScreen({ drinkingMode, intensity, jugadores, onUpdateDrinking, o
           <div className="set-row__main">
             <Star size={18} color="#ffd700" />
             <div>
-              <p style={{ color: '#fff', fontWeight: 700, fontFamily: 'Fredoka, sans-serif' }}>XXXO Premium</p>
-              <p style={{ color: 'var(--text-dim)', fontSize: '0.8rem' }}>200+ retos exclusivos, packs temáticos</p>
+              <p style={{ color: '#fff', fontWeight: 700, fontFamily: 'Fredoka, sans-serif' }}>Pase Glup!</p>
+              <p style={{ color: 'var(--text-dim)', fontSize: '0.8rem' }}>Desbloquea el nivel "Nivel Dios" en todos los juegos</p>
             </div>
           </div>
           <span style={{ color: '#ffd700', fontWeight: 700, fontSize: '0.85rem' }}>Próx.</span>
@@ -154,21 +188,17 @@ function AjustesScreen({ drinkingMode, intensity, jugadores, onUpdateDrinking, o
         <p className="set-group__label">INFORMACIÓN</p>
         {deferredPrompt && (
           <button className="btn btn--outline btn--block" style={{ marginBottom: '0.55rem' }} onClick={onInstall}>
-            <Plus size={18} /> Instalar XXXO en Pantalla de Inicio
+            <Plus size={18} /> Instalar Glup! en Pantalla de Inicio
           </button>
         )}
-        <SettingRow icon={<Info size={18} />} label="Versión de XXXO" value="v0.1.0 Beta" />
+        <SettingRow icon={<Info size={18} />} label="Versión de Glup!" value="v0.2.0 Beta" />
         <SettingRow icon={<span>🔞</span>} label="Solo para mayores de edad" value="+18" />
       </div>
 
       <div>
         <p className="set-group__label">ZONA PELIGROSA</p>
         {!showResetConfirm ? (
-          <button
-            className="btn btn--outline btn--block"
-            style={accentStyle('red')}
-            onClick={() => setShowResetConfirm(true)}
-          >
+          <button className="btn btn--outline btn--block" style={accentStyle('red')} onClick={() => setShowResetConfirm(true)}>
             <RotateCcw size={18} /> Reiniciar toda la configuración
           </button>
         ) : (
@@ -193,6 +223,8 @@ function App() {
 
   const [activeGame, setActiveGame] = useState(null);
   const [activeTab, setActiveTab] = useState('inicio');
+  const [query, setQuery] = useState('');
+  const [catFilter, setCatFilter] = useState('todos');
   const [showJugadores, setShowJugadores] = useState(false);
   const [jugadoresRequired, setJugadoresRequired] = useState(false);
   const [pendingGame, setPendingGame] = useState(null);
@@ -223,7 +255,6 @@ function App() {
     saveSetting('jugadores', lista);
     setShowJugadores(false);
     setJugadoresRequired(false);
-    // If a game was waiting for players to be set up, launch it now
     if (pendingGame && lista.length >= 2) {
       setActiveGame(pendingGame);
       setPendingGame(null);
@@ -238,7 +269,7 @@ function App() {
   };
 
   const handleGameClick = (gameId) => {
-    // Games that need players: check before launching
+    if (!gameId) return;
     if (JUEGOS_CON_JUGADORES.includes(gameId) && jugadores.length < 2) {
       setPendingGame(gameId);
       setJugadoresRequired(true);
@@ -248,19 +279,10 @@ function App() {
     setActiveGame(gameId);
   };
 
-  const games = [
-    { id: 'ruleta', title: 'Ruleta Caliente', desc: 'Giros inesperados para encender la noche.', accent: 'violet', icon: <Sparkles size={26} strokeWidth={1.75} /> },
-    { id: 'verdad-reto', title: 'Verdad o Reto', desc: 'Secretos íntimos y castigos atrevidos.', accent: 'magenta', icon: <Flame size={26} strokeWidth={1.75} /> },
-    { id: 'botella', title: 'La Botella', desc: 'Gira la botella. Lo que toca, toca.', accent: 'magenta', icon: <span style={{ fontSize: '26px' }}>🍾</span> },
-    { id: 'precopeo', title: 'Pre-Party', desc: 'Rompe el hielo. Si no cumples, fondo blanco.', accent: 'amber', icon: <Beer size={26} strokeWidth={1.75} /> },
-    { id: 'yonunca', title: 'Yo Nunca Nunca', desc: 'Confesiones sin filtro y muchos tragos.', accent: 'cyan', icon: <GlassWater size={26} strokeWidth={1.75} /> },
-    { id: 'dados', title: 'Dados Traviesos', desc: 'Deja que la suerte decida tu próximo paso.', accent: 'lime', icon: <Dices size={26} strokeWidth={1.75} /> },
-    { id: '5segundos', title: '5 Segundos', desc: 'Responde rápido o asume el castigo.', accent: 'red', icon: <Clock size={26} strokeWidth={1.75} /> },
-    { id: 'mix-azar', title: 'Modo Caos', desc: 'Una mezcla salvaje de todos los juegos.', accent: 'violet', icon: <Shuffle size={26} strokeWidth={1.75} /> },
-    { id: 'personalizado', title: 'Reglas Propias', desc: 'Añade tus castigos y tragos a medida.', accent: 'magenta', icon: <PenTool size={26} strokeWidth={1.75} /> },
-  ];
-
   const gameProps = { onBack: () => setActiveGame(null), isDrinkingMode: drinkingMode, intensity, jugadores };
+
+  const searching = query.trim().length > 0;
+  const searchResults = useMemo(() => searchGames(query), [query]);
 
   if (activeGame === 'verdad-reto') return <TrueOrDare {...gameProps} />;
   if (activeGame === 'ruleta') return <Ruleta {...gameProps} />;
@@ -285,65 +307,92 @@ function App() {
         />
       )}
 
-      <header className="hero">
-        <div className="brand">
-          <div className="brand-mark"><InfinityIcon size={52} strokeWidth={1.75} /></div>
-          <h1 className="brand-name">XXXO</h1>
-        </div>
-
-        <div className="chip-row">
-          <div className={`chip${drinkingMode ? ' is-on' : ''}`} style={accentStyle('amber')} onClick={() => updateDrinking(!drinkingMode)}>
-            <Beer size={15} />
-            <span>{drinkingMode ? 'Tragos 🍻' : 'Sin Tragos'}</span>
-          </div>
-          <div className={`chip${jugadores.length > 0 ? ' is-on' : ''}`} onClick={openJugadores}>
-            <Users size={15} />
-            <span>{jugadores.length > 0 ? `${jugadores.length} jugadores` : 'Jugadores'}</span>
-          </div>
-        </div>
-
-        <div className="heat-row">
-          {Object.keys(HEAT_META).map((level) => (
-            <button key={level} className={`heat-btn${intensity === level ? ' is-on' : ''}`} onClick={() => updateIntensity(level)}>
-              {HEAT_META[level].emoji} {HEAT_META[level].label}
-            </button>
-          ))}
-        </div>
-      </header>
-
       {activeTab === 'inicio' && (
-        <main className="stack">
-          <p className="section-label">🔥 Modos Más Calientes</p>
-          {games.slice(0, 3).map((game) => (
-            <div key={game.id} className="gcard" style={accentStyle(game.accent)} onClick={() => handleGameClick(game.id)}>
-              <div className="gcard__icon">{game.icon}</div>
-              <div className="gcard__body">
-                <h2 className="gcard__title">{game.title}</h2>
-                <p className="gcard__desc">
-                  {drinkingMode && game.id === 'verdad-reto' ? 'Secretos íntimos. Si no respondes, bebes.' : game.desc}
-                </p>
-              </div>
-              <ChevronRight className="gcard__arrow" size={24} />
+        <>
+          <header className="store-hero">
+            <div className="brand">
+              <h1 className="brand-name">Glup!</h1>
             </div>
-          ))}
-          <button className="btn btn--outline btn--block" style={{ marginTop: '0.25rem' }} onClick={() => setActiveTab('catalogo')}>
-            <LayoutGrid size={20} /> Ver todo el Catálogo
-          </button>
-        </main>
-      )}
+            <label className="searchbar">
+              <Search size={18} />
+              <input
+                className="searchbar__input"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="¿A qué quieres jugar hoy?"
+              />
+              {searching && (
+                <button className="icon-btn" onClick={() => setQuery('')} aria-label="Limpiar"><X size={16} /></button>
+              )}
+            </label>
 
-      {activeTab === 'catalogo' && (
-        <main>
-          <p className="section-label" style={{ justifyContent: 'center' }}>Catálogo Completo</p>
-          <div className="grid-2">
-            {games.map((game) => (
-              <div key={game.id} className="mcard" style={accentStyle(game.accent)} onClick={() => handleGameClick(game.id)}>
-                <div className="gcard__icon">{game.icon}</div>
-                <h2 className="mcard__title">{game.title}</h2>
+            <div className="chip-row">
+              <div className={`chip${drinkingMode ? ' is-on' : ''}`} style={accentStyle('amber')} onClick={() => updateDrinking(!drinkingMode)}>
+                <Beer size={15} />
+                <span>{drinkingMode ? 'Tragos 🍻' : 'Sin Tragos'}</span>
               </div>
-            ))}
-          </div>
-        </main>
+              <div className={`chip${jugadores.length > 0 ? ' is-on' : ''}`} onClick={openJugadores}>
+                <Users size={15} />
+                <span>{jugadores.length > 0 ? `${jugadores.length} jugadores` : 'Jugadores'}</span>
+              </div>
+            </div>
+
+            <div className="heat-row">
+              {Object.keys(HEAT_META).map((level) => (
+                <button key={level} className={`heat-btn${intensity === level ? ' is-on' : ''}`} onClick={() => updateIntensity(level)}>
+                  {HEAT_META[level].emoji} {HEAT_META[level].label}
+                </button>
+              ))}
+            </div>
+          </header>
+
+          <main className="store">
+            {searching ? (
+              <>
+                <p className="section-label">
+                  {searchResults.length > 0 ? `Resultados para "${query}"` : `Nada encontrado para "${query}"`}
+                </p>
+                <div className="stack">
+                  {searchResults.map((g) => (
+                    <GameCard key={g.slug} game={g} onClick={() => handleGameClick(g.gameId)} />
+                  ))}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="cat-filter">
+                  <button className={`cat-pill${catFilter === 'todos' ? ' is-on' : ''}`} onClick={() => setCatFilter('todos')}>
+                    Todos
+                  </button>
+                  {CATEGORIES.map((c) => (
+                    <button
+                      key={c.id}
+                      className={`cat-pill${catFilter === c.id ? ' is-on' : ''}`}
+                      style={accentStyle(c.accent)}
+                      onClick={() => setCatFilter(c.id)}
+                    >
+                      {c.emoji} {c.label}
+                    </button>
+                  ))}
+                </div>
+
+                {(catFilter === 'todos' ? CATEGORIES : CATEGORIES.filter((c) => c.id === catFilter)).map((cat) => (
+                  <section key={cat.id} className="store-section">
+                    <p className="section-label" style={accentStyle(cat.accent)}>
+                      {cat.emoji} {cat.label}
+                      <span className="section-label__tag">{cat.tagline}</span>
+                    </p>
+                    <div className="stack">
+                      {gamesByCategory(cat.id).map((g) => (
+                        <GameCard key={`${cat.id}-${g.slug}`} game={g} onClick={() => handleGameClick(g.gameId)} />
+                      ))}
+                    </div>
+                  </section>
+                ))}
+              </>
+            )}
+          </main>
+        </>
       )}
 
       {activeTab === 'ajustes' && (
@@ -363,9 +412,6 @@ function App() {
       <nav className="tabbar">
         <div className={`tab${activeTab === 'inicio' ? ' is-on' : ''}`} onClick={() => setActiveTab('inicio')}>
           <Home size={22} strokeWidth={1.75} /><span>Inicio</span>
-        </div>
-        <div className={`tab${activeTab === 'catalogo' ? ' is-on' : ''}`} onClick={() => setActiveTab('catalogo')}>
-          <LayoutGrid size={22} strokeWidth={1.75} /><span>Catálogo</span>
         </div>
         <div className="tab" onClick={openJugadores}>
           <Users size={22} strokeWidth={1.75} />

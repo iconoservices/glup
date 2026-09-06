@@ -220,15 +220,156 @@ img {
 
 .brand-name {
   font-family: 'Fredoka', sans-serif;
-  font-size: 2.7rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  letter-spacing: 0.22em;
-  margin-left: 0.22em;
+  letter-spacing: 0.02em;
   background: linear-gradient(180deg, #fff, var(--c-magenta));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   filter: drop-shadow(0 0 18px rgba(255, 46, 154, 0.35));
+}
+
+/* ---------------------- Home estilo App Store ------------------------ */
+
+.store-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding-top: 0.25rem;
+}
+
+.store-hero .brand {
+  align-items: flex-start;
+}
+
+.store-hero .chip-row,
+.store-hero .heat-row {
+  justify-content: flex-start;
+  margin-top: 0;
+}
+
+.store-hero .brand-name {
+  font-size: 2.2rem;
+}
+
+.searchbar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: var(--pill);
+  color: var(--text-dim);
+  transition: border-color 0.2s;
+}
+
+.searchbar:focus-within {
+  border-color: var(--c-magenta);
+}
+
+.searchbar__input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.98rem;
+}
+
+.searchbar__input::placeholder {
+  color: var(--text-faint);
+}
+
+.cat-filter {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  margin: 0 -1.15rem;
+  padding-left: 1.15rem;
+  padding-right: 1.15rem;
+  scrollbar-width: none;
+}
+
+.cat-filter::-webkit-scrollbar {
+  display: none;
+}
+
+.cat-pill {
+  flex-shrink: 0;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--pill);
+  cursor: pointer;
+  color: var(--text-dim);
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  transition: transform 0.14s var(--ease-bounce), background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.cat-pill:active {
+  transform: scale(0.93);
+}
+
+.cat-pill.is-on {
+  color: #fff;
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  border-color: var(--accent);
+}
+
+.store-section {
+  margin-top: 1.5rem;
+}
+
+.store-section:first-of-type {
+  margin-top: 0.5rem;
+}
+
+.section-label__tag {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  letter-spacing: 0;
+  margin-left: auto;
+}
+
+.badge-soon {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--pill);
+  padding: 0.15rem 0.5rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.gcard.is-soon {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.gcard.is-soon:active {
+  transform: none;
+}
+
+.gcard.is-soon:hover {
+  border-color: var(--line);
+  background: var(--surface);
+}
+
+.gcard.is-soon:hover .gcard__icon {
+  transform: none;
 }
 
 .chip-row {

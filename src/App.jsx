@@ -332,6 +332,14 @@ function App() {
               </div>
             </div>
 
+            <div className="heat-bar">
+              {Object.keys(HEAT_META).map((level) => (
+                <button key={level} className={`heat-bar__seg${intensity === level ? ' is-on' : ''}`} onClick={() => updateIntensity(level)}>
+                  {HEAT_META[level].emoji} {HEAT_META[level].label}
+                </button>
+              ))}
+            </div>
+
             <label className="searchbar">
               <Search size={18} />
               <input
@@ -344,14 +352,6 @@ function App() {
                 <button className="icon-btn" onClick={() => setQuery('')} aria-label="Limpiar"><X size={16} /></button>
               )}
             </label>
-
-            <div className="heat-bar">
-              {Object.keys(HEAT_META).map((level) => (
-                <button key={level} className={`heat-bar__seg${intensity === level ? ' is-on' : ''}`} onClick={() => updateIntensity(level)}>
-                  {HEAT_META[level].emoji} {HEAT_META[level].label}
-                </button>
-              ))}
-            </div>
           </header>
 
           <main className="store">
@@ -384,19 +384,27 @@ function App() {
                   ))}
                 </div>
 
-                {(catFilter === 'todos' ? CATEGORIES : CATEGORIES.filter((c) => c.id === catFilter)).map((cat) => (
-                  <section key={cat.id} className="store-section">
-                    <p className="section-label" style={accentStyle(cat.accent)}>
-                      {cat.emoji} {cat.label}
-                      <span className="section-label__tag">{cat.tagline}</span>
-                    </p>
-                    <div className="grid-2">
-                      {gamesByCategory(cat.id).map((g) => (
-                        <GameCard key={`${cat.id}-${g.slug}`} game={g} onClick={() => handleGameClick(g.gameId)} />
-                      ))}
-                    </div>
-                  </section>
-                ))}
+                {catFilter === 'todos' ? (
+                  <div className="grid-2">
+                    {GAMES.map((g) => (
+                      <GameCard key={g.slug} game={g} onClick={() => handleGameClick(g.gameId)} />
+                    ))}
+                  </div>
+                ) : (
+                  CATEGORIES.filter((c) => c.id === catFilter).map((cat) => (
+                    <section key={cat.id} className="store-section">
+                      <p className="section-label" style={accentStyle(cat.accent)}>
+                        {cat.emoji} {cat.label}
+                        <span className="section-label__tag">{cat.tagline}</span>
+                      </p>
+                      <div className="grid-2">
+                        {gamesByCategory(cat.id).map((g) => (
+                          <GameCard key={`${cat.id}-${g.slug}`} game={g} onClick={() => handleGameClick(g.gameId)} />
+                        ))}
+                      </div>
+                    </section>
+                  ))
+                )}
               </>
             )}
           </main>

@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
 import JsonLd from '../components/JsonLd';
-import HubLink from '../components/HubLink';
+import MagNav from '../components/MagNav';
 import { SITE_URL } from '../lib/ui';
 import { POSTS, formatDate } from '../blog/loader';
 
 export default function Blog() {
   const [lead, ...rest] = POSTS;
+
+  useEffect(() => {
+    document.documentElement.dataset.route = 'mag';
+    return () => { delete document.documentElement.dataset.route; };
+  }, []);
 
   const blogSchema = {
     '@context': 'https://schema.org',
@@ -32,8 +37,9 @@ export default function Blog() {
       />
       <JsonLd data={blogSchema} />
 
+      <MagNav />
+
       <div className="mag__wrap">
-        <HubLink />
         <header className="mag__head">
           <p className="mag__eyebrow">Revista Glup</p>
           <h1 className="mag__title">Guías y listas para jugar</h1>

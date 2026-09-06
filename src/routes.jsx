@@ -13,6 +13,7 @@ import VorPlay from './apps-hub/vor18/VorPlay';
 import VorContenido from './apps-hub/vor18/VorContenido';
 import Blog from './pages/Blog';
 import Article from './pages/Article';
+import RouteError from './pages/RouteError';
 import { GAMES, CATEGORIES } from './catalog';
 import { POSTS } from './blog/loader';
 
@@ -20,6 +21,7 @@ export const routes = [
   {
     path: '/',
     element: <App />,
+    errorElement: <RouteError />,
     children: [
       { index: true, element: <Hub /> },
 

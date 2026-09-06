@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ShieldCheck, Link2, Check } from 'lucide-react';
 import Seo from '../components/Seo';
 import JsonLd from '../components/JsonLd';
+import MagNav from '../components/MagNav';
 import { accentStyle } from '../theme';
 import { SITE_URL } from '../lib/ui';
 import { POSTS, postBySlug, formatDate } from '../blog/loader';
@@ -35,6 +36,12 @@ function Share({ title, url }) {
 export default function Article() {
   const { slug } = useParams();
   const post = postBySlug(slug);
+
+  useEffect(() => {
+    document.documentElement.dataset.route = 'mag';
+    return () => { delete document.documentElement.dataset.route; };
+  }, []);
+
   if (!post) return <Navigate to="/blog" replace />;
 
   const url = `${SITE_URL}/blog/${slug}`;
@@ -53,6 +60,8 @@ export default function Article() {
           { name: post.title, path },
         ]),
       ]} />
+
+      <MagNav />
 
       <nav className="crumbs" aria-label="Ruta">
         <Link to="/">Inicio</Link><span>›</span>

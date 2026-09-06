@@ -2,13 +2,65 @@
    Revista Glup — estilo editorial, con layout de escritorio
    ========================================================================== */
 
-/* La revista usa todo el ancho (no la columna de 480px de la app) */
+/* La revista usa el mismo tema claro que el home */
 .mag,
 .article {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f4f6fa;
+  --cover: #f4f6fa;
+  --line: #e6e9ef;
+  --line-2: #d5dae2;
+  --text: #131722;
+  --text-dim: #5a6373;
+  --text-faint: #8b93a1;
+  --blue: #0e8fe6;
+  --accent: #0e8fe6;
+  --accent-ink: #ffffff;
+
   width: 100%;
   min-height: 100dvh;
-  background: var(--bg);
+  background: #ffffff;
+  color: var(--text);
 }
+
+html[data-route="mag"],
+html[data-route="mag"] body {
+  background: #fff;
+  background-image: none;
+}
+
+/* Barra superior, igual que el home */
+.mag-nav {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 1rem 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.mag-nav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.mag-nav__links { display: flex; gap: 1.3rem; }
+.mag-nav__links a {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  text-decoration: none;
+}
+.mag-nav__links a:hover { color: var(--blue); }
+@media (max-width: 560px) { .mag-nav__links { display: none; } }
 
 .mag__wrap,
 .article__wrap {
@@ -445,3 +497,36 @@
   .article__more-grid { grid-template-columns: repeat(3, 1fr); }
   .article__more-link { flex-direction: column; align-items: flex-start; text-align: left; }
 }
+
+/* ---------------------- Ajustes para el tema claro --------------------- */
+
+.mag-lead {
+  border: 1px solid var(--line);
+  box-shadow: 0 22px 46px -26px rgba(20, 30, 60, 0.3);
+}
+
+.mag-card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 12px 28px -22px rgba(20, 30, 60, 0.25);
+}
+.mag-card:hover {
+  border-color: var(--line-2);
+  box-shadow: 0 22px 42px -26px rgba(20, 30, 60, 0.32);
+}
+
+.mag__eyebrow,
+.mag-card__cat,
+.article__more-label { color: var(--blue); }
+
+.article__avatar,
+.article__more-emoji { background: var(--surface-2); border: 1px solid var(--line); }
+
+.article__more-link {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: box-shadow 0.2s, transform 0.14s var(--ease-bounce);
+}
+.article__more-link:hover { box-shadow: 0 16px 32px -22px rgba(20, 30, 60, 0.3); }
+
+.share__btn { box-shadow: 0 6px 16px -12px rgba(20, 30, 60, 0.25); }

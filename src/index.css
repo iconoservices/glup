@@ -1062,37 +1062,11 @@ html[data-route="hub"] body {
   animation: shake 0.4s ease;
 }
 
-.player-tokens {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.42rem;
-}
-
-.player-token {
-  padding: 0.3rem 0.85rem;
-  border-radius: var(--pill);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-dim);
-  background: var(--surface);
-  border: 1.5px solid var(--line);
-  transition: all 0.4s var(--ease-bounce);
-}
-
-.player-token.is-chosen {
-  color: var(--accent-ink);
-  font-weight: 700;
-  background: var(--_a);
-  border-color: var(--_a);
-  transform: scale(1.08);
-}
-
-/* Botella giratoria */
+/* Botella giratoria — con los nombres alrededor del ruedo */
 .bottle-stage {
   position: relative;
-  width: 240px;
-  height: 240px;
+  width: min(82vw, 330px);
+  aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1100,27 +1074,58 @@ html[data-route="hub"] body {
   border: none;
   cursor: pointer;
   padding: 0;
+  margin: 0.4rem auto 0;
 }
 
 .bottle-stage:disabled { cursor: default; }
-.bottle-stage:not(:disabled):active { transform: scale(0.97); }
+.bottle-stage:not(:disabled):active { transform: scale(0.98); }
 
 .bottle-ring {
   position: absolute;
-  inset: 0;
+  inset: 11%;
   border-radius: 50%;
   border: 2px dashed color-mix(in srgb, var(--_a) 40%, transparent);
-  background: radial-gradient(circle, color-mix(in srgb, var(--_a) 12%, transparent), transparent 65%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--_a) 14%, transparent), transparent 65%);
 }
 
 .bottle-stage.is-spinning .bottle-ring {
   animation: pulse 0.9s ease-in-out infinite;
 }
 
+.bottle-name {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  max-width: 5.5rem;
+  padding: 0.28rem 0.6rem;
+  border-radius: var(--pill);
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.1;
+  text-align: center;
+  color: var(--text-dim);
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s, background 0.3s, border-color 0.3s, transform 0.3s var(--ease-bounce);
+}
+
+.bottle-name.is-chosen {
+  color: var(--accent-ink);
+  font-weight: 700;
+  background: var(--_a);
+  border-color: var(--_a);
+  transform: translate(-50%, -50%) scale(1.12);
+  box-shadow: 0 6px 20px -6px color-mix(in srgb, var(--_a) 70%, transparent);
+}
+
 .bottle-spin {
   position: relative;
-  width: 62%;
+  width: 52%;
   display: flex;
+  transform-origin: 50% 50%;
   will-change: transform;
 }
 

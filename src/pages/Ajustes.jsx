@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Beer, Users, Plus, RotateCcw, Info, Star } from 'lucide-react';
+import React, { useState } from 'react';
+import { Beer, Users, RotateCcw, Info, Star } from 'lucide-react';
 import Seo from '../components/Seo';
+import InstallButton from '../components/InstallButton';
 import { accentStyle } from '../theme';
 import { HEAT_META } from '../lib/ui';
 import { useSettings } from '../context/useSettings';
@@ -21,20 +22,6 @@ export default function Ajustes() {
   } = useSettings();
 
   const [showResetConfirm, setShowResetConfirm] = useState(false);
-  const [deferredPrompt, setDeferredPrompt] = useState(null);
-
-  useEffect(() => {
-    const handler = (e) => { e.preventDefault(); setDeferredPrompt(e); };
-    window.addEventListener('beforeinstallprompt', handler);
-    return () => window.removeEventListener('beforeinstallprompt', handler);
-  }, []);
-
-  const install = async () => {
-    if (!deferredPrompt) return;
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === 'accepted') setDeferredPrompt(null);
-  };
 
   return (
     <main className="settings">
@@ -84,12 +71,8 @@ export default function Ajustes() {
       </div>
 
       <div>
-        <p className="set-group__label">INFORMACIÓN</p>
-        {deferredPrompt && (
-          <button className="btn btn--outline btn--block" style={{ marginBottom: '0.55rem' }} onClick={install}>
-            <Plus size={18} /> Instalar Glup! en Pantalla de Inicio
-          </button>
-        )}
+        <p className="set-group__label">APP</p>
+        <InstallButton />
         <SettingRow icon={<Info size={18} />} label="Versión de Glup!" value="v0.3.0 Beta" />
         <SettingRow icon={<span>🔞</span>} label="Solo para mayores de edad" value="+18" />
       </div>

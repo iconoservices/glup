@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Beer, Users, Search, X } from 'lucide-react';
 import { accentStyle } from '../theme';
 import { HEAT_META } from '../lib/ui';
 import { useSettings } from '../context/useSettings';
+import Logo from './Logo';
 
 export default function StoreHero({ query, onQuery }) {
   const { drinkingMode, intensity, jugadores, updateDrinking, updateIntensity, openJugadores } = useSettings();
@@ -12,7 +14,7 @@ export default function StoreHero({ query, onQuery }) {
     <header className="store-hero">
       <span className="brand-eyebrow">Verdad · Reto · Sin Excusas</span>
       <div className="store-hero__top">
-        <h1 className="brand-name">Glup!</h1>
+        <Link to="/" className="brand-name"><Logo size={30} /> Glup!</Link>
         <div className="chip-row chip-row--stack">
           <button className={`chip${drinkingMode ? ' is-on' : ''}`} style={accentStyle('yellow')} onClick={() => updateDrinking(!drinkingMode)}>
             <Beer size={14} />

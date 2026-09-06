@@ -34,7 +34,7 @@ export default function Home() {
           <>
             <CatFilter />
             <section className="store-section">
-              <p className="section-label" style={accentStyle('pink')}>🎲 Todos</p>
+              <h1 className="section-label" style={accentStyle('pink')}>🎲 Todos los juegos</h1>
               <div className="grid-2">
                 {GAMES.map((g) => <GameCard key={g.slug} game={g} />)}
               </div>

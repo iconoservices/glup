@@ -52,7 +52,7 @@ export default function CategoryPage({ catId }) {
           <>
             <CatFilter />
             <section className="store-section">
-              <p className="section-label" style={accentStyle(cat.accent)}>{cat.emoji} {cat.label}</p>
+              <h1 className="section-label" style={accentStyle(cat.accent)}>{cat.emoji} {cat.label}</h1>
               <p className="store-section__lead">{cat.tagline}.</p>
               <div className="grid-2">
                 {games.map((g) => <GameCard key={g.slug} game={g} />)}

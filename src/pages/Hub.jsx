@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
+import JsonLd from '../components/JsonLd';
 import Logo from '../components/Logo';
 import { accentStyle } from '../theme';
 import { stars } from '../lib/ui';
+import { websiteSchema } from '../lib/schema';
 
 const APPS = [
   {
@@ -38,6 +40,7 @@ export default function Hub() {
         description="Juegos para fiestas, para parejas y para grupos: verdad o reto +18, botella borracha, yo nunca nunca, dados eróticos y más. Gratis, online y sin descargar."
         path="/"
       />
+      <JsonLd data={websiteSchema()} />
 
       <header className="hub__hero">
         <Logo size={46} />

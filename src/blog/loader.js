@@ -15,11 +15,28 @@ function parseFrontmatter(raw) {
     if (val.startsWith('[') && val.endsWith(']')) {
       val = val.slice(1, -1).split(',').map((s) => s.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
     } else {
-      val = val.replace(/^['"]|['"]$/g, '');
+      val = val.replace(/^['"]|['"]$/g, '').replace(/\\"/g, '"');
     }
     data[key] = val;
   });
   return { data, body: m[2] };
+}
+
+// Extrae pares pregunta/respuesta de la sección "Preguntas frecuentes"
+function parseFaq(body) {
+  const sec = body.split(/^##\s+Preguntas frecuentes\s*$/m)[1];
+  if (!sec) return [];
+  const stop = sec.search(/^---\s*$|^##\s+/m);
+  const chunk = stop > -1 ? sec.slice(0, stop) : sec;
+  const faq = [];
+  const re = /\*\*(.+?)\*\*\s*\n([\s\S]*?)(?=\n\*\*|\n*$)/g;
+  let m;
+  while ((m = re.exec(chunk)) !== null) {
+    const q = m[1].trim();
+    const a = m[2].replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/\s+/g, ' ').trim();
+    if (q && a) faq.push({ q, a });
+  }
+  return faq;
 }
 
 export const POSTS = Object.entries(files)
@@ -37,6 +54,8 @@ export const POSTS = Object.entries(files)
       category: data.category || 'Guía',
       tags: Array.isArray(data.tags) ? data.tags : [],
       hero: data.hero || data.description || '',
+      summary: data.summary || '',
+      faq: parseFaq(body),
       html: marked.parse(body),
     };
   })

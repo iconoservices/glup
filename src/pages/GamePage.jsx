@@ -2,11 +2,13 @@ import React, { Suspense } from 'react';
 import { useParams, useNavigate, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, Users, Bell } from 'lucide-react';
 import Seo from '../components/Seo';
+import JsonLd from '../components/JsonLd';
 import { accentStyle } from '../theme';
 import { glyphFor } from '../lib/ui';
 import { gameBySlug } from '../catalog';
 import { GAME_COMPONENTS } from '../gameRegistry';
 import { useSettings } from '../context/useSettings';
+import { gameSchema, breadcrumbSchema } from '../lib/schema';
 
 // Bloque de contenido SEO que va debajo del juego (texto real + keywords).
 function GameSeoBlock({ game }) {
@@ -78,7 +80,20 @@ export default function GamePage() {
   if (!game) return <Navigate to="/glup" replace />;
 
   const back = () => navigate("/glup");
-  const seo = <Seo title={`${game.title} online — jugar gratis | Glup!`} description={game.seo} path={`/glup/${slug}`} />;
+  const path = `/glup/${slug}`;
+  const seo = (
+    <>
+      <Seo title={`${game.title} online — jugar gratis | Glup!`} description={game.seo} path={path} />
+      <JsonLd data={[
+        gameSchema(game, path),
+        breadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Glup!', path: '/glup' },
+          { name: game.title, path },
+        ]),
+      ]} />
+    </>
+  );
 
   if (game.soon) {
     return <>{seo}<SoonScreen game={game} onBack={back} /><GameSeoBlock game={game} /></>;

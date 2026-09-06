@@ -7,6 +7,7 @@ read: 7
 category: Fiesta
 tags: [fiesta, previa, amigos]
 hero: La previa hace o rompe la salida. Diez juegos para que arranque bien.
+summary: "Los mejores juegos para la previa son Yo Nunca Nunca, la ruleta de castigos, la botella borracha, Verdad o Reto, la pirámide, el rey (Kings), los dados, Pre-Party, el Modo Caos y ¿Quién es más probable que...?. Todos gratis y sin descargar."
 ---
 
 La previa es la parte más importante de la noche y casi nadie la planea. Un buen juego rompe el hielo, empareja el nivel de todos y hace que salgan ya con energía. Estos diez funcionan siempre, con el grupo que sea.

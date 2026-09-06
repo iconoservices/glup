@@ -7,6 +7,7 @@ read: 8
 category: Verdad o Reto
 tags: [verdad o reto, +18, listas]
 hero: Cuarenta preguntas y retos listos para copiar, del más suave al más intenso.
+summary: "40 preguntas y retos de Verdad o Reto ordenados en 5 niveles: suave (para empezar), atrevido, hardcore, en pareja y extremo. Se juega decidiendo un orden, eligiendo verdad o reto, y cumpliendo o pagando penitencia."
 ---
 
 Verdad o Reto es tan bueno como sus preguntas. Estas están ordenadas por nivel: usá las primeras para romper el hielo y subí a medida que el grupo se suelta. Si preferís que el juego elija por vos —y le ponga el nombre de cada jugador—, jugá directo a [Verdad o Reto +18](/verdad-o-reto-18).

@@ -7,6 +7,7 @@ read: 6
 category: Pareja
 tags: [parejas, erótico, ideas]
 hero: Siete juegos para encender la noche sin gastar un peso ni descargar nada.
+summary: "Los mejores juegos eróticos para parejas son los dados eróticos, el verdad o reto picante, las preguntas rápidas contrarreloj, la botella, los retos progresivos, el cuestionario de afinidad y las reglas propias. Todos se juegan gratis y online."
 ---
 
 Si la rutina se instaló en la relación, un juego erótico es la forma más rápida —y más barata— de romperla. No hace falta comprar nada ni planear una escapada: con el celular y 20 minutos alcanza. Estos son los siete que mejor funcionan, por qué funcionan y cómo sacarles el jugo.

@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ShieldCheck, Link2, Check } from 'lucide-react';
 import Seo from '../components/Seo';
+import JsonLd from '../components/JsonLd';
 import { accentStyle } from '../theme';
 import { SITE_URL } from '../lib/ui';
 import { POSTS, postBySlug, formatDate } from '../blog/loader';
+import { articleSchema, faqSchema, breadcrumbSchema } from '../lib/schema';
 
 function Share({ title, url }) {
   const [copied, setCopied] = useState(false);
@@ -36,11 +38,21 @@ export default function Article() {
   if (!post) return <Navigate to="/blog" replace />;
 
   const url = `${SITE_URL}/blog/${slug}`;
+  const path = `/blog/${slug}`;
   const otros = POSTS.filter((p) => p.slug !== slug).slice(0, 3);
 
   return (
     <div className="article" style={accentStyle('blue')}>
-      <Seo title={`${post.title} | Revista Glup`} description={post.description} path={`/blog/${slug}`} />
+      <Seo title={`${post.title} | Revista Glup`} description={post.description} path={path} type="article" />
+      <JsonLd data={[
+        articleSchema(post, path),
+        faqSchema(post.faq),
+        breadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Revista', path: '/blog' },
+          { name: post.title, path },
+        ]),
+      ]} />
 
       <nav className="crumbs" aria-label="Ruta">
         <Link to="/">Inicio</Link><span>›</span>
@@ -70,6 +82,10 @@ export default function Article() {
         </div>
 
         <Share title={post.title} url={url} />
+
+        {post.summary && (
+          <p className="article__summary"><b>En resumen:</b> {post.summary}</p>
+        )}
 
         <article className="prose" dangerouslySetInnerHTML={{ __html: post.html }} />
 

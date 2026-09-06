@@ -7,6 +7,7 @@ read: 6
 category: Fiesta
 tags: [yo nunca nunca, fiesta, listas]
 hero: Las reglas en 30 segundos y 35 frases para que la ronda no se corte.
+summary: "Yo Nunca Nunca se juega en círculo: por turnos, alguien dice una frase que empieza con 'yo nunca nunca' y algo que quizás sí hizo; todos los que sí lo hicieron, beben. Si nadie bebe, bebe quien lo dijo. Variante sin alcohol: cumplir un reto."
 ---
 
 "Yo Nunca Nunca" es el juego más simple que existe y el que más rápido saca secretos. Se juega en cualquier lado, con vaso o sin vaso, y siempre termina con alguien diciendo "¿en serio hiciste eso?".

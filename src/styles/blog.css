@@ -274,6 +274,19 @@
 .share__btn--wa { background: #25d366; border-color: #25d366; color: #05230f; }
 .share__btn--x { background: #111; border-color: #333; color: #fff; }
 
+.article__summary {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: color-mix(in srgb, var(--blue) 10%, var(--surface));
+  border-left: 4px solid var(--blue);
+  border-radius: 0 12px 12px 0;
+  padding: 1rem 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.article__summary b { color: var(--blue); }
+
 /* ------------------------------- Prosa ------------------------------- */
 
 .prose { display: flex; flex-direction: column; }

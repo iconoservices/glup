@@ -1,0 +1,36 @@
+# Glup Juegos
+
+> Colección de juegos para jugar online, gratis y sin descargar, en fiestas, en pareja y en grupo. Contenido +18.
+
+Glup Juegos (glup.bogahub.app) reúne dos apps de juegos web y una revista con guías.
+
+## Apps
+
+- [Glup! — juegos para beber y para parejas](https://glup.bogahub.app/glup): 9 juegos (botella borracha, yo nunca nunca, dados eróticos, ruleta de castigos, verdad o reto, 5 segundos, pre-party, modo caos, reglas propias). Niveles: suave, medio, picante. Modo con y sin alcohol.
+- [Verdad o Reto +18](https://glup.bogahub.app/verdad-o-reto-18): verdad o reto para adultos con 6 niveles (suave, atrevido, loco, pareja, hardcore, 4play) y 144 verdades y retos que salen con el nombre de cada jugador.
+
+## Juegos individuales
+
+- [Botella Borracha online](https://glup.bogahub.app/glup/botella-borracha-online)
+- [Yo Nunca Nunca online](https://glup.bogahub.app/glup/yo-nunca-nunca-online)
+- [Dados Eróticos](https://glup.bogahub.app/glup/dados-eroticos)
+- [Ruleta de Castigos](https://glup.bogahub.app/glup/ruleta-de-castigos)
+- [Verdad o Reto para parejas](https://glup.bogahub.app/glup/verdad-o-reto-para-parejas)
+- [5 Segundos Picante](https://glup.bogahub.app/glup/preguntas-picantes-en-pareja)
+- [Juegos para la previa (Pre-Party)](https://glup.bogahub.app/glup/juegos-para-la-previa)
+- [Modo Caos](https://glup.bogahub.app/glup/modo-caos)
+- [Reglas Propias](https://glup.bogahub.app/glup/retos-personalizados)
+
+## Revista (guías)
+
+- [Los 7 mejores juegos eróticos para parejas](https://glup.bogahub.app/blog/mejores-juegos-eroticos-para-parejas)
+- [10 juegos para la previa que nunca fallan](https://glup.bogahub.app/blog/juegos-para-la-previa)
+- [Verdad o Reto: 40 preguntas picantes y retos](https://glup.bogahub.app/blog/verdad-o-reto-preguntas-picantes)
+- [Cómo jugar Yo Nunca Nunca: reglas y 35 frases](https://glup.bogahub.app/blog/como-jugar-yo-nunca-nunca)
+
+## Datos
+
+- Gratis, sin registro, sin descargar. Se juega desde el navegador.
+- Instalable como PWA (Android y iPhone).
+- Idioma: español.
+- Sitemap: https://glup.bogahub.app/sitemap.xml

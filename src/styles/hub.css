@@ -366,3 +366,93 @@
 }
 
 .vor-next:active { transform: scale(0.97); }
+
+/* ── Enlace y vista de contenido de VoR ── */
+
+.vor-content-link {
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  padding: 0.5rem 0.9rem;
+  border: 1.5px solid var(--line-2);
+  border-radius: 999px;
+}
+
+.vor-content-link:active { transform: scale(0.96); }
+
+.vor-content { min-height: 100dvh; padding-bottom: 3rem; }
+
+.vor-content__inner {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1rem 1.15rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.vor-content__lead {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+  margin-bottom: 0.4rem;
+}
+
+.vor-content__lvl {
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.vor-content__head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  color: var(--text);
+}
+
+.vor-content__emoji { font-size: 1.3rem; }
+.vor-content__name { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1rem; flex: 1; text-align: left; }
+.vor-content__count { font-size: 0.78rem; color: var(--text-faint); font-variant-numeric: tabular-nums; }
+.vor-content__chev { font-size: 1.2rem; color: var(--accent); width: 1rem; text-align: center; }
+
+.vor-content__body {
+  padding: 0.25rem 1rem 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.vor-content__body h3 {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 1rem 0 0.4rem;
+}
+
+.vor-content__body ol {
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.vor-content__body li {
+  font-size: 0.86rem;
+  color: var(--text-dim);
+  line-height: 1.45;
+}

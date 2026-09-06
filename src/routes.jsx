@@ -10,6 +10,7 @@ import Ajustes from './pages/Ajustes';
 import VorShell from './apps-hub/vor18/VorShell';
 import VorHome from './apps-hub/vor18/VorHome';
 import VorPlay from './apps-hub/vor18/VorPlay';
+import VorContenido from './apps-hub/vor18/VorContenido';
 import { GAMES, CATEGORIES } from './catalog';
 
 export const routes = [
@@ -42,6 +43,7 @@ export const routes = [
         children: [
           { index: true, element: <VorHome /> },
           { path: 'jugar', element: <VorPlay /> },
+          { path: 'contenido', element: <VorContenido /> },
         ],
       },
 

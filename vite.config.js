@@ -13,6 +13,7 @@ function buildSitemap() {
     ...CATEGORIES.map((c) => `/glup/${c.id}`),
     ...GAMES.map((g) => `/glup/${g.slug}`),
     '/verdad-o-reto-18',
+    '/verdad-o-reto-18/contenido',
   ]
   const urls = paths
     .map((p) => `  <url><loc>${SITE}${p}</loc><changefreq>weekly</changefreq><priority>${p === '/' ? '1.0' : '0.8'}</priority></url>`)

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Play, Users } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
+import { Play, Users, List } from 'lucide-react';
 import Seo from '../../components/Seo';
 import HubLink from '../../components/HubLink';
 import { useSettings } from '../../context/useSettings';
-import { NIVELES } from './vorContent';
+import { NIVELES, contentStats } from './vorContent';
 
 function Meter({ nivel }) {
   return (
@@ -20,6 +20,7 @@ export default function VorHome() {
   const navigate = useNavigate();
   const { jugadores, openJugadores } = useSettings();
   const [sel, setSel] = useState('suave');
+  const total = contentStats().reduce((s, n) => s + n.verdad + n.reto, 0);
 
   const jugar = () => {
     if (jugadores.length < 2) {
@@ -69,6 +70,10 @@ export default function VorHome() {
       <button className="vor-cta" onClick={jugar}>
         <Play size={20} fill="currentColor" /> ¡JUGAR!
       </button>
+
+      <Link to="/verdad-o-reto-18/contenido" className="vor-content-link">
+        <List size={15} /> Ver todo el contenido ({total} retos y verdades)
+      </Link>
 
       <section className="vor-seo">
         <h2>¿Cómo se juega Verdad o Reto +18?</h2>

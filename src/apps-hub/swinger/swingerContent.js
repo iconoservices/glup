@@ -82,6 +82,8 @@ export const PROMPTS = {
       '{n}, deja que {o} te pase un cubo de hielo por el cuello y la clavícula, despacio.',
       '{n}, siéntate en las piernas de {o} un turno mientras las dos parejas miran de cerca.',
       '{n}, dale una palmada a {o} y después acaricia donde diste, mientras tu pareja mira.',
+      '{n}, agárrale una nalga a {o} 5 segundos, firme, mirándole a los ojos, con las parejas de acuerdo.',
+      '{n}, por encima de la ropa, tócale una nalga a {o} y adivina de qué color lleva la ropa interior. Si aciertas, beso; si no, bebes.',
       '{n}, recórrele el cuello a {o} con besos lentos durante 10 segundos.',
       '{n}, deja que {o} elija qué prenda te quitas, y quítatela sin prisa.',
       '{n}, susúrrale al oído a {o} qué parte de su cuerpo miraste primero. Si alguna pareja adivina, bebe {n}; si nadie, bebe quien más se acercó y {o} lo dice en voz alta.',

@@ -1,10 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Beer, Users, Search, X } from 'lucide-react';
 import { accentStyle } from '../theme';
 import { HEAT_META } from '../lib/ui';
 import { useSettings } from '../context/useSettings';
-import Logo from './Logo';
 import HubLink from './HubLink';
 
 export default function StoreHero({ query, onQuery }) {
@@ -14,19 +12,29 @@ export default function StoreHero({ query, onQuery }) {
   return (
     <header className="store-hero">
       <HubLink />
-      <span className="brand-eyebrow">Verdad · Reto · Sin Excusas</span>
-      <div className="store-hero__top">
-        <Link to="/glup" className="brand-name"><Logo size={30} /> Glup!</Link>
-        <div className="chip-row chip-row--stack">
-          <button className={`chip${drinkingMode ? ' is-on' : ''}`} style={accentStyle('yellow')} onClick={() => updateDrinking(!drinkingMode)}>
-            <Beer size={14} />
-            <span>{drinkingMode ? 'Tragos 🍻' : 'Sin Tragos'}</span>
-          </button>
-          <button className={`chip${jugadores.length > 0 ? ' is-on' : ''}`} onClick={() => openJugadores()}>
-            <Users size={14} />
-            <span>{jugadores.length > 0 ? `${jugadores.length} jug.` : 'Jugadores'}</span>
-          </button>
-        </div>
+
+      <div className="vor-head">
+        <p className="vor-eyebrow">9 juegos · +18</p>
+        <h1 className="vor-title">Juegos <span>Glup</span></h1>
+        <p className="vor-sub">Para beber, para parejas y para grupos. Elige uno y a jugar.</p>
+      </div>
+
+      <div className="chip-row chip-row--center">
+        <button
+          className={`chip${drinkingMode ? ' is-on' : ''}`}
+          style={accentStyle('yellow')}
+          onClick={() => updateDrinking(!drinkingMode)}
+        >
+          <Beer size={14} />
+          <span>{drinkingMode ? 'Tragos 🍻' : 'Sin Tragos'}</span>
+        </button>
+        <button
+          className={`chip${jugadores.length > 0 ? ' is-on' : ''}`}
+          onClick={() => openJugadores()}
+        >
+          <Users size={14} />
+          <span>{jugadores.length > 0 ? `${jugadores.length} jug.` : 'Jugadores'}</span>
+        </button>
       </div>
 
       <div className="heat-bar">

@@ -10,17 +10,6 @@ import { GAMES, CATEGORIES } from '../catalog';
 
 const APPS = [
   {
-    to: '/glup',
-    kind: 'blue',
-    glyph: '🍸',
-    name: 'Glup!',
-    badge: 'Estable',
-    rating: '4.8',
-    desc: '9 juegos para beber, para parejas y para grupos. Elige uno y a jugar.',
-    bullets: ['Botella borracha y ruleta de castigos', 'Yo Nunca Nunca y Pre-Party', 'Dados eróticos y verdad o reto', 'Modo Caos y reglas propias'],
-    cta: 'Abrir Glup!',
-  },
-  {
     to: '/verdad-o-reto-18',
     kind: 'pink',
     glyph: '🔥',
@@ -52,6 +41,17 @@ const APPS = [
     desc: 'Para eventos de varias parejas: rompehielos, verdad o reto entre parejas y la ruleta.',
     bullets: ['Rompehielos para parejas que se conocen', 'Verdad o reto que cruza a las parejas', 'La ruleta que empareja al azar', 'Reglas de consentimiento incluidas'],
     cta: 'Abrir Swinger',
+  },
+  {
+    to: '/glup',
+    kind: 'blue',
+    glyph: '🍸',
+    name: 'Glup!',
+    badge: 'Estable',
+    rating: '4.8',
+    desc: '9 juegos para beber, para parejas y para grupos. Elige uno y a jugar.',
+    bullets: ['Botella borracha y ruleta de castigos', 'Yo Nunca Nunca y Pre-Party', 'Dados eróticos y verdad o reto', 'Modo Caos y reglas propias'],
+    cta: 'Abrir Glup!',
   },
 ];
 
@@ -124,7 +124,7 @@ export default function Hub() {
           <p className="hub-hero__eyebrow">Gratis · Sin descargar · +18</p>
           <h1 className="hub-hero__title">Todos los juegos para tu fiesta, tu pareja y tu grupo</h1>
           <p className="hub-hero__sub">
-            Botella borracha, yo nunca nunca, verdad o reto +18, dados eróticos y más.
+            Verdad o reto +18, juegos para tríos, fiestas swinger, botella borracha y más.
             Elige uno y juega en el navegador. Nada que instalar.
           </p>
 
@@ -145,10 +145,10 @@ export default function Hub() {
         </div>
 
         <div className="hub-hero__art" aria-hidden="true">
-          <div className="hub-tile"><b>🍾</b><span>Botella Borracha</span><small>Gira y decide quién cumple</small></div>
           <div className="hub-tile"><b>🔥</b><span>Verdad o Reto +18</span><small>6 niveles, de suave a 4play</small></div>
-          <div className="hub-tile"><b>🎲</b><span>Dados Eróticos</span><small>Acción + parte del cuerpo</small></div>
-          <div className="hub-tile"><b>🍸</b><span>Yo Nunca Nunca</span><small>Confesiones sin filtro</small></div>
+          <div className="hub-tile"><b>😈</b><span>Juegos para Tríos</span><small>Verdad o reto entre los tres</small></div>
+          <div className="hub-tile"><b>🥂</b><span>Fiestas Swinger</span><small>Para varias parejas</small></div>
+          <div className="hub-tile"><b>🍾</b><span>Botella Borracha</span><small>Gira y decide quién cumple</small></div>
         </div>
       </header>
 
@@ -238,10 +238,10 @@ export default function Hub() {
       <footer className="hub-foot">
         <div className="hub-foot__inner">
           <div className="hub-foot__links">
-            <Link to="/glup">Glup!</Link>
             <Link to="/verdad-o-reto-18">Verdad o Reto +18</Link>
             <Link to="/juegos-para-trios">Tríos +18</Link>
             <Link to="/fiestas-swinger">Fiestas Swinger</Link>
+            <Link to="/glup">Glup!</Link>
             <Link to="/blog">Revista</Link>
             <Link to="/contenido">Todo el contenido</Link>
           </div>

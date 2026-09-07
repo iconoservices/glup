@@ -319,6 +319,8 @@ html[data-route="hub"] body {
   flex-wrap: wrap;
 }
 
+.chip-row--center { justify-content: center; }
+
 .chip {
   display: inline-flex;
   align-items: center;

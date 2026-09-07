@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Check, X, RefreshCw } from 'lucide-react';
 import Seo from '../../components/Seo';
 import { useSettings } from '../../context/useSettings';
-import { SELECTOR, buildPrompt, buildIcebreaker } from './swingerContent';
+import { SELECTOR, REGLAS, buildPrompt, buildIcebreaker } from './swingerContent';
 
 export default function SwingerPlay() {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ export default function SwingerPlay() {
 
   const modo = params.get('modo') === 'vr' ? 'vr' : 'hielo';
   const raw = params.get('nivel');
-  const nivelId = SELECTOR.some((n) => n.id === raw) ? raw : 'social';
+  const nivelId = SELECTOR.some((n) => n.id === raw) ? raw : 'picante';
   const nivel = SELECTOR.find((n) => n.id === nivelId) || SELECTOR[0];
   const esHielo = modo === 'hielo';
 
@@ -63,10 +63,14 @@ export default function SwingerPlay() {
             {!esHielo && <span className="vor-card__tag">{tipo === 'verdad' ? 'VERDAD' : 'RETO'}</span>}
             <p className="vor-card__text">{prompt}</p>
           </>
+        ) : esHielo ? (
+          <p className="vor-card__text vor-card__text--idle">Toca para el primer rompehielos</p>
         ) : (
-          <p className="vor-card__text vor-card__text--idle">
-            {esHielo ? 'Toca para el primer rompehielos' : 'Elige: ¿verdad o reto?'}
-          </p>
+          <div className="vor-rules">
+            <p className="vor-rules__title">Antes de empezar</p>
+            <ul>{REGLAS.map((r, i) => <li key={i}>{r}</li>)}</ul>
+            <p className="vor-rules__go">Elige verdad o reto cuando estén listos</p>
+          </div>
         )}
       </div>
 

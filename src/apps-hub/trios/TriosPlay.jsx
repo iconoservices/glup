@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Check, X, RefreshCw } from 'lucide-react';
 import Seo from '../../components/Seo';
 import { useSettings } from '../../context/useSettings';
-import { SELECTOR, buildPrompt } from './triosContent';
+import { SELECTOR, REGLAS, buildPrompt } from './triosContent';
 
 export default function TriosPlay() {
   const navigate = useNavigate();
@@ -60,9 +60,13 @@ export default function TriosPlay() {
             <p className="vor-card__text">{prompt}</p>
           </>
         ) : (
-          <p className="vor-card__text vor-card__text--idle">
-            {soloRetos ? 'Toca “Reto” para empezar' : 'Elige: ¿verdad o reto?'}
-          </p>
+          <div className="vor-rules">
+            <p className="vor-rules__title">Antes de empezar</p>
+            <ul>{REGLAS.map((r, i) => <li key={i}>{r}</li>)}</ul>
+            <p className="vor-rules__go">
+              {soloRetos ? 'Toca “Reto” cuando estén listos' : 'Elige verdad o reto cuando estén listos'}
+            </p>
+          </div>
         )}
       </div>
 

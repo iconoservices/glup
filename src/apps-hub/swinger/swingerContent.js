@@ -25,17 +25,26 @@ export const MODOS = [
   },
 ];
 
+// Niveles reales de contenido (para la vista /contenido)
 export const NIVELES = [
-  { id: 'social', label: 'Social', emoji: '🥂', desc: 'Coqueto, sin presión' },
-  { id: 'picante', label: 'Picante', emoji: '🔥', desc: 'Sube de tono con acuerdo' },
+  { id: 'picante', label: 'Picante', emoji: '🔥', desc: 'Coqueto, sube de a poco' },
+  { id: 'extremo', label: 'Extremo', emoji: '🔞', desc: 'Solo si todos se animan' },
 ];
 
 // Opciones del selector en la home (incluye los modos combinados)
 export const SELECTOR = [
-  { id: 'social', label: 'Social', emoji: '🥂' },
   { id: 'picante', label: 'Picante', emoji: '🔥' },
+  { id: 'extremo', label: 'Extremo', emoji: '🔞' },
   { id: 'mezcla', label: 'Al azar', emoji: '🎲' },
   { id: 'progresivo', label: 'Ascendente', emoji: '📈' },
+];
+
+// Se muestran una vez, al empezar (no en cada reto)
+export const REGLAS = [
+  'Cualquiera dice “paso” y se respeta, sin explicaciones.',
+  'Acuerden una palabra que frena todo al instante.',
+  'Ningún reto que cruce a dos personas se hace sin el sí de sus parejas.',
+  'Tu pareja tiene prioridad sobre el juego.',
 ];
 
 export const ROMPEHIELOS = [
@@ -56,62 +65,63 @@ export const ROMPEHIELOS = [
 ];
 
 export const PROMPTS = {
-  social: {
+  picante: {
     verdad: [
       '{n}, ¿qué te atrajo de venir a una fiesta de parejas?',
       '{n}, ¿coqueteás más con la mirada o con las palabras?',
-      '{n}, ¿qué es lo más importante que tu pareja y vos acordaron para esta noche?',
+      '{n}, ¿a qué persona del grupo, además de tu pareja, mirarías dos veces?',
       '{n}, ¿a qué pareja del grupo le pedirías un consejo de relación?',
       '{n}, ¿preferís conocer a la otra pareja hablando o bailando?',
       '{n}, ¿cuál es tu límite de esta noche que nadie debería cruzar?',
       '{n}, ¿qué te da más celos y cómo lo manejás?',
       '{n}, ¿qué señal usan vos y tu pareja para frenar?',
+      '{n}, ¿qué pregunta te gustaría que te hiciera {o}?',
+      '{n}, ¿preferís mirar o que te miren?',
     ],
     reto: [
       '{n}, ofrecele una copa a {o} y brinden mirándose a los ojos.',
-      '{n}, sacá a bailar a {o} una canción, con permiso de las dos parejas.',
+      '{n}, sacá a bailar a {o} una canción.',
       '{n}, dale un abrazo largo a la pareja de {o}.',
-      '{n} y {o}, intercambien un dato de contacto o una anécdota, lo que prefieran.',
       '{n}, hacele a {o} un cumplido sobre algo que no sea físico.',
-      '{n}, presentá a tu pareja a otra pareja como si fueras su fan número uno.',
-      '{n}, elegí a alguien para un brindis y decí por qué.',
       '{n}, contale a {o} tu plan ideal para el resto de la noche.',
-    ],
-  },
-  picante: {
-    verdad: [
-      '{n}, ¿a qué persona del grupo, además de tu pareja, mirarías dos veces?',
-      '{n}, ¿fantaseaste alguna vez con una noche de intercambio? contá poco o mucho.',
-      '{n}, ¿qué te gustaría que tu pareja te viera hacer esta noche?',
-      '{n}, ¿preferís mirar o que te miren?',
-      '{n}, ¿qué es lo más lejos que llegarías hoy con acuerdo de tu pareja?',
-      '{n}, ¿qué te frena más: la vergüenza o los celos?',
-      '{n}, ¿qué pregunta te gustaría que te hiciera {o}?',
-    ],
-    reto: [
-      '{n}, dale un beso de 5 segundos a {o}, con luz verde de las dos parejas.',
+      '{n}, dale un beso de 5 segundos a {o}.',
       '{n}, quitate una prenda o dejá que tu pareja elija cuál.',
       '{n}, hacele un masaje de hombros a {o} mientras tu pareja te lo hace a vos.',
-      '{n}, bailá pegado con {o} 20 segundos; las parejas dan el ok primero.',
-      '{n}, susurrale algo atrevido al oído a {o}; tu pareja decide si lo repetís en voz alta.',
+      '{n}, bailá pegado con {o} 20 segundos.',
       '{n} y {o}, mírense fijo 20 segundos sin reírse mientras sus parejas cuentan.',
+      '{n}, elegí a una pareja para el próximo reto y explicá por qué.',
+    ],
+  },
+  extremo: {
+    verdad: [
+      '{n}, ¿fantaseaste alguna vez con una noche de intercambio? contá poco o mucho.',
+      '{n}, ¿qué te gustaría que tu pareja te viera hacer esta noche?',
+      '{n}, ¿qué es lo más lejos que llegarías hoy con acuerdo de tu pareja?',
+      '{n}, ¿qué te frena más: la vergüenza o los celos?',
+      '{n}, ¿qué te gustaría que {o} le haga a su pareja delante tuyo?',
+      '{n}, ¿en el medio o mirando?',
+      '{n}, confesá la fantasía más fuerte que se te cruzó esta noche.',
+    ],
+    reto: [
+      '{n}, susurrale algo atrevido al oído a {o}; tu pareja decide si lo repetís en voz alta.',
       '{n}, dejá que {o} te pase un cubo de hielo por el brazo o el cuello.',
-      '{n}, con luz verde de las dos parejas, sentate en las piernas de {o} un turno mientras las parejas miran.',
-      '{n}, con su permiso, una palmada juguetona a {o} mientras tu pareja mira.',
-      '{n}, apoyá la mano en la cintura de {o} durante una canción, si sus parejas están de acuerdo.',
-      '{n}, con acuerdo de todos, dale un beso en el cuello a {o} durante 10 segundos.',
+      '{n}, sentate en las piernas de {o} un turno mientras las parejas miran.',
+      '{n}, una palmada juguetona a {o} mientras tu pareja mira.',
+      '{n}, apoyá la mano en la cintura de {o} durante una canción.',
+      '{n}, dale un beso en el cuello a {o} durante 10 segundos.',
       '{n}, dejá que {o} elija qué prenda te quitás.',
       '{n}, contale al oído a {o} qué te gustaría de la noche; {o} decide si lo dice fuerte.',
-      '{n}, decí en voz alta qué te gustaría de esta noche si todos estuvieran de acuerdo.',
-      '{n}, elegí a una pareja para el próximo reto y explicá por qué.',
+      '{n}, elegí a una persona de otra pareja para un baile pegado de 30 segundos.',
+      '{n} y {o}, con {no} mirando, decidan juntos el próximo reto de las dos parejas.',
+      '{n}, con los ojos vendados, adiviná quién te da un beso en la mano.',
     ],
   },
 };
 
 export const RULETA_RETOS = [
   'un brindis mirándose a los ojos',
-  'un baile pegado de 20 segundos (con luz verde de las parejas)',
-  'un beso de 5 segundos, si las dos parejas están de acuerdo',
+  'un baile pegado de 20 segundos',
+  'un beso de 5 segundos',
   'contarse una fantasía sin dar nombres',
   'un masaje de hombros de 30 segundos',
   'susurrarse al oído qué les gustaría de la noche',
@@ -119,8 +129,8 @@ export const RULETA_RETOS = [
   'que cada uno se quite una prenda',
   'presentarse de nuevo, ahora diciendo algo atrevido',
   'elegir juntos la próxima canción y con quién bailarla',
-  'una palmada juguetona, con permiso de las dos parejas',
-  'un beso en el cuello de 10 segundos, si todos están de acuerdo',
+  'una palmada juguetona',
+  'un beso en el cuello de 10 segundos',
   'sentarse en las piernas del otro un turno mientras las parejas miran',
 ];
 
@@ -132,7 +142,7 @@ function dos(jugadores) {
     const j = Math.floor(Math.random() * (i + 1));
     [pool[i], pool[j]] = [pool[j], pool[i]];
   }
-  return [pool[0], pool[1]];
+  return [pool[0], pool[1], pool[2] || 'las otras parejas'];
 }
 
 export function buildIcebreaker(jugadores) {
@@ -140,18 +150,21 @@ export function buildIcebreaker(jugadores) {
   return rand(ROMPEHIELOS).replaceAll('{n}', n).replaceAll('{o}', o);
 }
 
-// nivelId: 'social' | 'picante' | 'mezcla' | 'progresivo'
+// nivelId: 'picante' | 'extremo' | 'mezcla' | 'progresivo'
 function poolFor(nivelId, tipo, turno) {
-  const s = PROMPTS.social[tipo] || [];
   const p = PROMPTS.picante[tipo] || [];
-  if (nivelId === 'mezcla') return [...s, ...p];
-  if (nivelId === 'progresivo') return turno < 3 ? [...s] : [...s, ...p];
-  return PROMPTS[nivelId]?.[tipo] || s;
+  const e = PROMPTS.extremo[tipo] || [];
+  if (nivelId === 'mezcla') return [...p, ...e];
+  if (nivelId === 'progresivo') return turno < 3 ? [...p] : [...p, ...e];
+  return PROMPTS[nivelId]?.[tipo] || p;
 }
 
 export function buildPrompt(nivelId, tipo, jugadores, turno = 0) {
-  const [n, o] = dos(jugadores);
-  return rand(poolFor(nivelId, tipo, turno)).replaceAll('{n}', n).replaceAll('{o}', o);
+  const [n, o, p] = dos(jugadores);
+  return rand(poolFor(nivelId, tipo, turno))
+    .replaceAll('{no}', p)
+    .replaceAll('{n}', n)
+    .replaceAll('{o}', o);
 }
 
 export const contentStats = () =>

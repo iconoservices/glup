@@ -42,6 +42,14 @@ export const SELECTOR = [
   { id: 'progresivo', label: 'Ascendente', emoji: '📈' },
 ];
 
+// Se muestran una vez, al empezar (no en cada reto)
+export const REGLAS = [
+  'Cualquiera dice “paso” y se respeta, sin explicaciones.',
+  'Acuerden una palabra que frena todo al instante.',
+  'Nada pasa sin el sí de las tres personas.',
+  'Se juega para pasarla bien, no para incomodar a nadie.',
+];
+
 export const PROMPTS = {
   picante: {
     verdad: [
@@ -70,8 +78,8 @@ export const PROMPTS = {
       '{n}, {o} guía tus manos y {p} dice hasta dónde.',
       '{n} y {o}, bailen pegados 20 segundos mientras {p} pone el ritmo.',
       '{n}, deja que {p} te pase un cubo de hielo por donde {o} señale.',
-      '{n}, con permiso de {o}, apóyale la mano en el muslo hasta tu próximo turno.',
-      '{n}, con su permiso, dale una palmada juguetona a {o} mientras {p} mira.',
+      '{n}, apóyale la mano en el muslo de {o} hasta tu próximo turno.',
+      '{n}, dale una palmada juguetona a {o} mientras {p} mira.',
       '{n}, describe en voz alta qué harías con {o} y {p} si no hubiera reglas.',
     ],
   },
@@ -95,12 +103,12 @@ export const PROMPTS = {
       '{n} y {o}, hagan la pose más comprometida que puedan sin quitarse ropa; {p} cuenta 15 segundos.',
       '{n}, deja que {o} te ate las manos con lo que encuentre mientras {p} te hace una pregunta íntima.',
       '{n}, muerde suave el labio de {o} y luego el de {p}.',
-      '{n}, con su permiso, agárrale la cola a {o} durante 5 segundos mientras {p} mira.',
+      '{n}, agárrale la cola a {o} durante 5 segundos mientras {p} mira.',
       '{n}, dile al oído a {o} y a {p} algo distinto y atrevido a cada uno.',
       '{n}, {p} pone las reglas de los próximos 2 minutos y {n} y {o} las siguen.',
       '{n}, dale un chupón a {o} donde no se vea con ropa.',
       '{n}, siéntate a horcajadas sobre {o} un turno mientras {p} cuenta.',
-      '{n}, con luz verde de los tres, {o} y {p} deciden cómo sigue tu próximo minuto.',
+      '{n}, {o} y {p} deciden cómo sigue tu próximo minuto.',
       '{n}, quítate una prenda cada vez que te rías en el próximo minuto.',
     ],
   },
@@ -120,7 +128,7 @@ export const BOTELLA_RETOS = [
   'un beso francés de 8 segundos',
   'que el otro elija qué prenda se quita',
   'morder suave el labio del otro',
-  'una palmada juguetona, con permiso',
+  'una palmada juguetona',
   'un chupón donde no se vea con ropa',
 ];
 

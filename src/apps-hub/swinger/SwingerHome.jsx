@@ -11,7 +11,7 @@ import { MODOS, SELECTOR } from './swingerContent';
 export default function SwingerHome() {
   const navigate = useNavigate();
   const { jugadores, openJugadores } = useSettings();
-  const [nivel, setNivel] = useState('social');
+  const [nivel, setNivel] = useState('picante');
 
   const faltan = jugadores.length < 4;
 

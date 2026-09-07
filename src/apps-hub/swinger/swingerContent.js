@@ -95,6 +95,8 @@ export const PROMPTS = {
       '{n} y {o}, con {no} mirando, decidan entre susurros el próximo reto de las dos parejas.',
       '{n}, con los ojos vendados, adivina solo por el beso en la mano quién de la otra pareja es.',
       '{n}, junta tu cuerpo con el de {o} en la pose más comprometida que puedan sin quitarse ropa; cuenten 15 segundos.',
+      'Las dos parejas: al mismo tiempo, cada quien besa a alguien de la otra pareja durante 10 segundos.',
+      '{n}, besa a {o} mientras tu pareja y la de {o} miran de cerca y dan puntaje.',
     ],
   },
 };

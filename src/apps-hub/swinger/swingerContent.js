@@ -1,28 +1,10 @@
-// Fiestas Swinger — contenido para eventos de varias parejas.
+// Fiestas Swinger — contenido para eventos de varias parejas (español neutro).
 // {n} = una persona · {o} = otra · {no} = otras dos
 
 export const MODOS = [
-  {
-    id: 'hielo',
-    label: 'Rompehielos',
-    emoji: '🥂',
-    desc: 'Para cuando las parejas recién se conocen',
-    ruta: '/fiestas-swinger/jugar?modo=hielo',
-  },
-  {
-    id: 'vr',
-    label: 'Verdad o Reto entre parejas',
-    emoji: '🔥',
-    desc: 'Confesiones y retos que cruzan a las parejas',
-    ruta: '/fiestas-swinger/jugar?modo=vr',
-  },
-  {
-    id: 'ruleta',
-    label: 'La Ruleta de Parejas',
-    emoji: '🎯',
-    desc: 'Empareja a dos personas al azar y les da un reto',
-    ruta: '/fiestas-swinger/ruleta',
-  },
+  { id: 'hielo', label: 'Rompehielos', emoji: '🥂', desc: 'Para cuando las parejas recién se conocen', ruta: '/fiestas-swinger/jugar?modo=hielo' },
+  { id: 'vr', label: 'Verdad o Reto entre parejas', emoji: '🔥', desc: 'Confesiones y retos que cruzan a las parejas', ruta: '/fiestas-swinger/jugar?modo=vr' },
+  { id: 'ruleta', label: 'La Ruleta de Parejas', emoji: '🎯', desc: 'Empareja a dos personas al azar y les da un reto', ruta: '/fiestas-swinger/ruleta' },
 ];
 
 // Niveles reales de contenido (para la vista /contenido)
@@ -39,99 +21,92 @@ export const SELECTOR = [
   { id: 'progresivo', label: 'Ascendente', emoji: '📈' },
 ];
 
-// Se muestran una vez, al empezar (no en cada reto)
-export const REGLAS = [
-  'Cualquiera dice “paso” y se respeta, sin explicaciones.',
-  'Acuerden una palabra que frena todo al instante.',
-  'Ningún reto que cruce a dos personas se hace sin el sí de sus parejas.',
-  'Tu pareja tiene prioridad sobre el juego.',
-];
-
 export const ROMPEHIELOS = [
-  '{n}, presentá a tu pareja al grupo diciendo algo que casi nadie sabe de ella.',
-  '{n}, decile a {o} qué fue lo primero que notaste al llegar.',
-  '{n}, contá cómo se conocieron vos y tu pareja, versión corta.',
-  '{n}, elegí a otra pareja del grupo y decí qué te gusta de cómo se tratan.',
+  '{n}, presenta a tu pareja al grupo diciendo algo que casi nadie sabe de ella.',
+  '{n}, dile a {o} qué fue lo primero que notaste de él o ella al llegar.',
+  '{n}, cuenta cómo se conocieron tú y tu pareja, versión corta.',
+  '{n}, elige a otra pareja del grupo y di qué te gusta de cómo se tratan.',
   '{n} y {o}, descubran tres cosas que tienen en común en un minuto.',
-  '{n}, hacele una pregunta a {o} que nunca le harías en un ascensor.',
-  '{n}, decí qué te trajo a una fiesta como esta por primera vez.',
-  '{n}, elegí una canción para el grupo y contá con quién la bailarías.',
-  '{n}, brindá con {o} y decí un deseo para la noche (dentro de lo razonable).',
-  '{n}, contá cuál es tu regla número uno para una noche así.',
-  '{n}, decile un cumplido sincero a la pareja de {o}.',
-  '{n} y {o}, elijan una palabra que van a usar esta noche si algo no va.',
-  '{n}, contá la señal que usás con tu pareja para decir "sí" y para decir "mejor no".',
-  '{n}, decí qué te pone más nervioso y más curioso de estar acá.',
+  '{n}, hazle a {o} una pregunta que nunca le harías en un ascensor.',
+  '{n}, di qué te trajo a una fiesta como esta por primera vez.',
+  '{n}, elige una canción para el grupo y di con quién la bailarías.',
+  '{n}, brinda con {o} y di un deseo para la noche (dentro de lo razonable).',
+  '{n}, cuenta cuál es tu regla número uno para una noche así.',
+  '{n}, dile un cumplido sincero a la pareja de {o}.',
+  '{n} y {o}, elijan la palabra que van a usar esta noche si algo no va.',
+  '{n}, cuenta la señal que usas con tu pareja para decir "sí" y para decir "mejor no".',
+  '{n}, di qué te pone más nervioso y qué más curioso de estar aquí.',
 ];
 
 export const PROMPTS = {
   picante: {
     verdad: [
       '{n}, ¿qué te atrajo de venir a una fiesta de parejas?',
-      '{n}, ¿coqueteás más con la mirada o con las palabras?',
-      '{n}, ¿a qué persona del grupo, además de tu pareja, mirarías dos veces?',
-      '{n}, ¿a qué pareja del grupo le pedirías un consejo de relación?',
-      '{n}, ¿preferís conocer a la otra pareja hablando o bailando?',
+      '{n}, ¿coqueteas más con la mirada o con las palabras? Demuéstralo con {o}.',
+      '{n}, además de tu pareja, ¿a quién del grupo mirarías dos veces y por qué?',
+      '{n}, ¿a qué pareja del grupo le pedirías un consejo de cama?',
+      '{n}, ¿prefieres conocer a la otra pareja hablando o bailando muy pegados?',
       '{n}, ¿cuál es tu límite de esta noche que nadie debería cruzar?',
-      '{n}, ¿qué te da más celos y cómo lo manejás?',
-      '{n}, ¿qué señal usan vos y tu pareja para frenar?',
-      '{n}, ¿qué pregunta te gustaría que te hiciera {o}?',
-      '{n}, ¿preferís mirar o que te miren?',
+      '{n}, ¿qué te da más celos y cómo lo manejas?',
+      '{n}, ¿qué señal usan tú y tu pareja para frenar?',
+      '{n}, ¿qué pregunta te gustaría que te hiciera {o} al oído?',
+      '{n}, ¿te pone más mirar o que te miren?',
     ],
     reto: [
-      '{n}, ofrecele una copa a {o} y brinden mirándose a los ojos.',
-      '{n}, sacá a bailar a {o} una canción.',
-      '{n}, dale un abrazo largo a la pareja de {o}.',
-      '{n}, hacele a {o} un cumplido sobre algo que no sea físico.',
-      '{n}, contale a {o} tu plan ideal para el resto de la noche.',
-      '{n}, dale un beso de 5 segundos a {o}.',
-      '{n}, quitate una prenda o dejá que tu pareja elija cuál.',
-      '{n}, hacele un masaje de hombros a {o} mientras tu pareja te lo hace a vos.',
-      '{n}, bailá pegado con {o} 20 segundos.',
-      '{n} y {o}, mírense fijo 20 segundos sin reírse mientras sus parejas cuentan.',
-      '{n}, elegí a una pareja para el próximo reto y explicá por qué.',
+      '{n}, ofrécele una copa a {o} y brinden mirándose a los ojos sin hablar.',
+      '{n}, saca a bailar a {o} una canción entera, cada vez más cerca.',
+      '{n}, dale un abrazo largo y de verdad a la pareja de {o}.',
+      '{n}, hazle a {o} un cumplido sobre algo que solo notarías fijándote mucho.',
+      '{n}, cuéntale a {o} tu plan ideal para el resto de la noche, con detalles.',
+      '{n}, dale un beso lento de 5 segundos a {o}.',
+      '{n}, quítate una prenda, sin prisa y sin cortar el contacto visual.',
+      '{n}, hazle un masaje de hombros a {o} mientras tu pareja te lo hace a ti.',
+      '{n}, báilale a {o} muy pegado 20 segundos, marcando el ritmo con las caderas.',
+      '{n} y {o}, mírense fijo 20 segundos sin reírse mientras sus parejas los rodean.',
+      '{n}, elige a una pareja para el próximo reto y explica por qué justo esa.',
     ],
   },
   extremo: {
     verdad: [
-      '{n}, ¿fantaseaste alguna vez con una noche de intercambio? contá poco o mucho.',
+      '{n}, ¿has fantaseado con una noche de intercambio? Cuenta poco o mucho.',
       '{n}, ¿qué te gustaría que tu pareja te viera hacer esta noche?',
-      '{n}, ¿qué es lo más lejos que llegarías hoy con acuerdo de tu pareja?',
+      '{n}, ¿qué es lo más lejos que llegarías hoy con el permiso de tu pareja?',
       '{n}, ¿qué te frena más: la vergüenza o los celos?',
-      '{n}, ¿qué te gustaría que {o} le haga a su pareja delante tuyo?',
-      '{n}, ¿en el medio o mirando?',
-      '{n}, confesá la fantasía más fuerte que se te cruzó esta noche.',
+      '{n}, ¿qué te gustaría ver que {o} le hace a su pareja delante de ti?',
+      '{n}, ¿en el medio o mirando desde una silla?',
+      '{n}, confiesa la fantasía más fuerte que se te ha cruzado esta noche.',
     ],
     reto: [
-      '{n}, susurrale algo atrevido al oído a {o}; tu pareja decide si lo repetís en voz alta.',
-      '{n}, dejá que {o} te pase un cubo de hielo por el brazo o el cuello.',
-      '{n}, sentate en las piernas de {o} un turno mientras las parejas miran.',
-      '{n}, una palmada juguetona a {o} mientras tu pareja mira.',
-      '{n}, apoyá la mano en la cintura de {o} durante una canción.',
-      '{n}, dale un beso en el cuello a {o} durante 10 segundos.',
-      '{n}, dejá que {o} elija qué prenda te quitás.',
-      '{n}, contale al oído a {o} qué te gustaría de la noche; {o} decide si lo dice fuerte.',
-      '{n}, elegí a una persona de otra pareja para un baile pegado de 30 segundos.',
-      '{n} y {o}, con {no} mirando, decidan juntos el próximo reto de las dos parejas.',
-      '{n}, con los ojos vendados, adiviná quién te da un beso en la mano.',
+      '{n}, acércate al oído de {o} y susúrrale, con la voz baja, lo que te gustaría hacerle; tu pareja decide si lo repites en voz alta.',
+      '{n}, deja que {o} te pase un cubo de hielo por el cuello y la clavícula, despacio.',
+      '{n}, siéntate en las piernas de {o} un turno mientras las dos parejas miran de cerca.',
+      '{n}, dale una palmada a {o} y después acaricia donde diste, mientras tu pareja mira.',
+      '{n}, recórrele el cuello a {o} con besos lentos durante 10 segundos.',
+      '{n}, deja que {o} elija qué prenda te quitas, y quítatela sin prisa.',
+      '{n}, susúrrale al oído a {o} qué parte de su cuerpo miraste primero al llegar, mientras las parejas tratan de adivinar qué le dijiste.',
+      '{n}, cuéntale al oído a {o} qué te gustaría de la noche; {o} decide si lo dice en voz alta.',
+      '{n}, elige a alguien de otra pareja y báilale muy pegado 30 segundos.',
+      '{n} y {o}, con {no} mirando, decidan entre susurros el próximo reto de las dos parejas.',
+      '{n}, con los ojos vendados, adivina solo por el beso en la mano quién de la otra pareja es.',
+      '{n}, junta tu cuerpo con el de {o} en la pose más comprometida que puedan sin quitarse ropa; cuenten 15 segundos.',
     ],
   },
 };
 
 export const RULETA_RETOS = [
-  'un brindis mirándose a los ojos',
-  'un baile pegado de 20 segundos',
-  'un beso de 5 segundos',
-  'contarse una fantasía sin dar nombres',
+  'un brindis mirándose a los ojos, sin hablar',
+  'un baile muy pegado de 20 segundos',
+  'un beso lento de 5 segundos',
+  'contarse al oído una fantasía sin dar nombres',
   'un masaje de hombros de 30 segundos',
-  'susurrarse al oído qué les gustaría de la noche',
-  'mirarse fijo 20 segundos sin reírse',
-  'que cada uno se quite una prenda',
-  'presentarse de nuevo, ahora diciendo algo atrevido',
-  'elegir juntos la próxima canción y con quién bailarla',
-  'una palmada juguetona',
-  'un beso en el cuello de 10 segundos',
-  'sentarse en las piernas del otro un turno mientras las parejas miran',
+  'susurrarse qué les gustaría de la noche',
+  'mirarse a los ojos 20 segundos sin reírse',
+  'que cada uno se quite una prenda, por turnos',
+  'presentarse de nuevo, ahora diciendo algo subido de tono',
+  'elegir juntos la próxima canción y bailarla pegados',
+  'una palmada y una caricia donde dio',
+  'besos lentos por el cuello durante 10 segundos',
+  'sentarse encima del otro un turno mientras las parejas miran',
 ];
 
 const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -150,7 +125,6 @@ export function buildIcebreaker(jugadores) {
   return rand(ROMPEHIELOS).replaceAll('{n}', n).replaceAll('{o}', o);
 }
 
-// nivelId: 'picante' | 'extremo' | 'mezcla' | 'progresivo'
 function poolFor(nivelId, tipo, turno) {
   const p = PROMPTS.picante[tipo] || [];
   const e = PROMPTS.extremo[tipo] || [];

@@ -1,31 +1,10 @@
-// Juegos para Tríos +18 — contenido.
+// Juegos para Tríos +18 — contenido (español neutro).
 // {n} = una persona · {o} = otra · {p} = el tercero · {no} = otras dos
 
 export const MODOS = [
-  {
-    id: 'vr',
-    label: 'Verdad o Reto',
-    emoji: '😏',
-    nivel: 4,
-    desc: 'Confesiones y retos entre los tres',
-    ruta: '/juegos-para-trios/jugar?modo=vr',
-  },
-  {
-    id: 'reto',
-    label: 'Solo Retos',
-    emoji: '🔥',
-    nivel: 5,
-    desc: 'Sin verdades: puro reto picante',
-    ruta: '/juegos-para-trios/jugar?modo=reto',
-  },
-  {
-    id: 'botella',
-    label: 'La Botella',
-    emoji: '🍾',
-    nivel: 3,
-    desc: 'Gira y apunta a quién le toca',
-    ruta: '/juegos-para-trios/botella',
-  },
+  { id: 'vr', label: 'Verdad o Reto', emoji: '😏', nivel: 4, desc: 'Confesiones y retos entre los tres', ruta: '/juegos-para-trios/jugar?modo=vr' },
+  { id: 'reto', label: 'Solo Retos', emoji: '🔥', nivel: 5, desc: 'Sin verdades: puro reto picante', ruta: '/juegos-para-trios/jugar?modo=reto' },
+  { id: 'botella', label: 'La Botella', emoji: '🍾', nivel: 3, desc: 'Gira y apunta a quién le toca', ruta: '/juegos-para-trios/botella' },
 ];
 
 // Niveles reales de contenido (para la vista /contenido)
@@ -42,74 +21,67 @@ export const SELECTOR = [
   { id: 'progresivo', label: 'Ascendente', emoji: '📈' },
 ];
 
-// Se muestran una vez, al empezar (no en cada reto)
-export const REGLAS = [
-  'Cualquiera dice “paso” y se respeta, sin explicaciones.',
-  'Acuerden una palabra que frena todo al instante.',
-  'Nada pasa sin el sí de las tres personas.',
-  'Se juega para pasarla bien, no para incomodar a nadie.',
-];
-
 export const PROMPTS = {
   picante: {
     verdad: [
-      '{n}, ¿con cuál de los otros dos te irías si tuvieras que elegir uno?',
-      '{n}, ¿qué te parece más atractivo de {o} y qué de {p}?',
-      '{n}, ¿alguna vez fantaseaste con estar con más de una persona a la vez?',
-      '{n}, ¿besarías a {o} y a {p} en la misma noche?',
-      '{n}, del 1 al 10, ¿qué tan cómodo estás ahora mismo?',
-      '{n}, ¿cuál es tu límite de esta noche que nadie debería cruzar?',
+      '{n}, si tuvieras que elegir a uno de los otros dos para pasar la noche, ¿a quién y por qué?',
+      '{n}, ¿qué te parece más atractivo de {o} y qué de {p}? Sé específico.',
+      '{n}, ¿alguna vez fantaseaste con dos personas a la vez? Cuenta lo que quieras.',
+      '{n}, si {o} y {p} te besaran al mismo tiempo, ¿dónde querrías cada boca?',
+      '{n}, del 1 al 10, ¿qué tan encendido estás ahora mismo?',
+      '{n}, ¿cuál es el límite de esta noche que nadie debería cruzar?',
       '{n}, ¿qué te gustaría que {o} y {p} te hicieran a la vez?',
-      '{n}, ¿a quién de los dos dejarías llevar el control?',
-      '{n}, ¿alguna vez te sedujeron dos personas al mismo tiempo?',
-      '{n}, ¿qué parte de tu cuerpo te gusta más que te toquen?',
-      '{n}, ¿te pone más mirar o que te miren?',
-      '{n}, ¿cuál de los tres crees que se va a soltar primero?',
+      '{n}, ¿a cuál de los dos dejarías llevar el control y a cuál obedecerías?',
+      '{n}, ¿qué parte de tu cuerpo te vuelve loco que te toquen y casi nadie acierta?',
+      '{n}, ¿te pone más mirar cómo se tocan otros dos, o que te miren a ti?',
+      '{n}, ¿quién de los tres crees que se va a soltar primero esta noche?',
+      '{n}, describe con detalle el mejor beso que has dado.',
     ],
     reto: [
-      '{n}, dale un beso de 5 segundos a {o} mientras {p} decide dónde.',
-      '{n}, quítate una prenda (ni zapatos ni calcetines).',
-      '{n}, siéntate en las piernas de {o} hasta tu próximo turno.',
-      '{n}, hazle un masaje de hombros a {o} mientras {p} te lo hace a ti.',
-      '{n}, susúrrale al oído a {o} algo atrevido; {p} decide si lo repites en voz alta.',
-      '{n}, deja que {o} y {p} elijan una prenda tuya para que te quites.',
-      '{n}, mira fijo a {o} 20 segundos sin reírte mientras {p} intenta distraerte.',
-      '{n}, dale un beso en el cuello a {o} durante 10 segundos.',
-      '{n}, {o} guía tus manos y {p} dice hasta dónde.',
-      '{n} y {o}, bailen pegados 20 segundos mientras {p} pone el ritmo.',
-      '{n}, deja que {p} te pase un cubo de hielo por donde {o} señale.',
-      '{n}, apóyale la mano en el muslo de {o} hasta tu próximo turno.',
-      '{n}, dale una palmada juguetona a {o} mientras {p} mira.',
-      '{n}, describe en voz alta qué harías con {o} y {p} si no hubiera reglas.',
+      '{n}, bésale la mano a {o} subiendo despacio hasta el codo, sin prisa.',
+      '{n}, quítate una prenda mirando a los ojos a quien {p} señale.',
+      '{n}, siéntate en las piernas de {o} de frente y quédate ahí hasta tu próximo turno.',
+      '{n}, hazle a {o} un masaje lento de hombros mientras {p} te lo hace a ti.',
+      '{n}, acércate al oído de {o} y susúrrale, con la voz baja, algo que te gustaría hacerle; {p} decide si lo repites en voz alta.',
+      '{n}, deja que {o} y {p} elijan una prenda tuya para que te quites, y hazlo despacio.',
+      '{n}, mira fijo a {o} 20 segundos, sin reírte, mientras {p} intenta distraerte tocándote el pelo.',
+      '{n}, recórrele el cuello a {o} con besos lentos durante 10 segundos.',
+      '{n}, {o} te guía las manos por su brazo y {p} dice hasta dónde puedes llegar.',
+      '{n}, báilale a {o} muy pegado, marcando el ritmo con las caderas, mientras {p} pone la música con la boca.',
+      '{n}, deja que {p} te pase un cubo de hielo por donde {o} señale, sin apartarte.',
+      '{n}, apóyale la mano en el muslo a {o} y déjala ahí, quieta, hasta tu próximo turno.',
+      '{n}, susúrrale al oído a {o} qué parte de su cuerpo miraste primero al llegar, mientras {p} intenta adivinar qué le dijiste.',
+      '{n}, dale una palmada juguetona a {o} y luego acaricia donde diste, mientras {p} mira.',
+      '{n}, describe en voz alta, con lujo de detalle, qué le harías a {o} y a {p} si no hubiera reglas.',
     ],
   },
   extremo: {
     verdad: [
-      '{n}, ¿harías un trío con {o} y {p} si pasara ahora mismo?',
-      '{n}, ¿a quién de los dos besarías primero y a quién dejarías para el final?',
-      '{n}, confiesa la fantasía más fuerte que se te cruzó esta noche.',
-      '{n}, ¿prefieres estar en el medio o mirar?',
-      '{n}, ¿qué te gustaría que {o} le haga a {p} delante de ti?',
-      '{n}, ¿cuál es lo más atrevido que aceptarías hacer hoy?',
-      '{n}, ¿te animarías a que {o} y {p} decidan tu próximo reto sin poder opinar?',
+      '{n}, si {o} y {p} te lo propusieran ahora mismo, ¿te animarías? Sé sincero.',
+      '{n}, ¿a cuál de los dos besarías primero y a cuál dejarías para el final?',
+      '{n}, confiesa la fantasía más fuerte que se te ha cruzado esta noche.',
+      '{n}, ¿prefieres estar en el medio o mirar desde afuera?',
+      '{n}, ¿qué te gustaría ver que {o} le hace a {p} delante de ti?',
+      '{n}, ¿cuál es lo más atrevido que aceptarías hacer esta noche?',
+      '{n}, ¿dejarías que {o} y {p} decidan tu próximo reto sin poder opinar?',
       '{n}, ¿qué palabra usamos si alguien quiere frenar todo?',
     ],
     reto: [
-      '{n}, besa a {o} 10 segundos; {p} decide cuándo termina.',
-      '{n}, quítate dos prendas o deja que {o} y {p} elijan una cada uno.',
-      '{n}, recuéstate y deja que {o} y {p} te den un masaje a la vez durante 30 segundos.',
-      '{n}, con los ojos vendados, adivina quién te besa la mano: ¿{o} o {p}?',
-      '{n}, elige a uno para besar y al otro para sentarte en sus piernas, dos turnos.',
-      '{n} y {o}, hagan la pose más comprometida que puedan sin quitarse ropa; {p} cuenta 15 segundos.',
-      '{n}, deja que {o} te ate las manos con lo que encuentre mientras {p} te hace una pregunta íntima.',
-      '{n}, muerde suave el labio de {o} y luego el de {p}.',
-      '{n}, agárrale la cola a {o} durante 5 segundos mientras {p} mira.',
-      '{n}, dile al oído a {o} y a {p} algo distinto y atrevido a cada uno.',
-      '{n}, {p} pone las reglas de los próximos 2 minutos y {n} y {o} las siguen.',
-      '{n}, dale un chupón a {o} donde no se vea con ropa.',
-      '{n}, siéntate a horcajadas sobre {o} un turno mientras {p} cuenta.',
-      '{n}, {o} y {p} deciden cómo sigue tu próximo minuto.',
-      '{n}, quítate una prenda cada vez que te rías en el próximo minuto.',
+      '{n}, besa a {o} 10 segundos, subiendo la intensidad; {p} decide cuándo se corta.',
+      '{n}, quítate dos prendas, o deja que {o} y {p} elijan una cada uno.',
+      '{n}, recuéstate y deja que {o} y {p} te recorran los brazos y el cuello a la vez durante 30 segundos.',
+      '{n}, con los ojos vendados, adivina solo por el beso en la mano quién es: ¿{o} o {p}?',
+      '{n}, elige a uno para besar en la boca y al otro para sentarte encima dos turnos.',
+      '{n} y {o}, junten los cuerpos en la pose más comprometida que puedan sin quitarse ropa; {p} cuenta 15 segundos en voz alta.',
+      '{n}, deja que {o} te sujete las muñecas mientras {p} te hace al oído la pregunta más íntima que se le ocurra.',
+      '{n}, muerde suave el labio de {o} y después el de {p}, sin prisa.',
+      '{n}, agárrale una nalga a {o} durante 5 segundos, firme, mientras {p} mira de cerca.',
+      '{n}, dile al oído a {o} y a {p} algo distinto y subido de tono a cada uno.',
+      '{n}, {p} pone las reglas de los próximos 2 minutos y {n} y {o} las obedecen al pie de la letra.',
+      '{n}, deja una marca de beso en {o} donde no se vea con ropa.',
+      '{n}, siéntate a horcajadas sobre {o} y muévete despacio un turno mientras {p} lleva la cuenta.',
+      '{n}, {o} y {p} deciden, entre susurros, cómo sigue tu próximo minuto.',
+      '{n}, quítate una prenda cada vez que te rías en el próximo minuto; {o} y {p} van a intentar que te rías.',
     ],
   },
 };
@@ -117,19 +89,19 @@ export const PROMPTS = {
 // Retos que caen al girar la botella (el elegido cumple con quien giró)
 export const BOTELLA_RETOS = [
   'un beso de 5 segundos, donde el grupo decida',
-  'un beso en el cuello de 10 segundos',
-  'quitarse una prenda',
-  'sentarse en las piernas del otro un turno',
-  'un masaje de hombros de 30 segundos',
-  'susurrarle algo atrevido al oído',
-  'mirarse fijo 20 segundos sin reírse',
-  'un baile pegado de 20 segundos',
-  'dejar que el otro le pase un cubo de hielo por el brazo',
-  'un beso francés de 8 segundos',
+  'besos lentos por el cuello durante 10 segundos',
+  'quitarse una prenda, despacio',
+  'sentarse encima del otro un turno entero',
+  'un masaje lento de hombros de 30 segundos',
+  'un susurro al oído contando lo que le gustaría',
+  'mirarse a los ojos 20 segundos sin reírse',
+  'un baile muy pegado de 20 segundos',
+  'dejar que el otro le pase un cubo de hielo por el cuello',
+  'un beso profundo de 8 segundos',
   'que el otro elija qué prenda se quita',
-  'morder suave el labio del otro',
-  'una palmada juguetona',
-  'un chupón donde no se vea con ropa',
+  'un mordisco suave en el labio',
+  'una palmada y después una caricia donde dio',
+  'una marca de beso donde no se vea con ropa',
 ];
 
 const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -143,8 +115,6 @@ function tresJugadores(jugadores) {
   return pool.slice(0, 3);
 }
 
-// nivelId: 'picante' | 'extremo' | 'mezcla' | 'progresivo'
-// turno: nº de reto/verdad ya jugado (para 'progresivo')
 function poolFor(nivelId, tipo, turno) {
   const p = PROMPTS.picante[tipo] || [];
   const e = PROMPTS.extremo[tipo] || [];

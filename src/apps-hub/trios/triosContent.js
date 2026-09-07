@@ -51,8 +51,9 @@ export const PROMPTS = {
       '{n}, báilale a {o} muy pegado, marcando el ritmo con las caderas, mientras {p} pone la música con la boca.',
       '{n}, deja que {p} te pase un cubo de hielo por donde {o} señale, sin apartarte.',
       '{n}, apóyale la mano en el muslo a {o} y déjala ahí, quieta, hasta tu próximo turno.',
-      '{n}, susúrrale al oído a {o} qué parte de su cuerpo miraste primero al llegar; {p} intenta adivinar y, si no acierta, {o} lo dice en voz alta.',
-      '{n}, susúrrale al oído a {o} dónde le darías el primer beso; {p} adivina y, si falla, {o} lo cuenta en voz alta.',
+      '{n}, susúrrale al oído a {o} qué parte de su cuerpo miraste primero. {p} adivina: si acierta, bebe {n}; si falla, bebe {p} y {o} lo dice en voz alta.',
+      '{n}, susúrrale al oído a {o} dónde le darías el primer beso. Si {p} adivina, {o} lo hace ahí mismo; si no, lo hace {n}.',
+      '{n} y {o} se susurran al oído qué les gustaría del otro; {p} adivina de qué hablaron y, si falla, bebe.',
       '{n}, dale una palmada juguetona a {o} y luego acaricia donde diste, mientras {p} mira.',
       '{n}, describe en voz alta, con lujo de detalle, qué le harías a {o} y a {p} si no hubiera reglas.',
     ],
@@ -109,6 +110,19 @@ export const BOTELLA_RETOS = [
 
 const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
+// Memoria por lista: no repite hasta agotar las opciones.
+const _usados = {};
+function pick(arr, key) {
+  if (!_usados[key]) _usados[key] = new Set();
+  let opts = arr.filter((t) => !_usados[key].has(t));
+  if (opts.length === 0) { _usados[key].clear(); opts = arr; }
+  const t = rand(opts);
+  _usados[key].add(t);
+  return t;
+}
+
+export const pickBotellaReto = () => pick(BOTELLA_RETOS, 'botella');
+
 function tresJugadores(jugadores) {
   const pool = jugadores.length >= 3 ? [...jugadores] : [...jugadores, 'alguien', 'otra persona', 'el tercero'];
   for (let i = pool.length - 1; i > 0; i--) {
@@ -127,7 +141,7 @@ function poolFor(nivelId, tipo, turno) {
 }
 
 export function buildPrompt(nivelId, tipo, jugadores, turno = 0) {
-  const text = rand(poolFor(nivelId, tipo, turno));
+  const text = pick(poolFor(nivelId, tipo, turno), `${nivelId}:${tipo}`);
   const [n, o, p] = tresJugadores(jugadores);
   return text
     .replaceAll('{no}', `${o} y ${p}`)

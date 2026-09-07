@@ -84,8 +84,9 @@ export const PROMPTS = {
       '{n}, dale una palmada a {o} y después acaricia donde diste, mientras tu pareja mira.',
       '{n}, recórrele el cuello a {o} con besos lentos durante 10 segundos.',
       '{n}, deja que {o} elija qué prenda te quitas, y quítatela sin prisa.',
-      '{n}, susúrrale al oído a {o} qué parte de su cuerpo miraste primero al llegar; las parejas adivinan y, si fallan, {o} lo dice en voz alta.',
-      '{n}, susúrrale al oído a {o} dónde le darías el primer beso; si nadie adivina, {o} lo cuenta en voz alta.',
+      '{n}, susúrrale al oído a {o} qué parte de su cuerpo miraste primero. Si alguna pareja adivina, bebe {n}; si nadie, bebe quien más se acercó y {o} lo dice en voz alta.',
+      '{n}, susúrrale al oído a {o} dónde le darías el primer beso. Si adivinan, {o} lo hace ahí mismo; si no, lo hace {n}.',
+      '{n} y {o} se susurran qué les gustaría del otro; el resto adivina de qué hablaron y, si falla, bebe.',
       '{n}, cuéntale al oído a {o} qué te gustaría de la noche; {o} decide si lo dice en voz alta.',
       '{n}, elige a alguien de otra pareja y báilale muy pegado 30 segundos.',
       '{n} y {o}, con {no} mirando, decidan entre susurros el próximo reto de las dos parejas.',
@@ -113,6 +114,19 @@ export const RULETA_RETOS = [
 
 const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
+// Memoria por lista: no repite hasta agotar las opciones.
+const _usados = {};
+function pick(arr, key) {
+  if (!_usados[key]) _usados[key] = new Set();
+  let opts = arr.filter((t) => !_usados[key].has(t));
+  if (opts.length === 0) { _usados[key].clear(); opts = arr; }
+  const t = rand(opts);
+  _usados[key].add(t);
+  return t;
+}
+
+export const pickRuletaReto = () => pick(RULETA_RETOS, 'ruleta');
+
 function dos(jugadores) {
   const pool = jugadores.length >= 2 ? [...jugadores] : ['alguien', 'otra persona'];
   for (let i = pool.length - 1; i > 0; i--) {
@@ -124,7 +138,7 @@ function dos(jugadores) {
 
 export function buildIcebreaker(jugadores) {
   const [n, o] = dos(jugadores);
-  return rand(ROMPEHIELOS).replaceAll('{n}', n).replaceAll('{o}', o);
+  return pick(ROMPEHIELOS, 'hielo').replaceAll('{n}', n).replaceAll('{o}', o);
 }
 
 function poolFor(nivelId, tipo, turno) {
@@ -137,7 +151,7 @@ function poolFor(nivelId, tipo, turno) {
 
 export function buildPrompt(nivelId, tipo, jugadores, turno = 0) {
   const [n, o, p] = dos(jugadores);
-  return rand(poolFor(nivelId, tipo, turno))
+  return pick(poolFor(nivelId, tipo, turno), `${nivelId}:${tipo}`)
     .replaceAll('{no}', p)
     .replaceAll('{n}', n)
     .replaceAll('{o}', o);

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, RefreshCw } from 'lucide-react';
 import Seo from '../../components/Seo';
 import { useSettings } from '../../context/useSettings';
-import { RULETA_RETOS } from './swingerContent';
+import { pickRuletaReto } from './swingerContent';
 
 const SPIN_MS = 3200;
 const rand = (a) => a[Math.floor(Math.random() * a.length)];
@@ -55,7 +55,7 @@ export default function SwingerRuleta() {
       const otros = jugadores.filter((_, i) => i !== winner);
       const conQuien = rand(otros);
       setElegidoIdx(winner);
-      setResultado(`${jugadores[winner]} y ${conQuien}: ${rand(RULETA_RETOS)}. Con luz verde de las dos parejas.`);
+      setResultado(`${jugadores[winner]} y ${conQuien}: ${pickRuletaReto()}. Con luz verde de las dos parejas.`);
       setGirando(false);
     }, SPIN_MS);
   };

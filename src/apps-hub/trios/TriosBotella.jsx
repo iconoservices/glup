@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, RefreshCw } from 'lucide-react';
 import Seo from '../../components/Seo';
 import { useSettings } from '../../context/useSettings';
-import { BOTELLA_RETOS } from './triosContent';
+import { pickBotellaReto } from './triosContent';
 
 const SPIN_MS = 3200;
 const rand = (a) => a[Math.floor(Math.random() * a.length)];
@@ -55,7 +55,7 @@ export default function TriosBotella() {
       const otros = jugadores.filter((_, i) => i !== winner);
       const conQuien = rand(otros);
       setElegidoIdx(winner);
-      setResultado(`${jugadores[winner]}: ${rand(BOTELLA_RETOS)} con ${conQuien}.`);
+      setResultado(`${jugadores[winner]}: ${pickBotellaReto()} con ${conQuien}.`);
       setGirando(false);
     }, SPIN_MS);
   };

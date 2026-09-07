@@ -1,5 +1,5 @@
 // Juegos para Tríos +18 — contenido.
-// {n} = un jugador · {o} = otro · {p} = el tercero · {no} = los otros dos
+// {n} = una persona · {o} = otra · {p} = el tercero · {no} = otras dos
 
 export const MODOS = [
   {
@@ -28,9 +28,18 @@ export const MODOS = [
   },
 ];
 
+// Niveles reales de contenido (para la vista /contenido)
 export const NIVELES = [
   { id: 'picante', label: 'Picante', emoji: '😏', nivel: 4, desc: 'Sube de tono con calma' },
   { id: 'extremo', label: 'Extremo', emoji: '🔞', nivel: 5, desc: 'Solo si los tres se animan' },
+];
+
+// Opciones del selector en la home (incluye los modos combinados)
+export const SELECTOR = [
+  { id: 'picante', label: 'Picante', emoji: '😏' },
+  { id: 'extremo', label: 'Extremo', emoji: '🔞' },
+  { id: 'mezcla', label: 'Mezcla', emoji: '🎲' },
+  { id: 'progresivo', label: 'Sube solo', emoji: '📈' },
 ];
 
 export const PROMPTS = {
@@ -61,6 +70,8 @@ export const PROMPTS = {
       '{n}, {o} guía tus manos y {p} dice hasta dónde.',
       '{n} y {o}, bailen pegados 20 segundos mientras {p} pone el ritmo.',
       '{n}, deja que {p} te pase un cubo de hielo por donde {o} señale.',
+      '{n}, con permiso de {o}, apóyale la mano en el muslo hasta tu próximo turno.',
+      '{n}, con su permiso, dale una palmada juguetona a {o} mientras {p} mira.',
       '{n}, describe en voz alta qué harías con {o} y {p} si no hubiera reglas.',
     ],
   },
@@ -84,9 +95,12 @@ export const PROMPTS = {
       '{n} y {o}, hagan la pose más comprometida que puedan sin quitarse ropa; {p} cuenta 15 segundos.',
       '{n}, deja que {o} te ate las manos con lo que encuentre mientras {p} te hace una pregunta íntima.',
       '{n}, muerde suave el labio de {o} y luego el de {p}.',
+      '{n}, con su permiso, agárrale la cola a {o} durante 5 segundos mientras {p} mira.',
       '{n}, dile al oído a {o} y a {p} algo distinto y atrevido a cada uno.',
       '{n}, {p} pone las reglas de los próximos 2 minutos y {n} y {o} las siguen.',
       '{n}, dale un chupón a {o} donde no se vea con ropa.',
+      '{n}, siéntate a horcajadas sobre {o} un turno mientras {p} cuenta.',
+      '{n}, con luz verde de los tres, {o} y {p} deciden cómo sigue tu próximo minuto.',
       '{n}, quítate una prenda cada vez que te rías en el próximo minuto.',
     ],
   },
@@ -106,13 +120,14 @@ export const BOTELLA_RETOS = [
   'un beso francés de 8 segundos',
   'que el otro elija qué prenda se quita',
   'morder suave el labio del otro',
+  'una palmada juguetona, con permiso',
+  'un chupón donde no se vea con ropa',
 ];
 
 const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 function tresJugadores(jugadores) {
   const pool = jugadores.length >= 3 ? [...jugadores] : [...jugadores, 'alguien', 'otra persona', 'el tercero'];
-  // baraja
   for (let i = pool.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [pool[i], pool[j]] = [pool[j], pool[i]];
@@ -120,9 +135,18 @@ function tresJugadores(jugadores) {
   return pool.slice(0, 3);
 }
 
-export function buildPrompt(nivelId, tipo, jugadores) {
-  const lista = PROMPTS[nivelId]?.[tipo] || PROMPTS.picante[tipo];
-  const text = rand(lista);
+// nivelId: 'picante' | 'extremo' | 'mezcla' | 'progresivo'
+// turno: nº de reto/verdad ya jugado (para 'progresivo')
+function poolFor(nivelId, tipo, turno) {
+  const p = PROMPTS.picante[tipo] || [];
+  const e = PROMPTS.extremo[tipo] || [];
+  if (nivelId === 'mezcla') return [...p, ...e];
+  if (nivelId === 'progresivo') return turno < 3 ? [...p] : [...p, ...e];
+  return PROMPTS[nivelId]?.[tipo] || p;
+}
+
+export function buildPrompt(nivelId, tipo, jugadores, turno = 0) {
+  const text = rand(poolFor(nivelId, tipo, turno));
   const [n, o, p] = tresJugadores(jugadores);
   return text
     .replaceAll('{no}', `${o} y ${p}`)

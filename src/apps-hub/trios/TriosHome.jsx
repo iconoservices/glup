@@ -6,7 +6,7 @@ import JsonLd from '../../components/JsonLd';
 import HubLink from '../../components/HubLink';
 import { useSettings } from '../../context/useSettings';
 import { SITE_URL } from '../../lib/ui';
-import { MODOS, NIVELES } from './triosContent';
+import { MODOS, SELECTOR } from './triosContent';
 
 export default function TriosHome() {
   const navigate = useNavigate();
@@ -62,7 +62,7 @@ export default function TriosHome() {
       {faltan && <p className="trios-warn">Necesitas al menos 3 personas para jugar.</p>}
 
       <div className="trios-nivel" role="group" aria-label="Nivel">
-        {NIVELES.map((nv) => (
+        {SELECTOR.map((nv) => (
           <button
             key={nv.id}
             className={`trios-nivel__btn${nivel === nv.id ? ' is-sel' : ''}`}
@@ -90,9 +90,10 @@ export default function TriosHome() {
       <section className="vor-seo">
         <h2>¿Cómo se juega en trío?</h2>
         <p>
-          Añade los nombres de las <b>tres personas</b>, elige el nivel (<b>Picante</b> o <b>Extremo</b>)
-          y un modo. En <b>Verdad o Reto</b> cada turno mezcla a los tres; en <b>Solo Retos</b> no hay
-          verdades, solo retos que suben de tono; y <b>La Botella</b> gira y apunta exacto a quién le toca.
+          Añade los nombres de las <b>tres personas</b>, elige el nivel y un modo. El nivel puede ser
+          <b> Picante</b>, <b>Extremo</b>, <b>Mezcla</b> (todo al azar) o <b>Sube solo</b> (arranca
+          suave y sube de tono cada pocos turnos). En <b>Verdad o Reto</b> cada turno mezcla a los tres;
+          en <b>Solo Retos</b> no hay verdades; y <b>La Botella</b> gira y apunta exacto a quién le toca.
         </p>
         <p>
           Regla de oro: cualquiera puede decir <b>“paso”</b> y no se discute. El juego es para pasarla

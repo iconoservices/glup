@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Check, X, RefreshCw } from 'lucide-react';
 import Seo from '../../components/Seo';
 import { useSettings } from '../../context/useSettings';
-import { NIVELES, buildPrompt, buildIcebreaker } from './swingerContent';
+import { SELECTOR, buildPrompt, buildIcebreaker } from './swingerContent';
 
 export default function SwingerPlay() {
   const navigate = useNavigate();
@@ -11,13 +11,15 @@ export default function SwingerPlay() {
   const { jugadores } = useSettings();
 
   const modo = params.get('modo') === 'vr' ? 'vr' : 'hielo';
-  const nivelId = params.get('nivel') === 'picante' ? 'picante' : 'social';
-  const nivel = NIVELES.find((n) => n.id === nivelId) || NIVELES[0];
+  const raw = params.get('nivel');
+  const nivelId = SELECTOR.some((n) => n.id === raw) ? raw : 'social';
+  const nivel = SELECTOR.find((n) => n.id === nivelId) || SELECTOR[0];
   const esHielo = modo === 'hielo';
 
   const [prompt, setPrompt] = useState(null);
   const [tipo, setTipo] = useState(null);
   const [score, setScore] = useState({ hechos: 0, fallos: 0 });
+  const [turno, setTurno] = useState(0);
   const [resolved, setResolved] = useState(false);
 
   const nuevo = (t) => {
@@ -26,7 +28,8 @@ export default function SwingerPlay() {
       setPrompt(buildIcebreaker(jugadores));
     } else {
       setTipo(t);
-      setPrompt(buildPrompt(nivelId, t, jugadores));
+      setPrompt(buildPrompt(nivelId, t, jugadores, turno));
+      setTurno((n) => n + 1);
     }
     setResolved(false);
   };

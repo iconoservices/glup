@@ -30,6 +30,14 @@ export const NIVELES = [
   { id: 'picante', label: 'Picante', emoji: '🔥', desc: 'Sube de tono con acuerdo' },
 ];
 
+// Opciones del selector en la home (incluye los modos combinados)
+export const SELECTOR = [
+  { id: 'social', label: 'Social', emoji: '🥂' },
+  { id: 'picante', label: 'Picante', emoji: '🔥' },
+  { id: 'mezcla', label: 'Mezcla', emoji: '🎲' },
+  { id: 'progresivo', label: 'Sube solo', emoji: '📈' },
+];
+
 export const ROMPEHIELOS = [
   '{n}, presentá a tu pareja al grupo diciendo algo que casi nadie sabe de ella.',
   '{n}, decile a {o} qué fue lo primero que notaste al llegar.',
@@ -88,9 +96,14 @@ export const PROMPTS = {
       '{n}, susurrale algo atrevido al oído a {o}; tu pareja decide si lo repetís en voz alta.',
       '{n} y {o}, mírense fijo 20 segundos sin reírse mientras sus parejas cuentan.',
       '{n}, dejá que {o} te pase un cubo de hielo por el brazo o el cuello.',
+      '{n}, con luz verde de las dos parejas, sentate en las piernas de {o} un turno mientras las parejas miran.',
+      '{n}, con su permiso, una palmada juguetona a {o} mientras tu pareja mira.',
+      '{n}, apoyá la mano en la cintura de {o} durante una canción, si sus parejas están de acuerdo.',
+      '{n}, con acuerdo de todos, dale un beso en el cuello a {o} durante 10 segundos.',
+      '{n}, dejá que {o} elija qué prenda te quitás.',
+      '{n}, contale al oído a {o} qué te gustaría de la noche; {o} decide si lo dice fuerte.',
       '{n}, decí en voz alta qué te gustaría de esta noche si todos estuvieran de acuerdo.',
       '{n}, elegí a una pareja para el próximo reto y explicá por qué.',
-      '{n}, dale la mano a {o} y que sus parejas decidan el próximo paso.',
     ],
   },
 };
@@ -106,6 +119,9 @@ export const RULETA_RETOS = [
   'que cada uno se quite una prenda',
   'presentarse de nuevo, ahora diciendo algo atrevido',
   'elegir juntos la próxima canción y con quién bailarla',
+  'una palmada juguetona, con permiso de las dos parejas',
+  'un beso en el cuello de 10 segundos, si todos están de acuerdo',
+  'sentarse en las piernas del otro un turno mientras las parejas miran',
 ];
 
 const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -124,10 +140,18 @@ export function buildIcebreaker(jugadores) {
   return rand(ROMPEHIELOS).replaceAll('{n}', n).replaceAll('{o}', o);
 }
 
-export function buildPrompt(nivelId, tipo, jugadores) {
-  const lista = PROMPTS[nivelId]?.[tipo] || PROMPTS.social[tipo];
+// nivelId: 'social' | 'picante' | 'mezcla' | 'progresivo'
+function poolFor(nivelId, tipo, turno) {
+  const s = PROMPTS.social[tipo] || [];
+  const p = PROMPTS.picante[tipo] || [];
+  if (nivelId === 'mezcla') return [...s, ...p];
+  if (nivelId === 'progresivo') return turno < 3 ? [...s] : [...s, ...p];
+  return PROMPTS[nivelId]?.[tipo] || s;
+}
+
+export function buildPrompt(nivelId, tipo, jugadores, turno = 0) {
   const [n, o] = dos(jugadores);
-  return rand(lista).replaceAll('{n}', n).replaceAll('{o}', o);
+  return rand(poolFor(nivelId, tipo, turno)).replaceAll('{n}', n).replaceAll('{o}', o);
 }
 
 export const contentStats = () =>

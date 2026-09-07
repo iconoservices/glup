@@ -6,7 +6,7 @@ import JsonLd from '../../components/JsonLd';
 import HubLink from '../../components/HubLink';
 import { useSettings } from '../../context/useSettings';
 import { SITE_URL } from '../../lib/ui';
-import { MODOS, NIVELES } from './swingerContent';
+import { MODOS, SELECTOR } from './swingerContent';
 
 export default function SwingerHome() {
   const navigate = useNavigate();
@@ -60,7 +60,7 @@ export default function SwingerHome() {
       {faltan && <p className="trios-warn">Sumá al menos 4 personas (2 parejas) para jugar.</p>}
 
       <div className="trios-nivel" role="group" aria-label="Nivel">
-        {NIVELES.map((nv) => (
+        {SELECTOR.map((nv) => (
           <button
             key={nv.id}
             className={`trios-nivel__btn${nivel === nv.id ? ' is-sel' : ''}`}

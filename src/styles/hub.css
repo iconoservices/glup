@@ -791,21 +791,23 @@
 
 .trios-nivel {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   justify-content: center;
 }
 
 .trios-nivel__btn {
-  flex: 1;
-  max-width: 9rem;
-  padding: 0.6rem 0.5rem;
+  flex: 1 1 6.5rem;
+  max-width: 10rem;
+  padding: 0.55rem 0.5rem;
   border-radius: var(--radius);
   border: 2px solid var(--line);
   background: var(--surface);
   color: var(--text-dim);
   font-family: 'Fredoka', sans-serif;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.86rem;
+  white-space: nowrap;
   cursor: pointer;
   transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.12s var(--ease-bounce);
 }

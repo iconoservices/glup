@@ -97,6 +97,7 @@ export const PROMPTS = {
       '{n}, junta tu cuerpo con el de {o} en la pose más comprometida que puedan sin quitarse ropa; cuenten 15 segundos.',
       'Las dos parejas: al mismo tiempo, cada quien besa a alguien de la otra pareja durante 10 segundos.',
       '{n}, besa a {o} mientras tu pareja y la de {o} miran de cerca y dan puntaje.',
+      '{n}, dale a {o} un beso lento en el vientre, justo sobre la ropa, con las parejas mirando.',
     ],
   },
 };

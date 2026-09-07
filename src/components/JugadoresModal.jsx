@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Users, Trash2, X, Check } from 'lucide-react';
+import { Users, Trash2, X, Check, ChevronDown } from 'lucide-react';
 import { normalizar, GEN_OPCIONES, CON_OPCIONES } from '../lib/players';
 
 const GEN_DOT = { h: '#1fa8ff', m: '#ff2e88', x: 'var(--text-faint)' };
@@ -9,6 +9,7 @@ export default function JugadoresModal({ jugadores, onClose, onSave, requiredByG
   const [nombre, setNombre] = useState('');
   const [gen, setGen] = useState('x');
   const [con, setCon] = useState('ambos');
+  const [abierto, setAbierto] = useState(false);
 
   const agregar = () => {
     const n = nombre.trim();
@@ -17,6 +18,7 @@ export default function JugadoresModal({ jugadores, onClose, onSave, requiredByG
     setNombre('');
     setGen('x');
     setCon('ambos');
+    setAbierto(false);
   };
 
   return (
@@ -43,31 +45,43 @@ export default function JugadoresModal({ jugadores, onClose, onSave, requiredByG
             placeholder="Nombre del jugador"
           />
 
-          <p className="jm-form__label">Es</p>
-          <div className="jm-seg">
-            {GEN_OPCIONES.map((g) => (
-              <button
-                key={g.id}
-                className={`jm-seg__btn${gen === g.id ? ' is-on' : ''}`}
-                onClick={() => setGen(g.id)}
-              >
-                {g.label}
-              </button>
-            ))}
-          </div>
+          <button
+            type="button"
+            className={`jm-more${abierto ? ' is-open' : ''}`}
+            onClick={() => setAbierto((v) => !v)}
+          >
+            <ChevronDown size={14} /> Género y orientación (opcional)
+          </button>
 
-          <p className="jm-form__label">Acepta retos de contacto con</p>
-          <div className="jm-seg">
-            {CON_OPCIONES.map((c) => (
-              <button
-                key={c.id}
-                className={`jm-seg__btn${con === c.id ? ' is-on' : ''}`}
-                onClick={() => setCon(c.id)}
-              >
-                {c.label}
-              </button>
-            ))}
-          </div>
+          {abierto && (
+            <>
+              <p className="jm-form__label">Es</p>
+              <div className="jm-seg">
+                {GEN_OPCIONES.map((g) => (
+                  <button
+                    key={g.id}
+                    className={`jm-seg__btn${gen === g.id ? ' is-on' : ''}`}
+                    onClick={() => setGen(g.id)}
+                  >
+                    {g.label}
+                  </button>
+                ))}
+              </div>
+
+              <p className="jm-form__label">Acepta retos de contacto con</p>
+              <div className="jm-seg">
+                {CON_OPCIONES.map((c) => (
+                  <button
+                    key={c.id}
+                    className={`jm-seg__btn${con === c.id ? ' is-on' : ''}`}
+                    onClick={() => setCon(c.id)}
+                  >
+                    {c.label}
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
 
           <button className="btn btn--solid btn--block" onClick={agregar} disabled={!nombre.trim()}>
             Añadir jugador

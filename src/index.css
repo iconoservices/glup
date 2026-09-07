@@ -867,6 +867,23 @@ html[data-route="hub"] body {
 .jm-form .btn { margin-top: 0.5rem; }
 .jm-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; vertical-align: middle; }
 
+.jm-more {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: none;
+  border: none;
+  padding: 0.2rem 0;
+  color: var(--text-dim);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.jm-more svg { transition: transform 0.2s; }
+.jm-more.is-open svg { transform: rotate(180deg); }
+
 .chiplist {
   max-height: 190px;
   overflow-y: auto;

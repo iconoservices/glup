@@ -88,6 +88,8 @@ export const PROMPTS = {
       '{n}, {p} pone las reglas de los próximos 2 minutos y {n} y {o} las obedecen al pie de la letra.',
       '{n}, deja una marca de beso en {o} donde no se vea con ropa.',
       '{n}, siéntate a horcajadas sobre {o} y muévete despacio un turno mientras {p} lleva la cuenta.',
+      '{n}, dale a {o} un beso lento en el vientre, justo sobre la ropa, mientras {p} mira.',
+      '{n}, con {o} de pie, bésale despacio de la clavícula hacia abajo hasta donde te atrevas, por encima de la ropa; {p} dice cuándo parar.',
       '{n}, {o} y {p} deciden, entre susurros, cómo sigue tu próximo minuto.',
       '{n}, quítate una prenda cada vez que te rías en el próximo minuto; {o} y {p} van a intentar que te rías.',
     ],

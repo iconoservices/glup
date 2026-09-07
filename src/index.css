@@ -833,6 +833,40 @@ html[data-route="hub"] body {
 .input:focus { border-color: var(--accent); }
 .input::placeholder { color: var(--text-faint); }
 
+/* Formulario de alta de jugador (nombre + género + orientación) */
+.jm-form { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+.jm-form .input { width: 100%; }
+.jm-form__label {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-top: 0.3rem;
+}
+.jm-seg { display: flex; gap: 0.4rem; }
+.jm-seg__btn {
+  flex: 1;
+  padding: 0.5rem 0.4rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--line-2);
+  background: var(--bg);
+  color: var(--text-dim);
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.jm-seg__btn.is-on {
+  border-color: var(--accent);
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent) 14%, var(--bg));
+}
+.jm-form .btn { margin-top: 0.5rem; }
+.jm-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; vertical-align: middle; }
+
 .chiplist {
   max-height: 190px;
   overflow-y: auto;

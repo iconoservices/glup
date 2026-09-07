@@ -1,5 +1,6 @@
 // Juegos para Tríos +18 — contenido (español neutro).
 // {n} = una persona · {o} = otra · {p} = el tercero · {no} = otras dos
+import { pickTrio } from '../../lib/players';
 
 export const MODOS = [
   { id: 'vr', label: 'Verdad o Reto', emoji: '😏', nivel: 4, desc: 'Confesiones y retos entre los tres', ruta: '/juegos-para-trios/jugar?modo=vr' },
@@ -126,15 +127,6 @@ function pick(arr, key) {
 
 export const pickBotellaReto = () => pick(BOTELLA_RETOS, 'botella');
 
-function tresJugadores(jugadores) {
-  const pool = jugadores.length >= 3 ? [...jugadores] : [...jugadores, 'alguien', 'otra persona', 'el tercero'];
-  for (let i = pool.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [pool[i], pool[j]] = [pool[j], pool[i]];
-  }
-  return pool.slice(0, 3);
-}
-
 function poolFor(nivelId, tipo, turno) {
   const p = PROMPTS.picante[tipo] || [];
   const e = PROMPTS.extremo[tipo] || [];
@@ -145,7 +137,7 @@ function poolFor(nivelId, tipo, turno) {
 
 export function buildPrompt(nivelId, tipo, jugadores, turno = 0) {
   const text = pick(poolFor(nivelId, tipo, turno), `${nivelId}:${tipo}`);
-  const [n, o, p] = tresJugadores(jugadores);
+  const [n, o, p] = pickTrio(jugadores, tipo === 'reto');
   return text
     .replaceAll('{no}', `${o} y ${p}`)
     .replaceAll('{n}', n)

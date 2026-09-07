@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { loadSetting, saveSetting } from '../lib/storage';
 import JugadoresModal from '../components/JugadoresModal';
+import { normalizar } from '../lib/players';
 import { SettingsContext } from './settingsContextObject';
 
 const DEFAULTS = { drinkingMode: false, intensity: 'intermedio', jugadores: [] };
@@ -15,7 +16,7 @@ export function SettingsProvider({ children }) {
     const next = {
       drinkingMode: loadSetting('drinkingMode', DEFAULTS.drinkingMode),
       intensity: loadSetting('intensity', DEFAULTS.intensity),
-      jugadores: loadSetting('jugadores', DEFAULTS.jugadores),
+      jugadores: normalizar(loadSetting('jugadores', DEFAULTS.jugadores)),
     };
     // Sincroniza con localStorage tras montar (patrón necesario con HTML pre-generado).
     // eslint-disable-next-line react-hooks/set-state-in-effect

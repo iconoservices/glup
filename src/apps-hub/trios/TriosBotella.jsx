@@ -4,6 +4,7 @@ import { ArrowLeft, RefreshCw } from 'lucide-react';
 import Seo from '../../components/Seo';
 import { useSettings } from '../../context/useSettings';
 import { pickBotellaReto } from './triosContent';
+import { nombre, compatibles } from '../../lib/players';
 
 const SPIN_MS = 3200;
 const rand = (a) => a[Math.floor(Math.random() * a.length)];
@@ -52,10 +53,12 @@ export default function TriosBotella() {
     );
 
     setTimeout(() => {
+      const g = jugadores[winner];
       const otros = jugadores.filter((_, i) => i !== winner);
-      const conQuien = rand(otros);
+      const compat = otros.filter((x) => compatibles(g, x));
+      const conQuien = nombre(rand(compat.length ? compat : otros));
       setElegidoIdx(winner);
-      setResultado(`${jugadores[winner]}: ${pickBotellaReto()} con ${conQuien}.`);
+      setResultado(`${nombre(g)}: ${pickBotellaReto()} con ${conQuien}.`);
       setGirando(false);
     }, SPIN_MS);
   };
@@ -99,7 +102,7 @@ export default function TriosBotella() {
                   className={`bottle-name${i === elegidoIdx ? ' is-chosen' : ''}`}
                   style={{ left: `${x}%`, top: `${y}%` }}
                 >
-                  {j}
+                  {nombre(j)}
                 </span>
               );
             })}

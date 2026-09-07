@@ -1,5 +1,6 @@
 // Verdad o Reto +18 — niveles y contenido.
 // {n} = un jugador al azar · {o} = otro jugador · {yo} = quien juega
+import { pickPareja } from '../../lib/players';
 
 export const NIVELES = [
   { id: 'suave', label: 'Suave', emoji: '😇', nivel: 1, desc: 'Para romper el hielo' },
@@ -198,10 +199,7 @@ const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
 export function buildPrompt(nivelId, tipo, jugadores) {
   const lista = PROMPTS[nivelId]?.[tipo] || PROMPTS.suave[tipo];
   const text = rand(lista);
-  const pool = jugadores.length ? [...jugadores] : ['alguien', 'otra persona'];
-  const n = rand(pool);
-  const rest = pool.filter((x) => x !== n);
-  const o = rest.length ? rand(rest) : 'alguien del grupo';
+  const [n, o] = pickPareja(jugadores, tipo === 'reto');
   return text.replaceAll('{n}', n).replaceAll('{o}', o).replaceAll('{yo}', n);
 }
 

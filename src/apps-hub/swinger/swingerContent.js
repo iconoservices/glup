@@ -1,5 +1,6 @@
 // Fiestas Swinger — contenido para eventos de varias parejas (español neutro).
 // {n} = una persona · {o} = otra · {no} = otras dos
+import { pickPareja } from '../../lib/players';
 
 export const MODOS = [
   { id: 'hielo', label: 'Rompehielos', emoji: '🥂', desc: 'Para cuando las parejas recién se conocen', ruta: '/fiestas-swinger/jugar?modo=hielo' },
@@ -129,17 +130,8 @@ function pick(arr, key) {
 
 export const pickRuletaReto = () => pick(RULETA_RETOS, 'ruleta');
 
-function dos(jugadores) {
-  const pool = jugadores.length >= 2 ? [...jugadores] : ['alguien', 'otra persona'];
-  for (let i = pool.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [pool[i], pool[j]] = [pool[j], pool[i]];
-  }
-  return [pool[0], pool[1], pool[2] || 'las otras parejas'];
-}
-
 export function buildIcebreaker(jugadores) {
-  const [n, o] = dos(jugadores);
+  const [n, o] = pickPareja(jugadores, false);
   return pick(ROMPEHIELOS, 'hielo').replaceAll('{n}', n).replaceAll('{o}', o);
 }
 
@@ -152,9 +144,9 @@ function poolFor(nivelId, tipo, turno) {
 }
 
 export function buildPrompt(nivelId, tipo, jugadores, turno = 0) {
-  const [n, o, p] = dos(jugadores);
+  const [n, o] = pickPareja(jugadores, tipo === 'reto');
   return pick(poolFor(nivelId, tipo, turno), `${nivelId}:${tipo}`)
-    .replaceAll('{no}', p)
+    .replaceAll('{no}', 'las otras parejas')
     .replaceAll('{n}', n)
     .replaceAll('{o}', o);
 }

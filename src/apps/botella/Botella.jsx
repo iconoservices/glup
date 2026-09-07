@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Users } from 'lucide-react';
 import GameShell from '../../components/GameShell';
 import { retosBotella as retosBottella } from '../../gameContent';
+import { nombre } from '../../lib/players';
 
 const SPIN_MS = 3200;
 
@@ -59,7 +60,7 @@ export default function Botella({ onBack, isDrinkingMode, intensity = 'intermedi
             const lista = retosBottella[intensity] || retosBottella.intermedio;
             let textoReto = lista[Math.floor(Math.random() * lista.length)];
             if (isDrinkingMode && Math.random() < 0.3) textoReto += '\n\n🍻 ¡Si te niegas, bebe 2 shots!';
-            setElegido(jugadores[winner]);
+            setElegido(nombre(jugadores[winner]));
             setElegidoIdx(winner);
             setReto(textoReto);
             setGirando(false);
@@ -104,7 +105,7 @@ export default function Botella({ onBack, isDrinkingMode, intensity = 'intermedi
                                     className={`bottle-name${i === elegidoIdx ? ' is-chosen' : ''}`}
                                     style={{ left: `${x}%`, top: `${y}%` }}
                                 >
-                                    {j}
+                                    {nombre(j)}
                                 </span>
                             );
                         })}

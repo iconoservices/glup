@@ -91,7 +91,7 @@ export default function TriosHome() {
         <h2>¿Cómo se juega en trío?</h2>
         <p>
           Añade los nombres de las <b>tres personas</b>, elige el nivel y un modo. El nivel puede ser
-          <b> Picante</b>, <b>Extremo</b>, <b>Mezcla</b> (todo al azar) o <b>Sube solo</b> (arranca
+          <b> Picante</b>, <b>Extremo</b>, <b>Al azar</b> (todo mezclado) o <b>Ascendente</b> (arranca
           suave y sube de tono cada pocos turnos). En <b>Verdad o Reto</b> cada turno mezcla a los tres;
           en <b>Solo Retos</b> no hay verdades; y <b>La Botella</b> gira y apunta exacto a quién le toca.
         </p>

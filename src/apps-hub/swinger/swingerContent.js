@@ -34,8 +34,8 @@ export const NIVELES = [
 export const SELECTOR = [
   { id: 'social', label: 'Social', emoji: '🥂' },
   { id: 'picante', label: 'Picante', emoji: '🔥' },
-  { id: 'mezcla', label: 'Mezcla', emoji: '🎲' },
-  { id: 'progresivo', label: 'Sube solo', emoji: '📈' },
+  { id: 'mezcla', label: 'Al azar', emoji: '🎲' },
+  { id: 'progresivo', label: 'Ascendente', emoji: '📈' },
 ];
 
 export const ROMPEHIELOS = [

@@ -69,6 +69,7 @@ export const PROMPTS = {
   extremo: {
     verdad: [
       '{n}, ¿has fantaseado con una noche de intercambio? Cuenta poco o mucho.',
+      '{n}, cuenta cómo fue tu primera fiesta swinger (o tu primer intercambio): qué pasó y cómo terminó.',
       '{n}, ¿qué te gustaría que tu pareja te viera hacer esta noche?',
       '{n}, ¿qué es lo más lejos que llegarías hoy con el permiso de tu pareja?',
       '{n}, ¿qué te frena más: la vergüenza o los celos?',
@@ -83,7 +84,8 @@ export const PROMPTS = {
       '{n}, dale una palmada a {o} y después acaricia donde diste, mientras tu pareja mira.',
       '{n}, recórrele el cuello a {o} con besos lentos durante 10 segundos.',
       '{n}, deja que {o} elija qué prenda te quitas, y quítatela sin prisa.',
-      '{n}, susúrrale al oído a {o} qué parte de su cuerpo miraste primero al llegar, mientras las parejas tratan de adivinar qué le dijiste.',
+      '{n}, susúrrale al oído a {o} qué parte de su cuerpo miraste primero al llegar; las parejas adivinan y, si fallan, {o} lo dice en voz alta.',
+      '{n}, susúrrale al oído a {o} dónde le darías el primer beso; si nadie adivina, {o} lo cuenta en voz alta.',
       '{n}, cuéntale al oído a {o} qué te gustaría de la noche; {o} decide si lo dice en voz alta.',
       '{n}, elige a alguien de otra pareja y báilale muy pegado 30 segundos.',
       '{n} y {o}, con {no} mirando, decidan entre susurros el próximo reto de las dos parejas.',

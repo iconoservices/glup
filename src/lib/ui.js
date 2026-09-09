@@ -19,4 +19,4 @@ export const stars = (r) => {
   return '★★★★★'.slice(0, n) + '☆☆☆☆☆'.slice(0, 5 - n);
 };
 
-export const SITE_URL = 'https://glup.bogahub.app';
+export const SITE_URL = 'https://glupi.netlify.app';

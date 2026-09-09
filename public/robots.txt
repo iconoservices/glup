@@ -17,4 +17,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://glup.bogahub.app/sitemap.xml
+Sitemap: https://glupi.netlify.app/sitemap.xml

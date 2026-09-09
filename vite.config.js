@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import { GAMES, CATEGORIES } from './src/catalog.js'
 
-const SITE = 'https://glup.bogahub.app'
+const SITE = 'https://glupi.netlify.app'
 
 function blogSlugs() {
   try {

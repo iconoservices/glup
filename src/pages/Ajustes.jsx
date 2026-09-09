@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Beer, Users, RotateCcw, Info, Star } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Beer, Users, RotateCcw, Info, Star, LayoutGrid } from 'lucide-react';
 import Seo from '../components/Seo';
 import InstallButton from '../components/InstallButton';
 import { accentStyle } from '../theme';
@@ -22,6 +23,7 @@ export default function Ajustes() {
   } = useSettings();
 
   const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <main className="settings">
@@ -68,6 +70,16 @@ export default function Ajustes() {
           </div>
           <span style={{ color: '#ffd700', fontWeight: 700, fontSize: '0.85rem' }}>Próx.</span>
         </div>
+      </div>
+
+      <div>
+        <p className="set-group__label">MÁS</p>
+        <SettingRow
+          icon={<LayoutGrid size={18} />}
+          label="Todas las apps de Glup"
+          value="Ver →"
+          onClick={() => navigate('/')}
+        />
       </div>
 
       <div>

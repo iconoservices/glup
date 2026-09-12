@@ -19,4 +19,8 @@ export const stars = (r) => {
   return '★★★★★'.slice(0, n) + '☆☆☆☆☆'.slice(0, 5 - n);
 };
 
-export const SITE_URL = 'https://glupi.netlify.app';
+import { REVISTA_BUILD } from './buildMode';
+
+export const SITE_URL = REVISTA_BUILD
+  ? 'https://revista.vizioclub.online'
+  : 'https://glupi.netlify.app';

@@ -4,7 +4,12 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import { GAMES, CATEGORIES } from './src/catalog.js'
 
-const SITE = 'https://glupi.netlify.app'
+// Build "seguro" (para tiendas de apps): sin Tríos, sin Swinger. Ver scripts/build-safe.mjs.
+const SAFE_BUILD = process.env.VITE_SAFE_BUILD === 'true'
+// Build de la Revista sola, como sitio independiente. Ver scripts/build-revista.mjs.
+const REVISTA_BUILD = process.env.VITE_REVISTA_BUILD === 'true'
+
+const SITE = REVISTA_BUILD ? 'https://revista.vizioclub.online' : 'https://glupi.netlify.app'
 
 function blogSlugs() {
   try {
@@ -15,18 +20,19 @@ function blogSlugs() {
 }
 
 function buildSitemap() {
-  const paths = [
-    '/',
-    '/glup',
-    ...CATEGORIES.map((c) => `/glup/${c.id}`),
-    ...GAMES.map((g) => `/glup/${g.slug}`),
-    '/verdad-o-reto-18',
-    '/juegos-para-trios',
-    '/fiestas-swinger',
-    '/contenido',
-    '/blog',
-    ...blogSlugs().map((s) => `/blog/${s}`),
-  ]
+  const paths = REVISTA_BUILD
+    ? ['/', ...blogSlugs().map((s) => `/${s}`)]
+    : [
+        '/',
+        '/glup',
+        ...CATEGORIES.map((c) => `/glup/${c.id}`),
+        ...GAMES.map((g) => `/glup/${g.slug}`),
+        '/verdad-o-reto-18',
+        ...(SAFE_BUILD ? [] : ['/juegos-para-trios', '/fiestas-swinger']),
+        '/contenido',
+        '/blog',
+        ...blogSlugs().map((s) => `/blog/${s}`),
+      ]
   const urls = paths
     .map((p) => `  <url><loc>${SITE}${p}</loc><changefreq>weekly</changefreq><priority>${p === '/' ? '1.0' : '0.8'}</priority></url>`)
     .join('\n')
@@ -66,10 +72,28 @@ export default defineConfig({
           },
         ],
       },
-      manifest: {
+      manifest: REVISTA_BUILD ? {
+        name: 'Revista Glup — guías y notas',
+        short_name: 'Revista',
+        description: 'Guías, listas y notas sobre juegos para fiestas, parejas y grupos, y más.',
+        lang: 'es',
+        theme_color: '#ffffff',
+        background_color: '#ffffff',
+        display: 'standalone',
+        orientation: 'portrait',
+        categories: ['lifestyle', 'entertainment'],
+        icons: [
+          { src: 'pwa-64x64.png', sizes: '64x64', type: 'image/png' },
+          { src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'pwa-512x512.png', sizes: '512x512', type: 'image/png' },
+          { src: 'maskable-icon-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }
+        ]
+      } : {
         name: 'Glup! — Juegos para beber, parejas y grupos',
         short_name: 'Glup!',
-        description: 'Juegos para la previa, juegos eróticos para parejas y retos para grupos. Gratis y sin descargar.',
+        description: SAFE_BUILD
+          ? 'Juegos para la previa y para grupos: verdad o reto, botella, yo nunca nunca y más. Gratis y sin descargar.'
+          : 'Juegos para la previa, juegos eróticos para parejas y retos para grupos. Gratis y sin descargar.',
         lang: 'es',
         theme_color: '#0b0f18',
         background_color: '#0b0f18',

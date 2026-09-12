@@ -25,77 +25,94 @@ import Article from './pages/Article';
 import RouteError from './pages/RouteError';
 import { GAMES, CATEGORIES } from './catalog';
 import { POSTS } from './blog/loader';
+import { SAFE_BUILD, REVISTA_BUILD } from './lib/buildMode';
+
+// ── Apps +18 fuertes: se excluyen por completo del build "seguro" (tiendas) ──
+const appsFuertes = SAFE_BUILD ? [] : [
+  {
+    path: 'juegos-para-trios',
+    element: <TriosShell />,
+    children: [
+      { index: true, element: <TriosHome /> },
+      { path: 'jugar', element: <TriosPlay /> },
+      { path: 'botella', element: <TriosBotella /> },
+      { path: 'contenido', element: <Navigate to="/contenido" replace /> },
+    ],
+  },
+  {
+    path: 'fiestas-swinger',
+    element: <SwingerShell />,
+    children: [
+      { index: true, element: <SwingerHome /> },
+      { path: 'jugar', element: <SwingerPlay /> },
+      { path: 'ruleta', element: <SwingerRuleta /> },
+    ],
+  },
+];
+
+// ── Build de la Revista sola: su propio sitio, su propio subdominio ──
+// Sin Hub, sin juegos: solo la lista de notas y cada artículo, en la raíz.
+const revistaRoutes = [
+  { index: true, element: <Blog /> },
+  {
+    path: ':slug',
+    element: <Article />,
+    getStaticPaths: () => POSTS.map((p) => `/${p.slug}`),
+  },
+  { path: '*', element: <NotFound /> },
+];
+
+const appRoutes = [
+  { index: true, element: <Hub /> },
+
+  // ── Banco de contenido (todo en una ruta) ──
+  { path: 'contenido', element: <Contenido /> },
+
+  // ── Glup! (juegos) ──
+  {
+    path: 'glup',
+    element: <GlupShell />,
+    children: [
+      { index: true, element: <Home /> },
+      ...CATEGORIES.map((c) => ({ path: c.id, element: <CategoryPage catId={c.id} /> })),
+      { path: 'ajustes', element: <Ajustes /> },
+      {
+        path: ':slug',
+        element: <GamePage />,
+        getStaticPaths: () => GAMES.map((g) => `/glup/${g.slug}`),
+      },
+    ],
+  },
+
+  // ── Verdad o Reto +18 ──
+  {
+    path: 'verdad-o-reto-18',
+    element: <VorShell />,
+    children: [
+      { index: true, element: <VorHome /> },
+      { path: 'jugar', element: <VorPlay /> },
+      { path: 'contenido', element: <Navigate to="/contenido" replace /> },
+    ],
+  },
+
+  ...appsFuertes,
+
+  // ── Revista / blog ──
+  { path: 'blog', element: <Blog /> },
+  {
+    path: 'blog/:slug',
+    element: <Article />,
+    getStaticPaths: () => POSTS.map((p) => `/blog/${p.slug}`),
+  },
+
+  { path: '*', element: <NotFound /> },
+];
 
 export const routes = [
   {
     path: '/',
     element: <App />,
     errorElement: <RouteError />,
-    children: [
-      { index: true, element: <Hub /> },
-
-      // ── Banco de contenido (todo en una ruta) ──
-      { path: 'contenido', element: <Contenido /> },
-
-      // ── Glup! (juegos) ──
-      {
-        path: 'glup',
-        element: <GlupShell />,
-        children: [
-          { index: true, element: <Home /> },
-          ...CATEGORIES.map((c) => ({ path: c.id, element: <CategoryPage catId={c.id} /> })),
-          { path: 'ajustes', element: <Ajustes /> },
-          {
-            path: ':slug',
-            element: <GamePage />,
-            getStaticPaths: () => GAMES.map((g) => `/glup/${g.slug}`),
-          },
-        ],
-      },
-
-      // ── Verdad o Reto +18 ──
-      {
-        path: 'verdad-o-reto-18',
-        element: <VorShell />,
-        children: [
-          { index: true, element: <VorHome /> },
-          { path: 'jugar', element: <VorPlay /> },
-          { path: 'contenido', element: <Navigate to="/contenido" replace /> },
-        ],
-      },
-
-      // ── Juegos para Tríos +18 ──
-      {
-        path: 'juegos-para-trios',
-        element: <TriosShell />,
-        children: [
-          { index: true, element: <TriosHome /> },
-          { path: 'jugar', element: <TriosPlay /> },
-          { path: 'botella', element: <TriosBotella /> },
-          { path: 'contenido', element: <Navigate to="/contenido" replace /> },
-        ],
-      },
-
-      // ── Fiestas Swinger ──
-      {
-        path: 'fiestas-swinger',
-        element: <SwingerShell />,
-        children: [
-          { index: true, element: <SwingerHome /> },
-          { path: 'jugar', element: <SwingerPlay /> },
-          { path: 'ruleta', element: <SwingerRuleta /> },
-        ],
-      },
-
-      // ── Revista / blog ──
-      { path: 'blog', element: <Blog /> },
-      {
-        path: 'blog/:slug',
-        element: <Article />,
-        getStaticPaths: () => POSTS.map((p) => `/blog/${p.slug}`),
-      },
-
-      { path: '*', element: <NotFound /> },
-    ],
+    children: REVISTA_BUILD ? revistaRoutes : appRoutes,
   },
 ];

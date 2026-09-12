@@ -6,8 +6,11 @@ import JsonLd from '../components/JsonLd';
 import MagNav from '../components/MagNav';
 import { accentStyle } from '../theme';
 import { SITE_URL } from '../lib/ui';
+import { REVISTA_BUILD, GAMES_ORIGIN } from '../lib/buildMode';
 import { POSTS, postBySlug, formatDate } from '../blog/loader';
 import { articleSchema, faqSchema, breadcrumbSchema } from '../lib/schema';
+
+const linkTo = (slug) => (REVISTA_BUILD ? `/${slug}` : `/blog/${slug}`);
 
 function Share({ title, url }) {
   const [copied, setCopied] = useState(false);
@@ -42,10 +45,10 @@ export default function Article() {
     return () => { delete document.documentElement.dataset.route; };
   }, []);
 
-  if (!post) return <Navigate to="/blog" replace />;
+  if (!post) return <Navigate to={REVISTA_BUILD ? '/' : '/blog'} replace />;
 
-  const url = `${SITE_URL}/blog/${slug}`;
-  const path = `/blog/${slug}`;
+  const path = linkTo(slug);
+  const url = `${SITE_URL}${path}`;
   const otros = POSTS.filter((p) => p.slug !== slug).slice(0, 3);
 
   return (
@@ -54,7 +57,10 @@ export default function Article() {
       <JsonLd data={[
         articleSchema(post, path),
         faqSchema(post.faq),
-        breadcrumbSchema([
+        breadcrumbSchema(REVISTA_BUILD ? [
+          { name: 'Inicio', path: '/' },
+          { name: post.title, path },
+        ] : [
           { name: 'Inicio', path: '/' },
           { name: 'Revista', path: '/blog' },
           { name: post.title, path },
@@ -65,7 +71,7 @@ export default function Article() {
 
       <nav className="crumbs" aria-label="Ruta">
         <Link to="/">Inicio</Link><span>›</span>
-        <Link to="/blog">Revista</Link><span>›</span>
+        {!REVISTA_BUILD && <><Link to="/blog">Revista</Link><span>›</span></>}
         <span className="crumbs__current">{post.category}</span>
       </nav>
 
@@ -102,7 +108,11 @@ export default function Article() {
 
         <section className="article__cta-box">
           <p>¿Listo para jugar?</p>
-          <Link className="btn btn--solid btn--pill" to="/" style={accentStyle('blue')}>Abrir Glup Juegos</Link>
+          {REVISTA_BUILD ? (
+            <a className="btn btn--solid btn--pill" href={GAMES_ORIGIN} style={accentStyle('blue')}>Abrir Glup Juegos</a>
+          ) : (
+            <Link className="btn btn--solid btn--pill" to="/" style={accentStyle('blue')}>Abrir Glup Juegos</Link>
+          )}
         </section>
       </div>
 
@@ -111,7 +121,7 @@ export default function Article() {
           <p className="article__more-label">Más de la Revista Glup</p>
           <div className="article__more-grid">
             {otros.map((p) => (
-              <Link key={p.slug} to={`/blog/${p.slug}`} className="article__more-link">
+              <Link key={p.slug} to={linkTo(p.slug)} className="article__more-link">
                 <span className="article__more-emoji">{p.emoji}</span>
                 <span>{p.title}</span>
               </Link>

@@ -1,7 +1,17 @@
 import { marked } from 'marked';
+import { REVISTA_BUILD, GAMES_ORIGIN } from '../lib/buildMode';
 
 // Carga todos los .md de posts/ en el build
 const files = import.meta.glob('./posts/*.md', { query: '?raw', import: 'default', eager: true });
+
+// Cuando la Revista vive en su propio dominio, los enlaces internos a juegos
+// (/glup/..., /verdad-o-reto-18, etc. escritos en las notas) tienen que ser
+// absolutos, porque esas rutas no existen en este sitio.
+const RUTAS_JUEGOS = /href="\/(glup|verdad-o-reto-18|juegos-para-trios|fiestas-swinger|contenido)/g;
+function absolutizarEnlaces(html) {
+  if (!REVISTA_BUILD) return html;
+  return html.replace(RUTAS_JUEGOS, `href="${GAMES_ORIGIN}/$1`);
+}
 
 function parseFrontmatter(raw) {
   const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
@@ -57,7 +67,7 @@ export const POSTS = Object.entries(files)
       hero: data.hero || data.description || '',
       summary: data.summary || '',
       faq: parseFaq(body),
-      html: marked.parse(body),
+      html: absolutizarEnlaces(marked.parse(body)),
     };
   })
   .sort((a, b) => (b.date || '').localeCompare(a.date || ''));

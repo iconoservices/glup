@@ -7,6 +7,7 @@ import Logo from '../components/Logo';
 import { stars, SITE_URL } from '../lib/ui';
 import { websiteSchema, faqSchema } from '../lib/schema';
 import { GAMES, CATEGORIES } from '../catalog';
+import { SAFE_BUILD } from '../lib/buildMode';
 
 const APPS = [
   {
@@ -17,7 +18,9 @@ const APPS = [
     badge: 'Beta',
     rating: '4.6',
     desc: 'Verdad o reto para adultos, con los nombres de tus amigos en cada reto.',
-    bullets: ['6 niveles: de suave a 4play', '144 verdades y retos', 'Retos personalizados con nombres', 'Marcador "Lo hice" / "Fallé"'],
+    bullets: SAFE_BUILD
+      ? ['Niveles de suave a pareja', 'Verdades y retos con nombres', 'Retos personalizados', 'Marcador "Lo hice" / "Fallé"']
+      : ['6 niveles: de suave a 4play', '144 verdades y retos', 'Retos personalizados con nombres', 'Marcador "Lo hice" / "Fallé"'],
     cta: 'Abrir Verdad o Reto',
   },
   {
@@ -30,6 +33,7 @@ const APPS = [
     desc: 'Para tres: verdad o reto entre los tres, solo retos picantes y la botella.',
     bullets: ['Verdad o reto para tríos', 'Modo "solo retos" (quítate una prenda…)', 'La botella que apunta exacto', 'Niveles Picante y Extremo'],
     cta: 'Abrir Tríos',
+    fuerte: true,
   },
   {
     to: '/fiestas-swinger',
@@ -41,6 +45,7 @@ const APPS = [
     desc: 'Para eventos de varias parejas: rompehielos, verdad o reto entre parejas y la ruleta.',
     bullets: ['Rompehielos para parejas que se conocen', 'Verdad o reto que cruza a las parejas', 'La ruleta que empareja al azar', 'Reglas de consentimiento incluidas'],
     cta: 'Abrir Swinger',
+    fuerte: true,
   },
   {
     to: '/glup',
@@ -53,7 +58,7 @@ const APPS = [
     bullets: ['Botella borracha y ruleta de castigos', 'Yo Nunca Nunca y Pre-Party', 'Dados eróticos y verdad o reto', 'Modo Caos y reglas propias'],
     cta: 'Abrir Glup!',
   },
-];
+].filter((a) => !SAFE_BUILD || !a.fuerte);
 
 const POPULAR = [
   { slug: 'botella-borracha-online', glyph: '🍾', name: 'Botella Borracha', tag: 'Grupos' },
@@ -65,6 +70,7 @@ const POPULAR = [
 ];
 
 const CAT_GLYPH = { fiesta: '🍻', parejas: '🔥', grupos: '😈' };
+const NUM_APPS = { 2: 'Dos', 3: 'Tres', 4: 'Cuatro' };
 
 const FAQ = [
   { q: '¿Los juegos son gratis?', a: 'Sí. Todos los juegos de Glup Juegos son gratis, sin cuenta y sin límites. No hay compras dentro de la app.' },
@@ -124,8 +130,9 @@ export default function Hub() {
           <p className="hub-hero__eyebrow">Gratis · Sin descargar · +18</p>
           <h1 className="hub-hero__title">Todos los juegos para tu fiesta, tu pareja y tu grupo</h1>
           <p className="hub-hero__sub">
-            Verdad o reto +18, juegos para tríos, fiestas swinger, botella borracha y más.
-            Elige uno y juega en el navegador. Nada que instalar.
+            {SAFE_BUILD
+              ? 'Verdad o reto +18, botella borracha, yo nunca nunca, dados eróticos y más. Elige uno y juega en el navegador. Nada que instalar.'
+              : 'Verdad o reto +18, juegos para tríos, fiestas swinger, botella borracha y más. Elige uno y juega en el navegador. Nada que instalar.'}
           </p>
 
           <form className="hub-search" onSubmit={onSearch}>
@@ -145,17 +152,28 @@ export default function Hub() {
         </div>
 
         <div className="hub-hero__art" aria-hidden="true">
-          <div className="hub-tile"><b>🔥</b><span>Verdad o Reto +18</span><small>6 niveles, de suave a 4play</small></div>
-          <div className="hub-tile"><b>😈</b><span>Juegos para Tríos</span><small>Verdad o reto entre los tres</small></div>
-          <div className="hub-tile"><b>🥂</b><span>Fiestas Swinger</span><small>Para varias parejas</small></div>
-          <div className="hub-tile"><b>🍾</b><span>Botella Borracha</span><small>Gira y decide quién cumple</small></div>
+          {SAFE_BUILD ? (
+            <>
+              <div className="hub-tile"><b>🔥</b><span>Verdad o Reto +18</span><small>De suave a pareja</small></div>
+              <div className="hub-tile"><b>🍾</b><span>Botella Borracha</span><small>Gira y decide quién cumple</small></div>
+              <div className="hub-tile"><b>🎲</b><span>Dados Eróticos</span><small>Acción + parte del cuerpo</small></div>
+              <div className="hub-tile"><b>🍸</b><span>Yo Nunca Nunca</span><small>Confesiones sin filtro</small></div>
+            </>
+          ) : (
+            <>
+              <div className="hub-tile"><b>🔥</b><span>Verdad o Reto +18</span><small>6 niveles, de suave a 4play</small></div>
+              <div className="hub-tile"><b>😈</b><span>Juegos para Tríos</span><small>Verdad o reto entre los tres</small></div>
+              <div className="hub-tile"><b>🥂</b><span>Fiestas Swinger</span><small>Para varias parejas</small></div>
+              <div className="hub-tile"><b>🍾</b><span>Botella Borracha</span><small>Gira y decide quién cumple</small></div>
+            </>
+          )}
         </div>
       </header>
 
       <section className="hub-sec" id="apps">
         <div className="hub-sec__head">
-          <p className="hub-sec__kicker">Cuatro apps</p>
-          <h2 className="hub-sec__title">Un montón de juegos, en cuatro apps</h2>
+          <p className="hub-sec__kicker">{NUM_APPS[APPS.length]} apps</p>
+          <h2 className="hub-sec__title">Un montón de juegos, en {NUM_APPS[APPS.length].toLowerCase()} apps</h2>
           <p className="hub-sec__lead">Cada una se abre y se instala por separado. Sin cuenta, sin anuncios entre partidas.</p>
         </div>
 
@@ -239,8 +257,8 @@ export default function Hub() {
         <div className="hub-foot__inner">
           <div className="hub-foot__links">
             <Link to="/verdad-o-reto-18">Verdad o Reto +18</Link>
-            <Link to="/juegos-para-trios">Tríos +18</Link>
-            <Link to="/fiestas-swinger">Fiestas Swinger</Link>
+            {!SAFE_BUILD && <Link to="/juegos-para-trios">Tríos +18</Link>}
+            {!SAFE_BUILD && <Link to="/fiestas-swinger">Fiestas Swinger</Link>}
             <Link to="/glup">Glup!</Link>
             <Link to="/blog">Revista</Link>
             <Link to="/contenido">Todo el contenido</Link>

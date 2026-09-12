@@ -1,15 +1,19 @@
 // Verdad o Reto +18 — niveles y contenido.
 // {n} = un jugador al azar · {o} = otro jugador · {yo} = quien juega
 import { pickPareja } from '../../lib/players';
+import { SAFE_BUILD } from '../../lib/buildMode';
 
-export const NIVELES = [
+const TODOS_LOS_NIVELES = [
   { id: 'suave', label: 'Suave', emoji: '😇', nivel: 1, desc: 'Para romper el hielo' },
   { id: 'atrevido', label: 'Atrevido', emoji: '😏', nivel: 2, desc: 'Sube la temperatura' },
   { id: 'loco', label: 'Loco', emoji: '🤪', nivel: 3, desc: 'Caos total' },
   { id: 'pareja', label: 'Pareja', emoji: '💑', nivel: 3, desc: 'Solo para dos' },
-  { id: 'hardcore', label: 'Hardcore', emoji: '🔥', nivel: 4, desc: 'Sin vergüenza' },
-  { id: '4play', label: '4Play', emoji: '🔞', nivel: 5, desc: 'Nivel dios' },
+  { id: 'hardcore', label: 'Hardcore', emoji: '🔥', nivel: 4, desc: 'Sin vergüenza', fuerte: true },
+  { id: '4play', label: '4Play', emoji: '🔞', nivel: 5, desc: 'Nivel dios', fuerte: true },
 ];
+
+// En el build "seguro" (tiendas) se ocultan los dos niveles más fuertes.
+export const NIVELES = TODOS_LOS_NIVELES.filter((n) => !SAFE_BUILD || !n.fuerte);
 
 export const PROMPTS = {
   suave: {
@@ -197,7 +201,8 @@ export const PROMPTS = {
 const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 export function buildPrompt(nivelId, tipo, jugadores) {
-  const lista = PROMPTS[nivelId]?.[tipo] || PROMPTS.suave[tipo];
+  const id = NIVELES.some((n) => n.id === nivelId) ? nivelId : 'suave';
+  const lista = PROMPTS[id]?.[tipo] || PROMPTS.suave[tipo];
   const text = rand(lista);
   const [n, o] = pickPareja(jugadores, tipo === 'reto');
   return text.replaceAll('{n}', n).replaceAll('{o}', o).replaceAll('{yo}', n);

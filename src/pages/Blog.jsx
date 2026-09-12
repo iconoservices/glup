@@ -4,7 +4,10 @@ import Seo from '../components/Seo';
 import JsonLd from '../components/JsonLd';
 import MagNav from '../components/MagNav';
 import { SITE_URL } from '../lib/ui';
+import { REVISTA_BUILD } from '../lib/buildMode';
 import { POSTS, formatDate } from '../blog/loader';
+
+const linkTo = (slug) => (REVISTA_BUILD ? `/${slug}` : `/blog/${slug}`);
 
 export default function Blog() {
   const [lead, ...rest] = POSTS;
@@ -18,12 +21,12 @@ export default function Blog() {
     '@context': 'https://schema.org',
     '@type': 'Blog',
     name: 'Revista Glup',
-    url: SITE_URL + '/blog',
+    url: SITE_URL + (REVISTA_BUILD ? '' : '/blog'),
     inLanguage: 'es',
     blogPost: POSTS.map((p) => ({
       '@type': 'BlogPosting',
       headline: p.title,
-      url: SITE_URL + '/blog/' + p.slug,
+      url: SITE_URL + linkTo(p.slug),
       datePublished: p.date,
     })),
   };
@@ -33,7 +36,7 @@ export default function Blog() {
       <Seo
         title="Revista Glup — guías y listas de juegos para fiestas, parejas y grupos"
         description="Guías, listas y trucos: los mejores juegos eróticos para parejas, juegos para la previa, verdad o reto, yo nunca nunca y más. Ideas para jugar hoy."
-        path="/blog"
+        path={REVISTA_BUILD ? '/' : '/blog'}
       />
       <JsonLd data={blogSchema} />
 
@@ -47,7 +50,7 @@ export default function Blog() {
         </header>
 
         {lead && (
-          <Link to={`/blog/${lead.slug}`} className="mag-lead">
+          <Link to={linkTo(lead.slug)} className="mag-lead">
             <img className="mag-lead__img" src={lead.cover} alt={lead.title} width="1200" height="675" loading="eager" />
             <div className="mag-lead__overlay">
               <h2 className="mag-lead__title">{lead.title}</h2>
@@ -58,7 +61,7 @@ export default function Blog() {
 
         <div className="mag__grid">
           {rest.map((p) => (
-            <Link key={p.slug} to={`/blog/${p.slug}`} className="mag-card">
+            <Link key={p.slug} to={linkTo(p.slug)} className="mag-card">
               <img className="mag-card__img" src={p.cover} alt={p.title} width="1200" height="675" loading="lazy" />
               <div className="mag-card__body">
                 <h2 className="mag-card__title">{p.title}</h2>

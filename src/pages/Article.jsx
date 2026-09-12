@@ -4,6 +4,7 @@ import { ShieldCheck, Link2, Check } from 'lucide-react';
 import Seo from '../components/Seo';
 import JsonLd from '../components/JsonLd';
 import MagNav from '../components/MagNav';
+import Logo from '../components/Logo';
 import { accentStyle } from '../theme';
 import { SITE_URL } from '../lib/ui';
 import { REVISTA_BUILD, GAMES_ORIGIN } from '../lib/buildMode';
@@ -85,7 +86,7 @@ export default function Article() {
         <p className="article__deck">{post.hero}</p>
 
         <div className="article__byline">
-          <span className="article__avatar" aria-hidden="true">{post.emoji}</span>
+          <span className="article__avatar" aria-hidden="true"><Logo size={20} /></span>
           <div>
             <p className="article__author">Equipo de Glup</p>
             <p className="article__dates">

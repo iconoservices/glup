@@ -9,7 +9,7 @@ const SAFE_BUILD = process.env.VITE_SAFE_BUILD === 'true'
 // Build de la Revista sola, como sitio independiente. Ver scripts/build-revista.mjs.
 const REVISTA_BUILD = process.env.VITE_REVISTA_BUILD === 'true'
 
-const SITE = REVISTA_BUILD ? 'https://revista.vizioclub.online' : 'https://glupi.netlify.app'
+const SITE = REVISTA_BUILD ? 'https://revista.vizioclub.online' : 'https://juegosglup.vizioclub.online'
 
 function blogSlugs() {
   try {

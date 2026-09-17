@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Users, Trash2, X, Check, Pencil } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Users, Trash2, X, Check, Pencil, ArrowRight } from 'lucide-react';
 import { normalizar } from '../lib/players';
 
-export default function JugadoresModal({ jugadores, onClose, onSave, requiredByGame = false }) {
+export default function JugadoresModal({ jugadores, onClose, onSave, requiredByGame = false, minimo = 2, maximo = null, onExceso = null }) {
+  const navigate = useNavigate();
   const [lista, setLista] = useState(() => normalizar(jugadores));
   const [nombre, setNombre] = useState('');
   const [gen, setGen] = useState('h');
@@ -100,7 +102,19 @@ export default function JugadoresModal({ jugadores, onClose, onSave, requiredByG
         </div>
 
         {requiredByGame && (
-          <p className="hint">⚠️ Agrega al menos 2 personas para comenzar a jugar.</p>
+          <p className="hint">⚠️ Agrega al menos {minimo} persona{minimo === 1 ? '' : 's'} para comenzar a jugar.</p>
+        )}
+
+        {maximo && lista.length > maximo && onExceso && (
+          <div className="jm-exceso">
+            <p>
+              Este juego es para {maximo}. Con {lista.length} personas te va a quedar mejor en{' '}
+              <b>{onExceso === '/fiestas-swinger' ? 'Fiestas Swinger' : 'otra app'}</b>.
+            </p>
+            <button type="button" className="jm-exceso__btn" onClick={() => { onClose(); navigate(onExceso); }}>
+              Ir a Fiestas Swinger <ArrowRight size={15} />
+            </button>
+          </div>
         )}
 
         <div className="jm-form">

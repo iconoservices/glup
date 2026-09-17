@@ -59,6 +59,9 @@ export function SettingsProvider({ children }) {
         <JugadoresModal
           jugadores={state.jugadores}
           requiredByGame={!!modal.required}
+          minimo={modal.minimo || 2}
+          maximo={modal.maximo || null}
+          onExceso={modal.onExceso || null}
           onClose={closeJugadores}
           onSave={(list) => {
             saveJugadores(list);

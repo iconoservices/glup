@@ -21,7 +21,7 @@ export default function TriosHome() {
       ? modo.ruta
       : `${modo.ruta}&nivel=${nivel}`;
     if (faltan) {
-      openJugadores({ required: true, onDone: () => navigate(url) });
+      openJugadores({ required: true, minimo: 3, maximo: 3, onExceso: '/fiestas-swinger', onDone: () => navigate(url) });
       return;
     }
     navigate(url);
@@ -56,7 +56,7 @@ export default function TriosHome() {
         <p className="vor-sub">Verdad o reto, retos al límite y la botella para tríos.</p>
       </header>
 
-      <button className="vor-players" onClick={() => openJugadores()}>
+      <button className="vor-players" onClick={() => openJugadores({ minimo: 3, maximo: 3, onExceso: '/fiestas-swinger' })}>
         <Users size={16} />
         {jugadores.length > 0 ? `${jugadores.length} jugadores` : 'Agregar 3 jugadores'}
       </button>

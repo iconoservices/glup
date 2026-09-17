@@ -28,7 +28,7 @@ function buildSitemap() {
         ...CATEGORIES.map((c) => `/glup/${c.id}`),
         ...GAMES.map((g) => `/glup/${g.slug}`),
         '/verdad-o-reto-18',
-        ...(SAFE_BUILD ? [] : ['/juegos-para-trios', '/fiestas-swinger']),
+        ...(SAFE_BUILD ? [] : ['/juegos-para-trios', '/fiestas-swinger', '/sin-limites']),
         '/contenido',
         '/blog',
         ...blogSlugs().map((s) => `/blog/${s}`),

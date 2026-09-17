@@ -20,6 +20,9 @@ import SwingerShell from './apps-hub/swinger/SwingerShell';
 import SwingerHome from './apps-hub/swinger/SwingerHome';
 import SwingerPlay from './apps-hub/swinger/SwingerPlay';
 import SwingerRuleta from './apps-hub/swinger/SwingerRuleta';
+import SinLimitesShell from './apps-hub/sinlimites/SinLimitesShell';
+import SinLimitesHome from './apps-hub/sinlimites/SinLimitesHome';
+import SinLimitesPlay from './apps-hub/sinlimites/SinLimitesPlay';
 import Blog from './pages/Blog';
 import Article from './pages/Article';
 import RouteError from './pages/RouteError';
@@ -46,6 +49,15 @@ const appsFuertes = SAFE_BUILD ? [] : [
       { index: true, element: <SwingerHome /> },
       { path: 'jugar', element: <SwingerPlay /> },
       { path: 'ruleta', element: <SwingerRuleta /> },
+    ],
+  },
+  {
+    path: 'sin-limites',
+    element: <SinLimitesShell />,
+    children: [
+      { index: true, element: <SinLimitesHome /> },
+      { path: 'jugar', element: <SinLimitesPlay /> },
+      { path: 'contenido', element: <Navigate to="/contenido" replace /> },
     ],
   },
 ];

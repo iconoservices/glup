@@ -1,6 +1,6 @@
 ---
 title: Juegos para tríos: 3 formas de romper el hielo entre tres
-description: Juegos para tríos +18: verdad o reto en trío, retos picantes (quítate una prenda y más) y la botella. Cómo jugar, reglas de consentimiento y niveles. Gratis y online.
+description: Juegos para tríos +18: verdad o reto en trío, retos picantes (quítate una prenda y más) y la botella. Cómo jugar y niveles. Gratis y online.
 emoji: 😈
 date: 2026-09-06
 read: 6

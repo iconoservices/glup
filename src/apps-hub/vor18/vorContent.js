@@ -177,7 +177,7 @@ export const PROMPTS = {
       '{n}, confiesa el pensamiento más sucio que has tenido hoy.',
       '{n}, ¿qué dos personas de esta sala pondrías juntas?',
       '{n}, ¿harías un intercambio de parejas por una noche?',
-      '{n}, ¿cuál es tu límite absoluto que nunca cruzarías?',
+      '{n}, ¿cuál es tu fantasía o fetiche secreto más atrevido?',
       '{n}, si esta sala fuera una orgía, ¿te quedarías o te irías?',
       '{n}, ¿besarías a alguien de tu mismo sexo aquí ahora?',
       '{n}, ¿qué es lo más morboso que te gustaría que te hicieran delante de gente?',

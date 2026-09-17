@@ -32,7 +32,7 @@ export const PROMPTS = {
       '{n}, ¿cuál es la parte de tu cuerpo que más te gusta que admiren?',
       '{n}, describe sin filtro la última vez que perdiste el control.',
       '{n}, ¿qué prenda te quitarías primero si tuvieras que hacerlo ya mismo frente a todos?',
-      '{n}, ¿cuál es tu límite real esta noche, el que nadie debería cruzar?',
+      '{n}, ¿qué es lo que más te calienta que te digan al oído?',
       '{n}, ¿preferirías que {o} te desvista, o desvestir tú a {o} frente al grupo?',
     ],
     reto: [
@@ -55,12 +55,12 @@ export const PROMPTS = {
       '{n}, ¿te animarías a quedarte sin ropa frente a todos ahora mismo? ¿Por qué sí o por qué no?',
       '{n}, ¿qué es lo más lejos que has llegado siendo observado por otros?',
       '{n}, si el grupo decidiera por ti esta noche, ¿hasta dónde dejarías que lleguen?',
-      '{n}, ¿qué palabra usamos si en cualquier momento quieres frenar todo?',
+      '{n}, ¿a quién del grupo le darías un beso apasionado ahora mismo?',
       '{n}, describe qué sentirías si {o} se desnudara frente a ti ahora mismo.',
       '{n}, ¿prefieres ser el centro de atención desnudo, o que lo sea {o} mientras miras?',
     ],
     reto: [
-      '{n}, quédate completamente sin ropa frente al grupo durante el resto de esta ronda (o hasta que digas "paso").',
+      '{n}, quédate completamente sin ropa frente al grupo durante el resto de esta ronda.',
       '{n}, deja que {o} te quite la última prenda, despacio, con todos mirando.',
       '{n}, ponte de pie al centro y deja que el grupo decida, entre todos, qué prenda sale a continuación.',
       '{n}, recuéstate y deja que {o} te recorra todo el cuerpo con las manos durante 30 segundos, sin ropa, mientras el grupo mira en silencio.',

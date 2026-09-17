@@ -6,14 +6,15 @@ import JsonLd from '../../components/JsonLd';
 import HubLink from '../../components/HubLink';
 import { useSettings } from '../../context/useSettings';
 import { SITE_URL } from '../../lib/ui';
-import { MODOS, SELECTOR } from './triosContent';
+import { MODOS, SELECTOR, getComposicion } from './triosContent';
 
 export default function TriosHome() {
   const navigate = useNavigate();
   const { jugadores, openJugadores } = useSettings();
-  const [nivel, setNivel] = useState('picante');
+  const [nivel, setNivel] = useState('progresivo');
 
   const faltan = jugadores.length < 3;
+  const comp = getComposicion(jugadores);
 
   const irA = (modo) => {
     const url = modo.id === 'botella'
@@ -31,7 +32,7 @@ export default function TriosHome() {
     '@type': 'WebApplication',
     name: 'Juegos para Tríos +18',
     url: SITE_URL + '/juegos-para-trios',
-    description: 'Juego para tríos +18: verdad o reto entre los tres, solo retos picantes y la botella. Con los nombres de quienes juegan. Gratis y sin descargar.',
+    description: 'Juegos eróticos para tríos +18: verdad o reto entre tres, solo retos picantes y la botella. Con los nombres de los tres. Gratis y sin descargar.',
     applicationCategory: 'GameApplication',
     operatingSystem: 'Web',
     isAccessibleForFree: true,
@@ -43,7 +44,7 @@ export default function TriosHome() {
     <div className="vor-home">
       <Seo
         title="Juegos para Tríos +18 — verdad o reto, retos y botella"
-        description="Juego para tríos +18: verdad o reto entre los tres, retos picantes (quítate una prenda y más) y la botella que apunta exacto. Con los nombres de quienes juegan. Gratis y sin descargar."
+        description="Juegos eróticos para tríos +18: verdad o reto entre tres, solo retos picantes y la botella. Con los nombres de quienes juegan. Gratis y sin descargar."
         path="/juegos-para-trios"
       />
       <JsonLd data={schema} />
@@ -52,13 +53,49 @@ export default function TriosHome() {
       <header className="vor-head">
         <p className="vor-eyebrow">Para tres · +18</p>
         <h1 className="vor-title">Juegos para <span>Tríos</span></h1>
-        <p className="vor-sub">Verdad o reto, retos picantes y la botella. Todo con el sí de los tres.</p>
+        <p className="vor-sub">Verdad o reto, retos al límite y la botella para tríos.</p>
       </header>
 
       <button className="vor-players" onClick={() => openJugadores()}>
         <Users size={16} />
         {jugadores.length > 0 ? `${jugadores.length} jugadores` : 'Agregar 3 jugadores'}
       </button>
+      {jugadores.length >= 3 && comp && (
+        <div className="trios-comp-bar">
+          <span>Modo detectado:</span>
+          <strong>{comp.label} ({comp.badge})</strong>
+        </div>
+      )}
+      {jugadores.length >= 3 && comp && comp.tipo === 'HHH' && (
+        <div
+          style={{
+            background: 'rgba(168, 85, 247, 0.14)',
+            border: '1px solid rgba(168, 85, 247, 0.4)',
+            borderRadius: '12px',
+            padding: '0.75rem 1rem',
+            margin: '0.6rem 0',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '0.75rem',
+            cursor: 'pointer',
+            textAlign: 'left',
+          }}
+          onClick={() => navigate('/juegos-gay')}
+        >
+          <div>
+            <span style={{ fontSize: '0.85rem', color: '#f3e8ff', fontWeight: 600, display: 'block' }}>
+              🌈 ¿Jugáis solo hombres?
+            </span>
+            <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>
+              Prueba nuestra app Juegos Gay +18 con retos 100% pensados para vosotros.
+            </span>
+          </div>
+          <span style={{ color: '#c084fc', fontSize: '0.85rem', fontWeight: 700, whiteSpace: 'nowrap' }}>
+            Ir ➔
+          </span>
+        </div>
+      )}
       {faltan && <p className="trios-warn">Necesitas al menos 3 personas para jugar.</p>}
 
       <div className="trios-nivel" role="group" aria-label="Nivel">
@@ -94,10 +131,6 @@ export default function TriosHome() {
           <b> Picante</b>, <b>Extremo</b>, <b>Al azar</b> (todo mezclado) o <b>Ascendente</b> (arranca
           suave y sube de tono cada pocos turnos). En <b>Verdad o Reto</b> cada turno mezcla a los tres;
           en <b>Solo Retos</b> no hay verdades; y <b>La Botella</b> gira y apunta exacto a quién le toca.
-        </p>
-        <p>
-          Regla de oro: cualquiera puede decir <b>“paso”</b> y no se discute. El juego es para pasarla
-          bien entre los tres, no para incomodar a nadie.
         </p>
         <p className="vor-seo__kw">
           juegos para tríos · verdad o reto en trío · retos para tríos · juego +18 para tres personas · botella para tríos

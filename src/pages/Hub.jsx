@@ -43,7 +43,7 @@ const APPS = [
     badge: 'Nuevo',
     rating: '4.4',
     desc: 'Para eventos de varias parejas: rompehielos, verdad o reto entre parejas y la ruleta.',
-    bullets: ['Rompehielos para parejas que se conocen', 'Verdad o reto que cruza a las parejas', 'La ruleta que empareja al azar', 'Reglas de consentimiento incluidas'],
+    bullets: ['Rompehielos para parejas que se conocen', 'Verdad o reto que cruza a las parejas', 'La ruleta que empareja al azar', 'Retos picantes para parejas'],
     cta: 'Abrir Swinger',
     fuerte: true,
   },
@@ -55,8 +55,20 @@ const APPS = [
     badge: 'Nuevo',
     rating: '4.5',
     desc: 'El más fuerte de la casa: verdad o reto sin límites, exhibición y retos al tope.',
-    bullets: ['Nivel Fuerte y Sin Límites', 'Escribe tus propios retos en la partida', 'Para 2 o más personas', 'Regla de "paso" siempre disponible'],
+    bullets: ['Nivel Fuerte y Sin Límites', 'Escribe tus propios retos en la partida', 'Para 2 o más personas', 'Retos extremos y sin censura'],
     cta: 'Abrir Sin Límites',
+    fuerte: true,
+  },
+  {
+    to: '/juegos-gay',
+    kind: 'violet',
+    glyph: '🌈',
+    name: 'Juegos Gay +18',
+    badge: 'Pronto',
+    rating: '4.7',
+    desc: 'Exclusivo para chicos: verdad o reto gay, ruleta de fetiches y retos entre hombres.',
+    bullets: ['Roles: Activo, Pasivo, Versátil y Sumiso', 'Para 2 hombres o tríos de chicos', 'Fetiches, poses y morbo sin filtros', 'La botella y ruleta para hombres'],
+    cta: 'Ver Juegos Gay',
     fuerte: true,
   },
   {
@@ -82,7 +94,7 @@ const POPULAR = [
 ];
 
 const CAT_GLYPH = { fiesta: '🍻', parejas: '🔥', grupos: '😈' };
-const NUM_APPS = { 2: 'Dos', 3: 'Tres', 4: 'Cuatro', 5: 'Cinco' };
+const NUM_APPS = { 2: 'Dos', 3: 'Tres', 4: 'Cuatro', 5: 'Cinco', 6: 'Seis', 7: 'Siete' };
 
 const FAQ = [
   { q: '¿Los juegos son gratis?', a: 'Sí. Todos los juegos de Glup Juegos son gratis, sin cuenta y sin límites. No hay compras dentro de la app.' },
@@ -184,8 +196,8 @@ export default function Hub() {
 
       <section className="hub-sec" id="apps">
         <div className="hub-sec__head">
-          <p className="hub-sec__kicker">{NUM_APPS[APPS.length]} apps</p>
-          <h2 className="hub-sec__title">Un montón de juegos, en {NUM_APPS[APPS.length].toLowerCase()} apps</h2>
+          <p className="hub-sec__kicker">{NUM_APPS[APPS.length] || APPS.length} apps</p>
+          <h2 className="hub-sec__title">Un montón de juegos, en {(NUM_APPS[APPS.length] || `${APPS.length}`).toLowerCase()} apps</h2>
           <p className="hub-sec__lead">Cada una se abre y se instala por separado. Sin cuenta, sin anuncios entre partidas.</p>
         </div>
 

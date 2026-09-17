@@ -67,7 +67,7 @@ export default function SwingerRuleta() {
     <div className="vor-game">
       <Seo
         title="La Ruleta de Parejas — fiestas swinger (+18)"
-        description="La ruleta que empareja a dos personas al azar en una fiesta de varias parejas y les da un reto. Con reglas de consentimiento. Gratis y sin descargar."
+        description="La ruleta que empareja a dos personas al azar en una fiesta de varias parejas y les da un reto. Gratis y sin descargar."
         path="/fiestas-swinger/ruleta"
       />
 

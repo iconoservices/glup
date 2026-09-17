@@ -40,38 +40,57 @@ const shuffle = (arr) => {
   return a;
 };
 
-// [n, o] como nombres. fisico = intenta que sean compatibles.
-export function pickPareja(js = [], fisico = false) {
-  const pool = js.length ? js : ['alguien', 'otra persona'];
+// [n, o] como nombres. fisico = intenta que sean compatibles. targetGen = 'm' | 'h'
+export function pickPareja(js = [], fisico = false, targetGen = null) {
+  const norm = normalizar(js);
+  const pool = norm.length ? norm : [{ name: 'alguien', gen: 'x', con: 'ambos' }, { name: 'otra persona', gen: 'x', con: 'ambos' }];
+  
+  let nCandidate = null;
+  if (targetGen) {
+    const matching = pool.filter((j) => j.gen === targetGen);
+    if (matching.length > 0) {
+      nCandidate = matching[Math.floor(Math.random() * matching.length)];
+    }
+  }
+
   const s = shuffle(pool);
+  let n = nCandidate || s[0];
+  let o = s.find((x) => x !== n) || pool[1] || { name: 'otra persona', gen: 'x', con: 'ambos' };
+
   if (fisico) {
     for (let i = 0; i < s.length; i++) {
       for (let k = i + 1; k < s.length; k++) {
-        if (compatibles(s[i], s[k])) return [nombre(s[i]), nombre(s[k])];
-      }
-    }
-  }
-  return [nombre(s[0]), nombre(s[1] ?? 'alguien del grupo')];
-}
-
-// [n, o, p] como nombres. fisico = intenta que n-o sean compatibles.
-export function pickTrio(js = [], fisico = false) {
-  const pool = js.length >= 3 ? js : [...js, 'alguien', 'otra persona', 'el tercero'];
-  const s = shuffle(pool);
-  let n = s[0];
-  let o = s[1];
-  if (fisico) {
-    let hallado = false;
-    for (let i = 0; i < s.length && !hallado; i++) {
-      for (let k = 0; k < s.length && !hallado; k++) {
-        if (i !== k && compatibles(s[i], s[k])) {
-          n = s[i];
-          o = s[k];
-          hallado = true;
+        if (compatibles(s[i], s[k])) {
+          if (!targetGen || s[i].gen === targetGen) {
+            n = s[i];
+            o = s[k];
+            break;
+          }
         }
       }
     }
   }
-  const p = s.find((x) => x !== n && x !== o) || s[2] || 'el tercero';
-  return [nombre(n), nombre(o), nombre(p)];
+  return [nombre(n), nombre(o), n];
+}
+
+// [n, o, p] como nombres. fisico = intenta que n-o sean compatibles. targetGen = 'm' | 'h'
+export function pickTrio(js = [], fisico = false, targetGen = null) {
+  const norm = normalizar(js);
+  const pool = norm.length >= 3 ? norm : [...norm, { name: 'alguien', gen: 'x', con: 'ambos' }, { name: 'otra persona', gen: 'x', con: 'ambos' }, { name: 'el tercero', gen: 'x', con: 'ambos' }];
+  
+  let nCandidate = null;
+  if (targetGen) {
+    const matching = pool.filter((j) => j.gen === targetGen);
+    if (matching.length > 0) {
+      nCandidate = matching[Math.floor(Math.random() * matching.length)];
+    }
+  }
+
+  const s = shuffle(pool);
+  let n = nCandidate || s[0];
+  let remaining = s.filter((x) => x !== n);
+  let o = remaining[0] || pool[0];
+  let p = remaining[1] || pool[1];
+
+  return [nombre(n), nombre(o), nombre(p), n];
 }

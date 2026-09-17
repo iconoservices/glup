@@ -59,7 +59,7 @@ Al día siguiente, con calma: qué estuvo bien, qué incomodó, si repetirían. 
 
 ## Cómo practicar sin salir todavía
 
-Antes de la primera salida, jugar en casa ayuda a ver cómo se sienten los dos con la dinámica de conocer y coquetear con otras parejas. [Fiestas Swinger](/fiestas-swinger) tiene un modo de rompehielos y una ruleta que empareja para retos suaves, con las reglas de consentimiento incorporadas. Y para practicar la conversación difícil, [Verdad o Reto +18](/verdad-o-reto-18) tiene preguntas que sacan el tema con humor.
+Antes de la primera salida, jugar en casa ayuda a ver cómo se sienten los dos con la dinámica de conocer y coquetear con otras parejas. [Fiestas Swinger](/fiestas-swinger) tiene un modo de rompehielos y una ruleta que empareja para retos suaves. Y para practicar la conversación difícil, [Verdad o Reto +18](/verdad-o-reto-18) tiene preguntas que sacan el tema con humor.
 
 ## Errores típicos de principiante
 

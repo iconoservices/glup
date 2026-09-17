@@ -29,7 +29,7 @@ export default function SwingerHome() {
     '@type': 'WebApplication',
     name: 'Fiestas Swinger',
     url: SITE_URL + '/fiestas-swinger',
-    description: 'Juegos para fiestas swinger y eventos de varias parejas: rompehielos, verdad o reto entre parejas y la ruleta que empareja. Con reglas de consentimiento. Gratis y sin descargar.',
+    description: 'Juegos para fiestas swinger y eventos de varias parejas: rompehielos, verdad o reto entre parejas y la ruleta que empareja. Gratis y sin descargar.',
     applicationCategory: 'GameApplication',
     operatingSystem: 'Web',
     isAccessibleForFree: true,
@@ -41,7 +41,7 @@ export default function SwingerHome() {
     <div className="vor-home">
       <Seo
         title="Fiestas Swinger — juegos para eventos de varias parejas (+18)"
-        description="Juegos para fiestas swinger: rompehielos para parejas que se conocen, verdad o reto entre parejas y la ruleta que empareja al azar. Con reglas de consentimiento. Gratis y sin descargar."
+        description="Juegos para fiestas swinger: rompehielos para parejas que se conocen, verdad o reto entre parejas y la ruleta que empareja al azar. Gratis y sin descargar."
         path="/fiestas-swinger"
       />
       <JsonLd data={schema} />
@@ -50,7 +50,7 @@ export default function SwingerHome() {
       <header className="vor-head">
         <p className="vor-eyebrow">Para varias parejas · +18</p>
         <h1 className="vor-title">Fiestas <span>Swinger</span></h1>
-        <p className="vor-sub">Rompehielos, verdad o reto entre parejas y la ruleta. Todo con luz verde de las dos partes.</p>
+        <p className="vor-sub">Rompehielos, verdad o reto entre parejas y la ruleta más picante.</p>
       </header>
 
       <button className="vor-players" onClick={() => openJugadores()}>
@@ -86,16 +86,10 @@ export default function SwingerHome() {
       </ul>
 
       <section className="vor-seo">
-        <h2>Reglas de la casa (leélas antes de empezar)</h2>
+        <h2>¿Cómo se juega Fiestas Swinger?</h2>
         <p>
-          Estos juegos son para <b>eventos de varias parejas</b> donde todos vienen sabiendo de qué se trata.
-          Antes de la primera ronda, acuerden esto:
-        </p>
-        <p>
-          <b>1. Luz verde de las dos parejas.</b> Ningún reto que cruce a dos personas se hace sin el ok de sus parejas.
-          <br /><b>2. Palabra de freno.</b> Una palabra corta todo, sin discutir y sin explicar.
-          <br /><b>3. "No" es "no".</b> Nadie insiste, nadie se ofende.
-          <br /><b>4. La pareja tiene prioridad.</b> Si uno necesita una pausa, eso gana sobre el juego.
+          Suma los nombres de las parejas, elige el nivel y el modo: <b>Rompehielos</b> para entrar en confianza,
+          <b> Verdad o Reto</b> para cruzar a las parejas con preguntas picantes, o <b>La Ruleta</b> para que el azar decida los retos.
         </p>
         <p className="vor-seo__kw">
           juegos para fiestas swinger · verdad o reto entre parejas · juegos para intercambio de parejas · ruleta de parejas · juegos +18 para varias parejas

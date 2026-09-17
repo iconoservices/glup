@@ -50,7 +50,7 @@ export default function SinLimitesHome() {
       <header className="vor-head">
         <p className="vor-eyebrow">Para 2 o más · +18</p>
         <h1 className="vor-title">Sin <span>Límites</span></h1>
-        <p className="vor-sub">El juego más fuerte de Glup. Cualquiera puede decir "paso" en cualquier momento, sin preguntas.</p>
+        <p className="vor-sub">El juego más fuerte de Glup: retos al tope y confesiones directas.</p>
       </header>
 
       <button className="vor-players" onClick={() => openJugadores()}>
@@ -91,10 +91,6 @@ export default function SinLimitesHome() {
           Agrega los nombres de quienes juegan, elige el nivel — <b>Fuerte</b>, <b>Sin Límites</b>,
           <b> Al azar</b> o <b>Ascendente</b> — y un modo: <b>Verdad o Reto</b> o <b>Solo Retos</b>.
           Durante la partida puedes escribir tus propios retos para que se mezclen con los demás.
-        </p>
-        <p>
-          Regla de oro: cualquiera puede decir <b>"paso"</b> en cualquier momento y no se discute.
-          Es el juego más fuerte de la casa, pero siempre con el sí de todos.
         </p>
         <p className="vor-seo__kw">
           verdad o reto sin límites · juego +18 extremo · reto de exhibición · juego para grupos picante

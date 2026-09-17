@@ -23,6 +23,8 @@ import SwingerRuleta from './apps-hub/swinger/SwingerRuleta';
 import SinLimitesShell from './apps-hub/sinlimites/SinLimitesShell';
 import SinLimitesHome from './apps-hub/sinlimites/SinLimitesHome';
 import SinLimitesPlay from './apps-hub/sinlimites/SinLimitesPlay';
+import GayShell from './apps-hub/gay/GayShell';
+import GayHome from './apps-hub/gay/GayHome';
 import Blog from './pages/Blog';
 import Article from './pages/Article';
 import RouteError from './pages/RouteError';
@@ -58,6 +60,13 @@ const appsFuertes = SAFE_BUILD ? [] : [
       { index: true, element: <SinLimitesHome /> },
       { path: 'jugar', element: <SinLimitesPlay /> },
       { path: 'contenido', element: <Navigate to="/contenido" replace /> },
+    ],
+  },
+  {
+    path: 'juegos-gay',
+    element: <GayShell />,
+    children: [
+      { index: true, element: <GayHome /> },
     ],
   },
 ];

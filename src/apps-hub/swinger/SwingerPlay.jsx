@@ -37,7 +37,7 @@ export default function SwingerPlay() {
     <div className="vor-game">
       <Seo
         title={`Fiestas Swinger — ${titulo}`}
-        description={`${titulo} para fiestas de varias parejas. Con reglas de consentimiento. Gratis y sin descargar.`}
+        description={`${titulo} para fiestas de varias parejas. Gratis y sin descargar.`}
         path="/fiestas-swinger/jugar"
       />
 

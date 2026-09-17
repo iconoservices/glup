@@ -20,11 +20,14 @@ const NIVEL_LABEL = { suave: 'Suave', intermedio: 'Medio', picante: 'Picante' };
 
 const readVor = (t) =>
   t.replaceAll('{n}', '[jugador]').replaceAll('{o}', '[otro]').replaceAll('{yo}', '[jugador]');
-const readTrios = (t) =>
-  t.replaceAll('{no}', '[los otros dos]')
+const readTrios = (t) => {
+  const raw = typeof t === 'string' ? t : (t && t.text) || '';
+  return raw
+    .replaceAll('{no}', '[los otros dos]')
     .replaceAll('{n}', '[jugador]')
     .replaceAll('{o}', '[otro]')
     .replaceAll('{p}', '[el tercero]');
+};
 const readSw = (t) =>
   t.replaceAll('{no}', '[otras dos]').replaceAll('{n}', '[persona]').replaceAll('{o}', '[otra]');
 

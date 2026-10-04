@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ShieldCheck, Link2, Check } from 'lucide-react';
 import Seo from '../components/Seo';
+import AdSlot from '../components/AdSlot';
 import JsonLd from '../components/JsonLd';
 import MagNav from '../components/MagNav';
 import Logo from '../components/Logo';
@@ -107,6 +108,8 @@ export default function Article() {
 
         <article className="prose" dangerouslySetInnerHTML={{ __html: post.html }} />
 
+        <AdSlot />
+
         <section className="article__cta-box">
           <p>¿Listo para jugar?</p>
           {REVISTA_BUILD ? (
@@ -116,6 +119,8 @@ export default function Article() {
           )}
         </section>
       </div>
+
+      <AdSlot kind="native" />
 
       {otros.length > 0 && (
         <section className="article__more">

@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Navigate } from 'react-router-dom';
 import Seo from '../components/Seo';
+import AdSlot from '../components/AdSlot';
 import StoreHero from '../components/StoreHero';
 import GameCard from '../components/GameCard';
 import CatFilter from '../components/CatFilter';
@@ -58,6 +59,7 @@ export default function CategoryPage({ catId }) {
                 {games.map((g) => <GameCard key={g.slug} game={g} />)}
               </div>
             </section>
+            <AdSlot />
           </>
         )}
       </main>

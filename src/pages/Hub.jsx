@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search, Check, ArrowRight } from 'lucide-react';
 import Seo from '../components/Seo';
+import AdSlot from '../components/AdSlot';
 import JsonLd from '../components/JsonLd';
 import Logo from '../components/Logo';
 import { stars, SITE_URL } from '../lib/ui';
@@ -238,6 +239,8 @@ export default function Hub() {
         </div>
       </section>
 
+      <AdSlot />
+
       <section className="hub-sec" id="ocasion">
         <div className="hub-sec__head">
           <p className="hub-sec__kicker">Por ocasión</p>
@@ -253,6 +256,8 @@ export default function Hub() {
           ))}
         </div>
       </section>
+
+      <AdSlot kind="native" />
 
       <div className="hub-revista">
         <div className="hub-revista__inner">

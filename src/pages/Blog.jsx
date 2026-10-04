@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
+import AdSlot from '../components/AdSlot';
 import JsonLd from '../components/JsonLd';
 import MagNav from '../components/MagNav';
 import { SITE_URL } from '../lib/ui';
@@ -70,6 +71,8 @@ export default function Blog() {
             </Link>
           ))}
         </div>
+
+        <AdSlot />
       </div>
     </div>
   );

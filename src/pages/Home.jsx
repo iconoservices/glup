@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Seo from '../components/Seo';
+import AdSlot from '../components/AdSlot';
 import StoreHero from '../components/StoreHero';
 import GameCard from '../components/GameCard';
 import CatFilter from '../components/CatFilter';
@@ -43,6 +44,7 @@ export default function Home() {
                 {GAMES.map((g) => <GameCard key={g.slug} game={g} />)}
               </div>
             </section>
+            <AdSlot />
           </>
         )}
       </main>

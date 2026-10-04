@@ -10,4 +10,4 @@ export const REVISTA_BUILD = import.meta.env.VITE_REVISTA_BUILD === 'true';
 
 // A dónde apuntan los enlaces "jugar" de la Revista cuando vive en su propio
 // dominio (no puede usar rutas relativas como /glup porque ahí no existen).
-export const GAMES_ORIGIN = 'https://glupi.netlify.app';
+export const GAMES_ORIGIN = 'https://juegosglup.vizioclub.online';

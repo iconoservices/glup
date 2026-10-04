@@ -1719,3 +1719,22 @@ html[data-route="hub"] body {
   cursor: default;
 }
 
+
+/* ── Publicidad (Adsterra): oculta hasta que AdSlot la rellena ── */
+.ad-slot { display: none; }
+.ad-slot--on {
+  display: block;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 1.2rem 1rem;
+  text-align: center;
+}
+.ad-slot--on::before {
+  content: 'Publicidad';
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint, #6b7688);
+}

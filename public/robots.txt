@@ -17,4 +17,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://glupi.netlify.app/sitemap.xml
+Sitemap: https://juegosglup.vizioclub.online/sitemap.xml

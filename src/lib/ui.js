@@ -23,4 +23,4 @@ import { REVISTA_BUILD } from './buildMode';
 
 export const SITE_URL = REVISTA_BUILD
   ? 'https://revista.vizioclub.online'
-  : 'https://glupi.netlify.app';
+  : 'https://juegosglup.vizioclub.online';
